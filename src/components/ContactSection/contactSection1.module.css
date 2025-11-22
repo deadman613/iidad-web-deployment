@@ -16,8 +16,12 @@
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 700;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: clamp(2.8rem, 4vw, 7.5rem);
+  text-transform: uppercase;
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
 
