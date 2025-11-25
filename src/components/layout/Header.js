@@ -7,14 +7,14 @@ export default function Header() {
   const headerRef = useRef(null);
 
   // GSAP animation: header drops in from above
-  useEffect(() => {
-    gsap.from(headerRef.current, {
-      y: -200,
-      opacity: 0,
-      duration: 2,
-      ease: "power4.out"
-    });
-  }, []);
+  // useEffect(() => {
+  //   gsap.from(headerRef.current, {
+  //     y: -200,
+  //     opacity: 0,
+  //     duration: 2,
+  //     ease: "power4.out"
+  //   });
+  // }, []);
 
   useEffect(() => {
     const menus = document.querySelectorAll(".delay-dropdown");

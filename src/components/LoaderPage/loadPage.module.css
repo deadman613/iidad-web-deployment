@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Plain Light";
+  src: url('/fonts/plain-light-webfont.ttf');
+}
+
+@font-face {
+  font-family: "silk serif";
+  src: url('/fonts/silkserif-regularitalic-webfont.ttf');
+}
+
+.loader {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999; /* Maximum z-index */
+  background-color: #0b0b0b;
+  padding: 21vh 10vw;
+  font-family: "Plain Light", sans-serif;
+  transition: opacity 0.2s ease;
+  overflow: hidden;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.line {
+  height: fit-content;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2vw;
+}
+
+.linetime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.linetime.show {
+  opacity: 1;
+}
+
+.linetime h4,
+.linetime h5 {
+  font-size: 3.5vw;
+  font-family: "silk serif", serif;
+  font-weight: 100;
+  color: #fff;
+  margin: 0;
+}
+
+.linetime h5 {
+  width: 6vw;
+  text-align: right;
+}
+
+.linetime h4 {
+  margin-right: 3vw;
+}
+
+.counter {
+  width: 6vw;
+  text-align: right;
+}
+
+.line h1 {
+  font-size: 6.2vw;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  transform: translateY(150px);
+  transition: transform 0.6s ease;
+}
+
+.line h1.slideIn {
+  transform: translateY(0);
+}
+
+.now {
+  font-size: 4.8vw;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  opacity: 0;
+}
+
+.now.animate {
+  animation: anime 2s infinite;
+}
+
+@keyframes anime {
+  0% {
+    font-family: "Plain Light", sans-serif;
+    -webkit-text-stroke: 1px #fff;
+    color: #fff;
+    font-weight: 500;
+    opacity: 1;
+  }
+  48% {
+    font-family: "Plain Light", sans-serif;
+    -webkit-text-stroke: 1px solid #fff;
+    color: #fff;
+    font-weight: 500;
+    opacity: 0;
+  }
+  50% {
+    font-family: "silk serif", serif;
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-weight: 500;
+    opacity: 1;
+  }
+  70% {
+    font-family: "silk serif", serif;
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-weight: 500;
+    opacity: 0;
+  }
+  100% {
+    font-family: "silk serif", serif;
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-weight: 500;
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .loader {
+    padding: 15vh 5vw;
+  }
+
+  .linetime h4,
+  .linetime h5 {
+    font-size: 5vw;
+  }
+
+  .linetime h5 {
+    width: 10vw;
+  }
+
+  .counter {
+    width: 10vw;
+  }
+
+  .line h1 {
+    font-size: 9vw;
+  }
+
+  .now {
+    font-size: 7vw;
+  }
+}
