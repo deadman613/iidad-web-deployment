@@ -17,7 +17,9 @@ export default function HomeSection1({ animate }) {
 
   return (
     <section className={styles.heroBg}>
-      <h2 className={styles.Logo}>iidad</h2>
+      <div className={styles.Logo}>
+        <img src="/g10.png" alt="IIDAD Logo" />
+      </div>
       <div className={styles.heroRow} ref={heroRowRef}>
         <div className={styles.heroContent}>
           <span className={styles.webOffer}>

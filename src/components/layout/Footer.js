@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="footer-logo-text">
               <div>
                 <div className="footer-brand">
-                  iidad<span className="footer-arrow">↗</span>
+                  <img src="/g10.png" alt="IIDAD Logo" className="footer-logo-img" />
                 </div>
                 <div className="footer-subtext">
                   Shaping tomorrow through<br />design & development
