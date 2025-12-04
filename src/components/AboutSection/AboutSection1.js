@@ -12,12 +12,12 @@ export default function AboutSection1() {
       {/* Top Section */}
       <div className={styles.topGrid}>
         <div className={styles.left}>
-          <h1 className={styles.heading}>ABOUT<br />US</h1>
+          <h1 className={styles.heading}>ABOUT<br />IIDAD</h1>
           <div className={styles.leftDesc}>
-            <div className={styles.detail}>Luxurious Interior and Industrial Design</div>
+            <div className={styles.detail}>Indian Institute of Design and Development</div>
             <div className={styles.subdesc}>
-              Modern Elegance: Designs featuring clean lines, neutral palettes,<br />
-              and high-quality materials.
+              Empowering Creative Minds: IIDAD provides world-class education<br />
+              in design, development, and digital innovation.
             </div>
           </div>
         </div>
@@ -29,9 +29,9 @@ export default function AboutSection1() {
           <div className={styles.philosophyTextBlock}>
             <div className={styles.philosophyTitle}>Our Philosophy</div>
             <div className={styles.philosophyText}>
-              At Britto Charette, we believe in creating luxurious,<br />
-              personalized environments that reflect our clients’<br />
-              tastes and lifestyles.
+              At IIDAD, we believe in nurturing creative talent,<br />
+              fostering innovation, and preparing students to become<br />
+              industry leaders in design and technology.
             </div>
           </div>
         </div>

@@ -3,15 +3,15 @@ import './footer.css';
 import { FaInstagram, FaBehance, FaLinkedin } from 'react-icons/fa';
 
 const footerLinks = [
-  { label: "Branding", href: "#" },
-  { label: "Website", href: "#" },
-  { label: "Campaign", href: "#" },
+  { label: "Programs", href: "#" },
+  { label: "About Us", href: "/about" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const footerLinksRight = [
-  { label: "Projects", href: "#" },
-  { label: "Resources", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Admissions", href: "#" },
+  { label: "Campus Life", href: "#" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 const Footer = () => {
@@ -23,10 +23,10 @@ const Footer = () => {
             <div className="footer-logo-text">
               <div>
                 <div className="footer-brand">
-                  iidad<span className="footer-arrow">↗</span>
+                  <img src="/g10.png" alt="IIDAD Logo" className="footer-logo-img" />
                 </div>
                 <div className="footer-subtext">
-                  Creative minds<br />for creative brands
+                  Shaping tomorrow through<br />design & development
                 </div>
               </div>
             </div>

@@ -78,7 +78,11 @@ export async function generateMetadata(props) {
       ] : undefined,
       type: "article",
       url: canonical,
-      siteName: "Blogcode",
+      siteName: "IIDAD - Indian Institute of Design and Development",
+      publishedTime: blog.createdAt,
+      modifiedTime: blog.updatedAt,
+      authors: blog.author ? [blog.author] : ["IIDAD"],
+      tags: blog.tags || [],
     },
     twitter: {
       card: "summary_large_image",
@@ -90,8 +94,18 @@ export async function generateMetadata(props) {
           alt: imageAlt,
         }
       ] : undefined,
+      creator: "@iidad",
     },
+    keywords: blog.tags || [],
+    authors: blog.author ? [{ name: blog.author }] : [{ name: "IIDAD" }],
+    publisher: "Indian Institute of Design and Development",
     alternates: { canonical },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   };
 }
 
@@ -120,19 +134,32 @@ export default async function BlogDetails(props) {
     datePublished: blog.createdAt,
     dateModified: blog.updatedAt ?? blog.createdAt,
     author: {
-      "@type": "Person",
-      name: "Editorial Team",
+      "@type": blog.author ? "Person" : "Organization",
+      name: blog.author || "IIDAD Editorial Team",
     },
     publisher: {
-      "@type": "Organization",
-      name: "Blogcode",
+      "@type": "EducationalOrganization",
+      name: "Indian Institute of Design and Development",
+      alternateName: "IIDAD",
+      url: baseUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/logo.png`,
+      },
     },
     image: hasCover
       ? isExternalCover
         ? imageSrc
         : new URL(imageSrc, baseUrl).toString()
       : undefined,
-    description: blog.content.replace(/<[^>]+>/g, " ").slice(0, 160),
+    description: blog.metaDescription?.trim() || blog.content.replace(/<[^>]+>/g, " ").slice(0, 160),
+    keywords: blog.tags?.join(", ") || "",
+    articleSection: "Design Education",
+    inLanguage: "en-IN",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical,
+    },
   };
 
   return (

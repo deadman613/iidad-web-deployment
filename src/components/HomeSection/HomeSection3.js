@@ -5,42 +5,42 @@ export default function HomeSection3() {
     <section className={styles.page5}>
       <div className={styles.elem}>
         <h1>
-          <span>Sport</span> - technology - fashion - 
-          <span>Sport</span> - technology - fashion - 
+          <span>UI/UX Design</span> - Web Development - Mobile Apps - 
+          <span>UI/UX Design</span> - Web Development - Mobile Apps - 
         </h1>
         <h1>
-          Sport - technology - <span>fashion</span> - 
-          Sport - technology - <span>fashion</span> -
+          UI/UX Design - Web Development - <span>Mobile Apps</span> - 
+          UI/UX Design - Web Development - <span>Mobile Apps</span> -
         </h1>
       </div>
       <div className={styles.elem2}>
         <h1>
-          real estate - <span>agriculture</span> - beauty -
-          real estate - <span>agriculture</span> - beauty -
+          Graphic Design - <span>Product Design</span> - Branding -
+          Graphic Design - <span>Product Design</span> - Branding -
         </h1>
         <h1>
-          <span>real estate</span> - agriculture - beauty -
-          <span>real estate</span> - agriculture - beauty -
+          <span>Graphic Design</span> - Product Design - Branding -
+          <span>Graphic Design</span> - Product Design - Branding -
         </h1>
       </div>
       <div className={styles.elem}>
         <h1>
-          hotels - <span>music</span> - automotive -
-          hotels - <span>music</span> - automotive -
+          Front-End - <span>Back-End</span> - Full-Stack -
+          Front-End - <span>Back-End</span> - Full-Stack -
         </h1>
         <h1>
-          hotels - music - <span>automotive</span> -
-          hotels - music - <span>automotive</span> -
+          Front-End - Back-End - <span>Full-Stack</span> -
+          Front-End - Back-End - <span>Full-Stack</span> -
         </h1>
       </div>
       <div className={styles.elem2}>
         <h1>
-          Science - partner - <span>travel</span> -
-          Science - partner - <span>travel</span> -
+          Animation - Motion Design - <span>3D Modeling</span> -
+          Animation - Motion Design - <span>3D Modeling</span> -
         </h1>
         <h1>
-          Science - partner - <span>travel</span> -
-          Science - partner - <span>travel</span> -
+          Animation - Motion Design - <span>3D Modeling</span> -
+          Animation - Motion Design - <span>3D Modeling</span> -
         </h1>
       </div>
     </section>

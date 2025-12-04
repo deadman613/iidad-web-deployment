@@ -20,10 +20,10 @@ export default function HomeSection2() {
       {/* Left Text */}
       <div className={styles.leftCol} >
         <h2 className={styles.bigTitle}>
-          Creativity in the service of performance
+          Innovation Through Education
         </h2>
         <p className={styles.descText}>
-          From architecture to design, including content strategy, integration and development (in the case of a web app), we will guide you through each stage of the design process.
+          From foundational design principles to advanced development techniques, IIDAD offers comprehensive programs in UI/UX design, web development, mobile app development, graphic design, and product design. We nurture talent and transform aspiring designers into industry leaders.
         </p>
       </div>
       {/* Right Video */}

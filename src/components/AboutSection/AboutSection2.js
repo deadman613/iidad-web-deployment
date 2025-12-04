@@ -10,10 +10,10 @@ export default function AboutSection2() {
         <div className={styles.left}>
           <div className={styles.leftDesc}>
             <div className={styles.detail}>
-              Modern Perspective & Visual Storytelling
+              Transforming Education Through Innovation
             </div>
             <div className={styles.subdesc}>
-              Our creative approach features immersive visuals, fresh angles, and high-quality digital narrativesOur creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives..
+              IIAD was founded with a vision to bridge the gap between traditional education and industry demands. We combine academic excellence with practical training, state-of-the-art facilities with expert mentorship, and creative freedom with professional discipline. Our journey began with a commitment to make quality design and development education accessible to passionate learners across India.
             </div>
           </div>
         </div>

@@ -17,20 +17,22 @@ export default function HomeSection1({ animate }) {
 
   return (
     <section className={styles.heroBg}>
-      <h2 className={styles.Logo}>iidad</h2>
+      <div className={styles.Logo}>
+        <img src="/g10.png" alt="IIDAD Logo" />
+      </div>
       <div className={styles.heroRow} ref={heroRowRef}>
         <div className={styles.heroContent}>
           <span className={styles.webOffer}>
-            Our web offer: Catch me online!
+            Transform Your Future
           </span>
           <h1 className={styles.heroTitle}>
-            For a digital experience that will <br />leave a lasting impression.
+            Shape Tomorrow Through <br />Design & Development
           </h1>
           <p className={styles.heroDesc}>
-            We design turnkey websites and web apps that convert and reinforce brand messaging.
+            IIDAD empowers creative minds with world-class education in design, development, and innovation. Join India&apos;s premier institute for a transformative learning experience.
           </p>
           <div className={styles.ctaBox} ref={ctaBoxRef}>
-            <span className={styles.ctaText}>Let's talk about it, make an appointment.</span>
+            <span className={styles.ctaText}>Start your journey. Explore our programs today.</span>
             <button className={styles.ctaBtn}>
               <FaArrowRight />
             </button>

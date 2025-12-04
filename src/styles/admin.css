@@ -42,14 +42,15 @@
 
 .admin-main {
   padding: 3rem;
-  background: var(--color-bg);
+  background: #f8f9fb;
 }
 
 .admin-panel {
-  background: var(--color-surface);
+  background: #ffffff;
   padding: 2.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
+  color: #1f2430;
 }
 
 .admin-panel__header {
@@ -58,16 +59,29 @@
   gap: 2rem;
   align-items: flex-start;
   margin-bottom: 2rem;
+  color: #1f2430;
+}
+
+.admin-panel__header h1,
+.admin-panel__header p,
+.admin-panel__header .eyebrow {
+  color: #1f2430;
 }
 
 .admin-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  color: #1f2430;
 }
 
 .admin-form__header h2 {
   margin: 0 0 0.25rem;
+  color: #1f2430;
+}
+
+.admin-form__header p {
+  color: #5c6274;
 }
 
 .form-grid {
@@ -81,30 +95,40 @@ label {
   flex-direction: column;
   gap: 0.35rem;
   font-weight: 600;
+  color: #1f2430;
 }
 
 input,
 textarea {
   border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid #e3e6ed;
   padding: 0.85rem 1rem;
   font-size: 1rem;
+  background: #ffffff;
+  color: #1f2430;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
 }
 
 small {
   font-weight: 400;
-  color: var(--color-muted);
+  color: #5c6274;
 }
 
 .editor-label {
   font-weight: 600;
+  color: #1f2430;
 }
 
 .editor {
-  border: 1px solid var(--color-border);
+  border: 1px solid #e3e6ed;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #fff;
+  color: #1f2430;
 }
 
 .editor__toolbar {
@@ -133,6 +157,24 @@ small {
   min-height: 320px;
   padding: 1.25rem;
   outline: none;
+  color: #1f2430;
+  background: #ffffff;
+}
+
+.editor .ProseMirror p,
+.editor .ProseMirror h1,
+.editor .ProseMirror h2,
+.editor .ProseMirror h3,
+.editor .ProseMirror h4,
+.editor .ProseMirror h5,
+.editor .ProseMirror h6,
+.editor .ProseMirror li,
+.editor .ProseMirror blockquote {
+  color: #1f2430;
+}
+
+.editor .ProseMirror::placeholder {
+  color: #94a3b8;
 }
 
 .form-status {
@@ -159,23 +201,31 @@ small {
 .admin-table {
   width: 100%;
   border-collapse: collapse;
+  color: #1f2430;
 }
 
 .admin-table th,
 .admin-table td {
   text-align: left;
   padding: 1rem 0.5rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid #e3e6ed;
+  color: #1f2430;
+}
+
+.admin-table th {
+  font-weight: 600;
+  background: #f8f9fb;
 }
 
 .admin-table__title {
   margin: 0;
   font-weight: 600;
+  color: #1f2430;
 }
 
 .admin-table__meta {
   margin: 0.15rem 0 0;
-  color: var(--color-muted);
+  color: #5c6274;
   font-size: 0.9rem;
 }
 
@@ -191,19 +241,25 @@ small {
   border-color: rgba(226, 232, 240, 0.4);
 }
 
+.empty {
+  color: #5c6274;
+  padding: 2rem;
+  text-align: center;
+}
+
 .admin-login {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: var(--color-bg);
+  background: #f8f9fb;
 }
 
 .admin-login__panel {
   max-width: 420px;
   width: 100%;
-  background: var(--color-surface);
+  background: #ffffff;
   padding: 2.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -214,6 +270,7 @@ small {
 
 .admin-login__panel h1 {
   margin: 0;
+  color: #1f2430;
 }
 
 .admin-login__form {
@@ -224,7 +281,7 @@ small {
 
 .admin-login__back {
   margin: 0;
-  color: var(--color-muted);
+  color: #5c6274;
 }
 
 .auth-page {
@@ -302,7 +359,7 @@ small {
 }
 
 .auth-card__form {
-  background: var(--color-surface);
+  background: #ffffff;
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -318,6 +375,7 @@ small {
 .auth-form h2 {
   margin: 0;
   font-size: 1.9rem;
+  color: #1f2430;
 }
 
 .auth-form label {
@@ -325,7 +383,7 @@ small {
   flex-direction: column;
   gap: 0.5rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: #1f2430;
 }
 
 .auth-form input {
@@ -334,7 +392,13 @@ small {
   border-radius: 0.75rem;
   padding: 0 1rem;
   font-size: 1rem;
+  background: #ffffff;
+  color: #1f2430;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input::placeholder {
+  color: #94a3b8;
 }
 
 .auth-form input:focus {
@@ -345,7 +409,7 @@ small {
 
 .auth-form__hint {
   margin: 0;
-  color: var(--color-muted);
+  color: #5c6274;
   text-align: center;
 }
 
@@ -384,4 +448,74 @@ small {
   .auth-card__form {
     padding: 2.5rem 2rem;
   }
+}
+
+/* Additional visibility fixes for admin panel */
+.admin-panel * {
+  color: inherit;
+}
+
+.admin-panel h1,
+.admin-panel h2,
+.admin-panel h3,
+.admin-panel h4,
+.admin-panel h5,
+.admin-panel h6 {
+  color: #1f2430;
+}
+
+.admin-panel p {
+  color: #1f2430;
+}
+
+.admin-panel .eyebrow {
+  color: #4f46e5;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Ensure all admin buttons are visible */
+.admin-panel .btn {
+  background: #ffffff;
+  color: #1f2430;
+  border-color: #e3e6ed;
+}
+
+.admin-panel .btn:hover {
+  background: #f8f9fb;
+  border-color: #1f2430;
+}
+
+.admin-panel .btn--primary {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+
+.admin-panel .btn--primary:hover {
+  background: #3730a3;
+  border-color: #3730a3;
+}
+
+.admin-panel .btn--ghost {
+  background: transparent;
+  border-color: #e3e6ed;
+}
+
+.admin-panel .btn--ghost:hover {
+  background: #f8f9fb;
+}
+
+/* Delete button styling */
+.admin-panel button[type="button"].btn {
+  background: #ffffff;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.admin-panel button[type="button"].btn:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
 }

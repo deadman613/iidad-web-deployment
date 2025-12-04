@@ -35,28 +35,28 @@ function PillArrow({ size = 120 }) {
 
 const cards = [
   {
-    title: "Autonomous",
-    desc: "A simple, easy-to-use backrest to maintain your independence.",
+    title: "Industry-Ready",
+    desc: "Curriculum designed with industry experts to ensure you're job-ready from day one.",
   },
   {
-    title: "Fast",
-    desc: "When we commit to deadlines, we meet them.",
+    title: "Hands-On Learning",
+    desc: "Real projects, live briefs, and practical assignments that build your portfolio.",
   },
   {
-    title: "Scalable",
-    desc: "Your business is bound to evolve, our solution is designed to evolve with it.",
+    title: "Expert Faculty",
+    desc: "Learn from experienced professionals who bring years of industry expertise to the classroom.",
   },
   {
-    title: "Stable",
-    desc: "Say goodbye to monthly maintenance and plugin incompatibility issues with every update. Here, everything is under control.",
+    title: "Modern Tools",
+    desc: "Master the latest design and development tools used by leading companies worldwide.",
   },
   {
-    title: "Reference",
-    desc: "Webflow is natively optimized to boost the SEO of the sites it hosts.",
+    title: "Career Support",
+    desc: "Dedicated placement assistance and career guidance to help you land your dream job.",
   },
   {
-    title: "Own",
-    desc: "Optimized production standards to ensure a low carbon footprint and optimal accessibility.",
+    title: "Flexible Learning",
+    desc: "Choose from full-time, part-time, and online learning options that fit your schedule.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function HomeSection5() {
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.heading}>
-        Powered online via <span className={styles.webflow}>Webflow</span>
+        Why Choose <span className={styles.webflow}>IIDAD</span>
       </h2>
       <div className={styles.grid}>
         {cards.map((card, i) => (

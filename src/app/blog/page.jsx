@@ -19,8 +19,42 @@ const fetchBlogs = async (searchParams) => {
 };
 
 export const metadata = {
-  title: "Blog",
-  description: "Latest posts across every site using this shared template.",
+  title: "IIDAD Blog - Design Insights, News & Updates",
+  description: "Explore the IIDAD blog for latest design trends, student projects, industry insights, campus news, and educational resources. Stay updated with the Indian Institute of Design and Development's community, events, and thought leadership in design education.",
+  keywords: [
+    "IIDAD blog",
+    "design blog India",
+    "design education articles",
+    "student design projects",
+    "design trends",
+    "IIDAD news",
+    "design insights",
+    "creative education blog",
+    "design institute updates"
+  ],
+  openGraph: {
+    title: "IIDAD Blog - Design Insights, News & Updates | Indian Institute of Design and Development",
+    description: "Read the latest from IIDAD - design trends, student showcases, industry insights, campus events, and educational resources from India's premier design institute.",
+    url: "/blog",
+    type: "website",
+    images: [
+      {
+        url: "/og-blog.jpg",
+        width: 1200,
+        height: 630,
+        alt: "IIDAD Blog - Design Insights and News",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IIDAD Blog - Design Insights, News & Updates",
+    description: "Explore design trends, student projects, and insights from India's leading design institute.",
+    images: ["/twitter-blog.jpg"],
+  },
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogPage({ searchParams }) {

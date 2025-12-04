@@ -5,32 +5,32 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const items = [
   {
-    q: "Was the Treize Grammes agency website quick to create?",
-    a: "",
+    q: "What programs does IIDAD offer?",
+    a: "IIDAD offers comprehensive programs in UI/UX Design, Web Development, Mobile App Development, Graphic Design, Product Design, Animation, and Digital Marketing. We provide certificate courses, diploma programs, and degree courses tailored to different skill levels.",
   },
   {
-    q: "What tools do you use?",
-    a: "",
+    q: "What is the duration of the courses?",
+    a: "Course durations vary: Certificate courses range from 3-6 months, Diploma programs are 12-18 months, and Degree programs span 2-3 years. We also offer intensive bootcamps and weekend workshops for working professionals.",
   },
   {
-    q: "What types of websites can you create?",
-    a: "We specialize in creating turnkey showcase websites and web applications. We don’t build e-commerce sites, but otherwise, we have no creative or technical limitations. Our resources allow us to push the boundaries of the digital experience, making your website your brand’s greatest business asset.",
+    q: "Do you provide placement assistance?",
+    a: "Yes! IIDAD has a dedicated placement cell that works closely with leading companies in the design and tech industry. We provide resume building, portfolio reviews, interview preparation, and direct placement opportunities with our partner companies.",
   },
   {
-    q: "Are your websites optimized for search engine optimization (SEO)?",
-    a: "Webflow est nativement et structurellement optimisé pour le SEO. Par ailleurs, nous avons à cœur d’adopter des modes de conception visant à développer l’accessibilité et minimiser l’impact carbone. Cette posture génère des sites optimisés et aux performances supérieures aux standards du marché.",
+    q: "What are the prerequisites for admission?",
+    a: "Most programs require completion of 10+2 education. For advanced courses, prior experience or a bachelor's degree may be preferred. However, we welcome passionate learners from all backgrounds. Each program has specific requirements detailed on our admissions page.",
   },
   {
-    q: "How much does it cost?",
-    a: "",
+    q: "Are the courses available online?",
+    a: "Yes, IIDAD offers both on-campus and online learning options. Our hybrid model allows you to choose the format that best suits your lifestyle. Online students get access to live sessions, recorded lectures, and all course materials.",
   },
   {
-    q: "How long does it take to create a website at Treize grammes?",
-    a: "The answer varies. Our record is 2.5 months for an 11-page site (graphic design + layout + content + wording + Webflow integration), but on average we take 3 to 5 months... which is still quite respectable!",
+    q: "What tools and software will I learn?",
+    a: "You will master industry-standard tools including Figma, Adobe Creative Suite, Sketch, React, Node.js, Python, Flutter, Unity, Blender, and more. We provide software licenses and access to cutting-edge technology throughout your learning journey.",
   },
   {
-    q: "How many people will be working on my website?",
-    a: "",
+    q: "How can I apply to IIDAD?",
+    a: "Applications can be submitted through our website. The process includes filling out an application form, submitting your academic transcripts, and attending a counseling session. Some programs may require a portfolio review or entrance test.",
   },
 ];
 

@@ -3,23 +3,23 @@ import styles from "./homeSection4.module.css";
 const cardData = [
   {
     video: "/image-vid/flying secoya_1 (1).mp4",
-    label: "Stratégie de contenu & Copywriting",
-    source: "from Secoya",
+    label: "UI/UX Design Program",
+    source: "Design Excellence",
   },
   {
     video: "/image-vid/Weem_1.mp4",
-    label: "Ergonomie (UX)",
-    source: "from Weem",
+    label: "Web Development",
+    source: "Code & Create",
   },
   {
     video: "/image-vid/Lemlist_1.mp4",
-    label: "Stratégie de contenu & Copywriting",
-    source: "from Secoya",
+    label: "Graphic Design",
+    source: "Visual Arts",
   },
   {
     video: "/image-vid/LGM_1.mp4",
-    label: "Ergonomie (UX)",
-    source: "from Weem",
+    label: "Product Design",
+    source: "Innovation Lab",
   },
 ];
 
@@ -27,8 +27,8 @@ export default function HomeSection4() {
   return (
     <section className={styles.section4}>
       <h2 className={styles.heading}>
-        Une équipe complète<br />
-        pour une marque digitale clé en main
+        Comprehensive Programs<br />
+        For Your Creative Career
       </h2>
       <div className={styles.cardsGrid}>
         {cardData.map((card, idx) => (
