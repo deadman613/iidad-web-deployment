@@ -1,20 +1,25 @@
+import prisma from "@/lib/prisma";
 import { getBaseUrl } from "@/lib/base-url";
 
+export const revalidate = 3600;
+
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://iidad.in";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (await getBaseUrl()) ||
+    "https://iidad.in";
 
   // Fetch blog posts for dynamic sitemap
   let blogs = [];
   try {
-    const res = await fetch(`${baseUrl}/api/blog?limit=1000`, {
-      next: { revalidate: 3600 },
+    blogs = await prisma.blog.findMany({
+      select: { slug: true, updatedAt: true, createdAt: true },
+      orderBy: { updatedAt: "desc" },
+      take: 1000,
     });
-    if (res.ok) {
-      const data = await res.json();
-      blogs = data.data || [];
-    }
   } catch (error) {
-    console.error("Error fetching blogs for sitemap:", error);
+    console.error("Error fetching blogs for sitemap via prisma:", error);
   }
 
   // Static pages
