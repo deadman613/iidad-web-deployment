@@ -1,6 +1,7 @@
 .blog-index {
   width: min(1100px, 100%);
   margin: 0 auto;
+  margin-top: 60px;
   padding: 4rem 1.5rem 5rem;
 }
 
@@ -372,9 +373,34 @@
     gap: 0.75rem;
   }
 
-  .blog-search button {
+  /* Make the search take full width on small screens and use a compact,
+     stable height (20px) as requested. Keep padding so the control is usable. */
+  /* Keep the search controls on one row but let the group take full width. */
+  .blog-search {
     width: 100%;
-    height: 2.75rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .blog-search input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 20px; /* stable visual height */
+    padding: 6px 10px; /* maintains usable click/tap area */
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+
+  .blog-search button {
+    flex: 0 0 auto;
+    height: 20px;
+    padding: 0 10px;
+    font-size: 0.95rem;
+    line-height: 20px;
+    box-sizing: border-box;
   }
 
   .blog-grid {
