@@ -1,7 +1,6 @@
 /* courseSection1.module.css */
 .heroSection {
-  min-height: 500px;
-  padding: 100px 20px;
+  padding: 35px 20px 0px 20px !important;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -101,7 +100,7 @@
 /* RIGHT SIDE */
 .rightContent {
   position: relative;
-  height: 400px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,7 +110,7 @@
   position: relative;
   width: 100%;
   max-width: 450px;
-  height: 400px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,9 +142,7 @@
 
 /* LARGE DESKTOP (1200px - 1600px) */
 @media (min-width: 1200px) and (max-width: 1600px) {
-  .heroSection {
-    padding: 200px 20px;
-  }
+
   .container {
     max-width: 1200px;
   }
@@ -156,10 +153,8 @@
 }
 
 /* DESKTOP (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .heroSection {
-    padding: 200px 20px;
-  }
+@media (min-width: 992px) and (max-width: 1200px) {
+
   
   .container {
     max-width: 960px;
@@ -179,20 +174,18 @@
   }
   
   .rightContent {
-    height: 380px;
+    height: 450px;
   }
   
   .graphicWrapper {
-    height: 380px;
+    height: 450px;
     max-width: 400px;
   }
 }
 
 /* TABLET LANDSCAPE (768px - 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-  .heroSection {
-    padding: 190px 20px;
-  }
+@media (min-width: 768px) and (max-width: 992px) {
+
   
   .container {
     max-width: 720px;
@@ -221,19 +214,19 @@
   }
   
   .rightContent {
-    height: 350px;
+    height: 450px;
   }
   
   .graphicWrapper {
-    height: 350px;
+    height: 450px;
     max-width: 350px;
   }
 }
 
 /* TABLET PORTRAIT (600px - 767px) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media (min-width: 600px) and (max-width: 768px) {
   .heroSection {
-    padding: 190px 20px;
+    padding: 110px 20px 0px 20px !important;
   }
   
   .heroSection::after {
@@ -244,7 +237,7 @@
   
   .container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 0px;
     max-width: 600px;
   }
   
@@ -285,10 +278,9 @@
     font-size: 13px;
   }
   
-  .rightContent {
+    .rightContent {
     height: 350px;
   }
-  
   .graphicWrapper {
     height: 350px;
     max-width: 350px;
@@ -297,9 +289,9 @@
 }
 
 /* MOBILE LANDSCAPE (480px - 599px) */
-@media (min-width: 480px) and (max-width: 599px) {
+@media (min-width: 480px) and (max-width: 600px) {
   .heroSection {
-    padding: 180px 20px;
+    padding: 110px 20px 0px 20px !important;
   }
   
   .heroSection::after {
@@ -309,7 +301,7 @@
   
   .container {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 0px;
   }
   
   .leftContent {
@@ -362,11 +354,10 @@
 }
 
 /* MOBILE PORTRAIT (360px - 479px) */
-@media (min-width: 360px) and (max-width: 479px) {
-  .heroSection {
-    padding: 170px 20px;
+@media (min-width: 360px) and (max-width: 480px) {
+    .heroSection {
+    padding: 110px 20px 0px 20px !important;
   }
-  
   .heroSection::after {
     width: 100%;
     opacity: 0.05;
@@ -428,7 +419,7 @@
 /* SMALL MOBILE (< 360px) */
 @media (max-width: 359px) {
   .heroSection {
-    padding: 40px 15px;
+    padding: 110px 15px 0px 15px !important;
   }
   
   .heroSection::after {
@@ -437,6 +428,7 @@
   
   .container {
     gap: 25px;
+    grid-template-columns: 1fr !important;
   }
   
   .leftContent {

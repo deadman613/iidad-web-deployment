@@ -38,6 +38,17 @@ display: inline-flex;
 white-space: nowrap;
 flex-wrap: nowrap;
 }
+/* Ensure nav links do not show an underline */
+.nav-btn,
+.nav a {
+  text-decoration: none;
+}
+.nav-btn:focus,
+.nav-btn:hover,
+.nav a:focus,
+.nav a:hover {
+  text-decoration: none;
+}
 
 /* --------------- */
 /* DROPDOWN POSITION */

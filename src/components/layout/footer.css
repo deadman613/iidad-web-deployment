@@ -155,7 +155,7 @@
   }
 }
 /* Responsive: adjust for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 797px) {
   .footer-bg {
     margin: 0;
     padding: 20px;

@@ -27,7 +27,7 @@ const CourseSection1 = () => {
             ₹2,099/month, cancel anytime
           </p>
 
-          <button className={styles.ctaButton}>
+          <button className={`${styles.ctaButton} ${styles.demoButtonForm} demoButtonForm`}>
             Start 7-day Free Trial
           </button>
 

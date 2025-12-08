@@ -1,7 +1,6 @@
 import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
 import { getBaseUrl } from "@/lib/base-url";
-import "@/styles/blog.css";
 
 const fetchBlogs = async (searchParams) => {
   const baseUrl = await getBaseUrl();

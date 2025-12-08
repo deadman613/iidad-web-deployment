@@ -127,7 +127,8 @@
 
 
 @media (max-width: 357px) {
-  .wrapper { width: 350px; }
+  /* Prevent fixed-width causing horizontal overflow: use fluid width with a max constraint */
+  .wrapper { width: 100%; max-width: 350px; }
   .question { font-size: 0.85rem; padding: 12px 10px; gap: 6px;}
   .answer { font-size: 0.83rem; margin: 0 0px 6px 10px; padding: 10px 0 14px 0;}
   .arrow { width: 30px; height: 30px; min-width: 30px; font-size: 0.95rem;}

@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "@/styles/blog.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
 

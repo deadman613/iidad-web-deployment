@@ -1,4 +1,5 @@
-body {
+/* Global body rule (explicit) to avoid impure selector in CSS Modules */
+:global(body) {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   /* background: #0a0a1f; */
   overflow-x: hidden;
@@ -436,7 +437,8 @@ background-size: 38px 38px;
 @media (max-width: 356px) {
   .wrapper {
     padding: 40px 8px 30px 8px;
-    width: 350px;
+    width: 100%;
+    max-width: 350px; /* avoid fixed width that causes horizontal overflow */
   }
   
   .carouselContainer {
