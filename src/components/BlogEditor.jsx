@@ -8,7 +8,17 @@ import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 
 const extensions = [
-  StarterKit,
+  StarterKit.configure({
+    bold: {
+      HTMLAttributes: {},
+    },
+    italic: {
+      HTMLAttributes: {},
+    },
+    heading: {
+      HTMLAttributes: {},
+    },
+  }),
   Placeholder.configure({ placeholder: "Write your blog content..." }),
   Link.configure({ openOnClick: false }),
   Image.configure({ inline: false }),
@@ -18,102 +28,63 @@ const controls = [
   {
     label: "B",
     command: (editor) => editor.chain().focus().toggleBold().run(),
-    isActive: (editor) => editor.isActive("bold"),
-  },
-  {
-    label: "I",
-    command: (editor) => editor.chain().focus().toggleItalic().run(),
-    isActive: (editor) => editor.isActive("italic"),
-  },
-  {
-    label: "H2",
-    command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-    isActive: (editor) => editor.isActive("heading", { level: 2 }),
-  },
-  {
-    label: "H3",
-    command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-    isActive: (editor) => editor.isActive("heading", { level: 3 }),
-  },
-  {
-    label: "•",
-    command: (editor) => editor.chain().focus().toggleBulletList().run(),
-    isActive: (editor) => editor.isActive("bulletList"),
-  },
-  {
-    label: "1.",
-    command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-    isActive: (editor) => editor.isActive("orderedList"),
-  },
-  {
-    label: "🔗",
-    command: (editor) => {
-      const previousUrl = editor.getAttributes("link").href;
-      const url = window.prompt("URL:", previousUrl);
-      
-      if (url === null) {
-        return;
-      }
-      
-      if (url === "") {
-        editor.chain().focus().extendMarkRange("link").unsetLink().run();
-        return;
-      }
-      
-      // Ensure URL is absolute - if it doesn't start with http:// or https://, add https://
-      let formattedUrl = url.trim();
-      if (formattedUrl && !formattedUrl.match(/^https?:\/\//i)) {
-        formattedUrl = 'https://' + formattedUrl;
-      }
-      
-      editor.chain().focus().extendMarkRange("link").setLink({ href: formattedUrl }).run();
-    },
-    isActive: (editor) => editor.isActive("link"),
-  },
-];
+    "use client";
 
-const BlogEditor = ({ value, onChange }) => {
-  const editor = useEditor({
-    extensions,
-    content: value || "",
-    immediatelyRender: false,
-    onUpdate: ({ editor: currentEditor }) => {
-      onChange?.(currentEditor.getHTML());
-    },
-  });
+    import dynamic from "next/dynamic";
+    import { useMemo } from "react";
+    import "react-quill/dist/quill.snow.css";
 
-  useEffect(() => {
-    if (editor && typeof value === "string" && value !== editor.getHTML()) {
-      editor.commands.setContent(value, false);
-    }
-  }, [editor, value]);
+    const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-  const actions = useMemo(
-    () =>
-      controls.map((control) => ({
-        ...control,
-        run: () => editor && control.command(editor),
-        isActive: () => (editor ? control.isActive(editor) : false),
-      })),
-    [editor]
-  );
+    const toolbarOptions = [
+      [{ header: [2, 3, false] }],
+      ["bold", "italic", "underline"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link"],
+      ["clean"],
+    ];
 
-  if (!editor) {
-    return <div className="editor editor--loading">Loading editor...</div>;
-  }
+    const BlogEditor = ({ value, onChange }) => {
+      const modules = useMemo(
+        () => ({
+          toolbar: toolbarOptions,
+          keyboard: {
+            bindings: {
+              bold: { key: "b", shortKey: true, handler: () => {} },
+              italic: { key: "i", shortKey: true, handler: () => {} },
+              underline: { key: "u", shortKey: true, handler: () => {} },
+              link: { key: "k", shortKey: true, handler: () => {} },
+            },
+          },
+        }),
+        []
+      );
 
-  return (
-    <div className="editor">
-      <div className="editor__toolbar">
-        {actions.map((control) => (
-          <button key={control.label} type="button" onClick={control.run} className={control.isActive() ? "active" : ""}>
-            {control.label}
-          </button>
-        ))}
-      </div>
-      <EditorContent editor={editor} />
-    </div>
-  );
-};
+      const formats = useMemo(
+        () => [
+          "header",
+          "bold",
+          "italic",
+          "underline",
+          "list",
+          "bullet",
+          "link",
+        ],
+        []
+      );
 
-export default BlogEditor;
+      return (
+        <div className="editor">
+          <ReactQuill
+            theme="snow"
+            value={value || ""}
+            onChange={(content) => onChange?.(content || "")}
+            modules={modules}
+            formats={formats}
+            placeholder="Write your blog content..."
+          />
+        </div>
+      );
+    };
+
+    export default BlogEditor;
