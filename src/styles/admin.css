@@ -164,6 +164,8 @@ small {
   border: none;
   background: #fff;
   cursor: text;
+  text-align: left;
+  direction: ltr;
 }
 
 .plain-editor:empty:before {
@@ -204,6 +206,16 @@ small {
 .plain-editor a {
   color: #2563eb;
   text-decoration: underline;
+}
+
+.plain-editor b,
+.plain-editor strong {
+  font-weight: 700;
+}
+
+.plain-editor i,
+.plain-editor em {
+  font-style: italic;
 }
 
 .form-status {

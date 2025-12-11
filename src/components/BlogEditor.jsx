@@ -1,26 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></div>" ? "" : html);
 
 const BlogEditor = ({ value, onChange }) => {
   const editorRef = useRef(null);
-  const [internal, setInternal] = useState(value || "");
 
+  // Set initial content
   useEffect(() => {
-    if (!editorRef.current) return;
-    const incoming = value || "";
-    if (incoming !== internal) {
-      setInternal(incoming);
-      editorRef.current.innerHTML = incoming || "";
+    if (editorRef.current && typeof value === "string") {
+      editorRef.current.innerHTML = value || "";
     }
-  }, [value, internal]);
+  }, []);
+
+  // Sync when external value changes
+  useEffect(() => {
+    if (!editorRef.current || typeof value !== "string") return;
+    const incoming = value || "";
+    const current = editorRef.current.innerHTML || "";
+    if (incoming !== current && !(incoming === "" && current === "<p><br></p>")) {
+      editorRef.current.innerHTML = incoming;
+    }
+  }, [value]);
 
   const emitChange = () => {
     if (!editorRef.current) return;
     const html = sanitizeEmpty(editorRef.current.innerHTML || "");
-    setInternal(html);
     onChange?.(html);
   };
 
@@ -50,8 +56,8 @@ const BlogEditor = ({ value, onChange }) => {
         <button type="button" onClick={() => handleCommand("underline")}>U</button>
         <button type="button" onClick={() => handleCommand("insertUnorderedList")}>•</button>
         <button type="button" onClick={() => handleCommand("insertOrderedList")}>1.</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", "H2")}>H2</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", "H3")}>H3</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", "<h2>")}>H2</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", "<h3>")}>H3</button>
         <button type="button" onClick={handleLink}>🔗</button>
         <button type="button" onClick={() => { if (editorRef.current) { editorRef.current.innerHTML = ""; emitChange(); } }}>Clear</button>
       </div>
