@@ -4,8 +4,20 @@ import { useEffect, useRef } from "react";
 
 const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></div>" ? "" : html);
 
+const stripInlineFormatting = (html) => {
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  div.querySelectorAll("strong, b, em, i, u").forEach((node) => {
+    const parent = node.parentNode;
+    while (node.firstChild) parent.insertBefore(node.firstChild, node);
+    parent.removeChild(node);
+  });
+  return div.innerHTML;
+};
+
 const BlogEditor = ({ value, onChange }) => {
   const editorRef = useRef(null);
+  const allowFormattingRef = useRef(false);
 
 
   const handleBeforeInput = (event) => {
@@ -47,17 +59,23 @@ const BlogEditor = ({ value, onChange }) => {
     }
   }, [value]);
 
-  const emitChange = () => {
+  const emitChange = (allowFormatting = false) => {
     if (!editorRef.current) return;
-    const html = sanitizeEmpty(editorRef.current.innerHTML || "");
+    let html = sanitizeEmpty(editorRef.current.innerHTML || "");
+    if (!allowFormatting) {
+      html = stripInlineFormatting(html);
+      editorRef.current.innerHTML = html;
+    }
     onChange?.(html);
   };
 
   const handleCommand = (command, value = null) => {
     if (!editorRef.current) return;
     editorRef.current.focus();
+    allowFormattingRef.current = true;
     document.execCommand(command, false, value);
-    emitChange();
+    emitChange(true);
+    allowFormattingRef.current = false;
   };
 
   const handleLink = () => {
@@ -69,7 +87,7 @@ const BlogEditor = ({ value, onChange }) => {
     emitChange();
   };
 
-  const handleInput = () => emitChange();
+  const handleInput = () => emitChange(allowFormattingRef.current);
 
   return (
     <div className="editor">
