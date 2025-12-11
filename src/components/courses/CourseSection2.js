@@ -1,154 +1,12 @@
 "use client"
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import styles from "./courseSection2.module.css";
+import { getAllCourses } from "@/lib/courses";
+import Link from 'next/link';
 
 const TABS = ["Popular", "Diploma", "Advanced", "Certification"];
 
-const allCourses = [
-  {
-    id: 1,
-    tab: "Most popular",
-    title: "Certification in JavaScript Development",
-    author: "IIDAD Academy",
-    rating: 4.6,
-    ratingsCount: "1,240",
-    duration: 3,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 2,
-    tab: "Most popular",
-    title: "Certification in CSS Development",
-    author: "IIDAD Academy",
-    rating: 4.5,
-    ratingsCount: "980",
-    duration: 4,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 3,
-    tab: "Most popular",
-    title: "Advanced Frontend Development course",
-    author: "IIDAD Academy",
-    rating: 4.7,
-    ratingsCount: "2,100",
-    duration: 6,
-    tags: ["Bestseller"],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 4,
-    tab: "Most popular",
-    title: "Advanced Backend Development course",
-    author: "IIDAD Academy",
-    rating: 4.6,
-    ratingsCount: "1,750",
-    duration: 6,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 5,
-    tab: "Most popular",
-    title: "Advanced Mobile App Development course",
-    author: "IIDAD Academy",
-    rating: 4.6,
-    ratingsCount: "1,430",
-    duration: 6,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 6,
-    tab: "Most popular",
-    title: "Advanced QA Testing Certification course",
-    author: "IIDAD Academy",
-    rating: 4.5,
-    ratingsCount: "860",
-    duration: 6,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 7,
-    tab: "Most popular",
-    title: "Advanced React & Redux course",
-    author: "IIDAD Academy",
-    rating: 4.8,
-    ratingsCount: "2,540",
-    duration: 6,
-    tags: ["Bestseller"],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 8,
-    tab: "Most popular",
-    title: "Diploma in Frontend Development",
-    author: "IIDAD Academy",
-    rating: 4.7,
-    ratingsCount: "3,120",
-    duration: 12,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 9,
-    tab: "Most popular",
-    title: "Diploma in JavaScript Algorithms",
-    author: "IIDAD Academy",
-    rating: 4.6,
-    ratingsCount: "1,900",
-    duration: 12,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 10,
-    tab: "Most popular",
-    title: "Diploma in Fullstack Development",
-    author: "IIDAD Academy",
-    rating: 4.7,
-    ratingsCount: "2,800",
-    duration: 12,
-    tags: ["Bestseller"],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 11,
-    tab: "Most popular",
-    title: "Certification in Animations in 3.js",
-    author: "IIDAD Academy",
-    rating: 4.4,
-    ratingsCount: "420",
-    duration: 3,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 12,
-    tab: "Most popular",
-    title: "Diploma in Backend Development",
-    author: "IIDAD Academy",
-    rating: 4.6,
-    ratingsCount: "1,750",
-    duration: 12,
-    tags: [],
-    img: "/images/course-placeholder.png",
-  },
-  {
-    id: 13,
-    tab: "Most popular",
-    title: "Diploma in Fullstack Development with Generative AI",
-    author: "IIDAD Academy",
-    rating: 4.8,
-    ratingsCount: "3,400",
-    duration: 12,
-    tags: ["Bestseller"],
-    img: "/images/course-placeholder.png",
-  },
-];
+const allCourses = getAllCourses();
 
 const CourseSection2 = () => {
   const [activeTab, setActiveTab] = useState("Most popular");
@@ -247,8 +105,49 @@ const CourseSection2 = () => {
   const handleClearSearch = () => {
     setQuery("");
   };
+
+  // Notify when images inside the course cards have loaded so a page-level
+  // loader can finish when this section is ready (used on /courses).
+  const rootRef = useRef(null);
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof window === 'undefined') return;
+
+    const imgs = Array.from(root.querySelectorAll('img'));
+    if (imgs.length === 0) {
+      window.dispatchEvent(new CustomEvent('courseSection2:loaded'));
+      return;
+    }
+
+    let remaining = imgs.length;
+    const onLoaded = () => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        window.dispatchEvent(new CustomEvent('courseSection2:loaded'));
+      }
+    };
+
+    const listeners = [];
+    imgs.forEach((img) => {
+      if (img.complete) {
+        onLoaded();
+        return;
+      }
+      const l = () => onLoaded();
+      img.addEventListener('load', l);
+      img.addEventListener('error', l);
+      listeners.push([img, l]);
+    });
+
+    return () => {
+      listeners.forEach(([img, l]) => {
+        img.removeEventListener('load', l);
+        img.removeEventListener('error', l);
+      });
+    };
+  }, [filteredCourses]);
   return (
-    <section className={styles.wrapper}>
+    <section ref={rootRef} className={styles.wrapper}>
       <div className={styles.inner}>
         <div className={styles.content}>
           <aside id="course-filters" className={`${styles.sidebar} ${sidebarOpen ? styles.open : ""}`}>
@@ -424,36 +323,38 @@ const CourseSection2 = () => {
             <div className={styles.cardsRow}>
               {filteredCourses.map((course) => (
                 <article key={course.id} className={styles.card}>
-                  <div className={styles.cardImageWrapper}>
-                    <img src={course.img} alt={course.title} className={styles.cardImage} />
-                    {course.tags.includes("Bestseller") && (
-                      <span className={styles.badge}>Bestseller</span>
-                    )}
-                  </div>
-
-                  <div className={styles.cardBody}>
-                    <h3 className={styles.cardTitle}>{course.title}</h3>
-                    <p className={styles.cardAuthor} style={{ marginTop: "auto" }}>{course.author}</p>
-
-                    <div className={styles.ratingRow}>
-                      <span className={styles.ratingValue}>{course.rating}</span>
-                      <span className={styles.ratingCount}>({course.ratingsCount})</span>
-                      <span className={styles.durationBadge}>{course.duration} months</span>
+                  <Link href={`/courses/${course.slug}`} className={styles.cardLink}>
+                    <div className={styles.cardImageWrapper}>
+                      <img src={course.img} alt={course.title} className={styles.cardImage} />
+                      {course.tags.includes("Bestseller") && (
+                        <span className={styles.badge}>Bestseller</span>
+                      )}
                     </div>
 
-                    <div className={styles.priceRow}>
-                      {(() => {
-                        const p = computePrices(course);
-                        return (
-                          <>
-                            <span className={styles.price}>{formatPrice(p.price)}</span>
-                            <span className={styles.oldPrice}>{formatPrice(p.oldPrice)}</span>
-                            <span className={styles.installment}>or {formatPrice(Math.ceil(p.price / 12))}/month</span>
-                          </>
-                        );
-                      })()}
+                    <div className={styles.cardBody}>
+                      <h3 className={styles.cardTitle}>{course.title}</h3>
+                      <p className={styles.cardAuthor} style={{ marginTop: "auto" }}>{course.author}</p>
+
+                      <div className={styles.ratingRow}>
+                        <span className={styles.ratingValue}>{course.rating}</span>
+                        <span className={styles.ratingCount}>({course.ratingsCount})</span>
+                        <span className={styles.durationBadge}>{course.duration} months</span>
+                      </div>
+
+                      <div className={styles.priceRow}>
+                        {(() => {
+                          const p = computePrices(course);
+                          return (
+                            <>
+                              <span className={styles.price}>{formatPrice(p.price)}</span>
+                              <span className={styles.oldPrice}>{formatPrice(p.oldPrice)}</span>
+                              <span className={styles.installment}>or {formatPrice(Math.ceil(p.price / 12))}/month</span>
+                            </>
+                          );
+                        })()}
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </article>
               ))}
 

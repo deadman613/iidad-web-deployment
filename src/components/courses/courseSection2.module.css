@@ -371,6 +371,15 @@
   border-color: #374151;
 }
 
+/* Make the whole card clickable when wrapped with a link */
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
 .cardImageWrapper {
   position: relative;
   background: #0f172a;

@@ -3,6 +3,7 @@ import "./globals.css";
 import "@/styles/blog.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
+import HomeLoaderGate from '@/components/HomeLoaderGate'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,7 +96,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LayoutWrapper>
-          {children}
+          <HomeLoaderGate>
+            {children}
+          </HomeLoaderGate>
         </LayoutWrapper>
       </body>
     </html>

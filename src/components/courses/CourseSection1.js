@@ -1,10 +1,52 @@
 // CourseSection1.js
-import React from 'react';
+"use client"
+import React, { useEffect, useRef } from 'react';
 import styles from './courseSection1.module.css';
 
 const CourseSection1 = () => {
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof window === 'undefined') return;
+
+    const images = Array.from(root.querySelectorAll('img'));
+    if (images.length === 0) {
+      window.dispatchEvent(new CustomEvent('courseSection1:loaded'));
+      return;
+    }
+
+    let remaining = images.length;
+    const onLoaded = () => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        window.dispatchEvent(new CustomEvent('courseSection1:loaded'));
+      }
+    };
+
+    const listeners = [];
+    images.forEach((img) => {
+      if (img.complete) {
+        onLoaded();
+        return;
+      }
+      const onLoad = () => onLoaded();
+      const onError = () => onLoaded();
+      img.addEventListener('load', onLoad);
+      img.addEventListener('error', onError);
+      listeners.push([img, onLoad, onError]);
+    });
+
+    return () => {
+      listeners.forEach(([img, onLoad, onError]) => {
+        img.removeEventListener('load', onLoad);
+        img.removeEventListener('error', onError);
+      });
+    };
+  }, []);
+
   return (
-    <section className={styles.heroSection}>
+    <section ref={rootRef} className={styles.heroSection}>
       <div className={styles.container}>
         {/* LEFT SIDE */}
         <div className={styles.leftContent}>

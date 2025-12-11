@@ -22,29 +22,39 @@ export default function FrontPage({ onComplete }) {
       });
     }, 33);
 
-    // Animation phases
+    // Animation phases (visual timing)
     const phase1 = setTimeout(() => setAnimationPhase(1), 500);
     const phase2 = setTimeout(() => setAnimationPhase(2), 1000);
     const phase3 = setTimeout(() => setAnimationPhase(3), 2000);
-    const phase4 = setTimeout(() => {
-      setIsVisible(false);
-      // Re-enable scrolling after loader completes
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      if (onComplete) onComplete();
-    }, 4500);
+
+    // Instead of a long fixed final timeout, we'll finish as soon as
+    // the counter reaches 100 and the final animation phase is active.
 
     return () => {
       clearInterval(interval);
       clearTimeout(phase1);
       clearTimeout(phase2);
       clearTimeout(phase3);
-      clearTimeout(phase4);
       // Cleanup: ensure scrolling is re-enabled
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
   }, [onComplete]);
+
+  // When counter reaches 100 and animationPhase is at the final stage,
+  // finish the loader immediately (no extra waiting).
+  useEffect(() => {
+    if (counter >= 100 && animationPhase >= 3) {
+      // small micro-delay to allow final frame paint if needed
+      const t = setTimeout(() => {
+        setIsVisible(false);
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        if (onComplete) onComplete();
+      }, 80);
+      return () => clearTimeout(t);
+    }
+  }, [counter, animationPhase, onComplete]);
 
   if (!isVisible) return null;
 

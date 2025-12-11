@@ -36,15 +36,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden; /* clip poster/video so it doesn't overflow */
   /* background: #000; */
 }
 
-.showcaseVideo {
+.videoWrapper {
   width: 100%;
+  /* keep a predictable frame for the video */
+  aspect-ratio: 16 / 9;
+  max-width: 960px;
+  position: relative;
+}
+
+.showcaseVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
   border-radius: 10px;
   object-fit: cover;
   background: #222;
   box-shadow: 0 0 24px #181726b6;
+  z-index: 1;
+}
+
+.videoPoster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 24px #181726b6;
+  z-index: 2;
+  display: block;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
