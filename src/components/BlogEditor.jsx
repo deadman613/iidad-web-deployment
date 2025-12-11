@@ -24,10 +24,10 @@ const BlogEditor = ({ value, onChange }) => {
     onChange?.(html);
   };
 
-  const handleCommand = (command) => {
+  const handleCommand = (command, value = null) => {
     if (!editorRef.current) return;
     editorRef.current.focus();
-    document.execCommand(command, false, null);
+    document.execCommand(command, false, value);
     emitChange();
   };
 
@@ -50,8 +50,8 @@ const BlogEditor = ({ value, onChange }) => {
         <button type="button" onClick={() => handleCommand("underline")}>U</button>
         <button type="button" onClick={() => handleCommand("insertUnorderedList")}>•</button>
         <button type="button" onClick={() => handleCommand("insertOrderedList")}>1.</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", false, "H2")}>H2</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", false, "H3")}>H3</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", "H2")}>H2</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", "H3")}>H3</button>
         <button type="button" onClick={handleLink}>🔗</button>
         <button type="button" onClick={() => { if (editorRef.current) { editorRef.current.innerHTML = ""; emitChange(); } }}>Clear</button>
       </div>
@@ -62,6 +62,8 @@ const BlogEditor = ({ value, onChange }) => {
         suppressContentEditableWarning
         onInput={handleInput}
         onBlur={handleInput}
+        onKeyUp={handleInput}
+        onPaste={handleInput}
         data-placeholder="Write your blog content..."
         dangerouslySetInnerHTML={{ __html: internal }}
       />
