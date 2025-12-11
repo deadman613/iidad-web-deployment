@@ -4,21 +4,31 @@ import { useEffect, useRef } from "react";
 
 const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></div>" ? "" : html);
 
-const stripInlineFormatting = (html) => {
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  div.querySelectorAll("strong, b, em, i, u").forEach((node) => {
-    const parent = node.parentNode;
-    while (node.firstChild) parent.insertBefore(node.firstChild, node);
-    parent.removeChild(node);
-  });
-  return div.innerHTML;
-};
-
 const BlogEditor = ({ value, onChange }) => {
   const editorRef = useRef(null);
-  const allowFormattingRef = useRef(false);
 
+  const handleMouseDown = (event) => {
+    if (!editorRef.current) return;
+    event.preventDefault();
+    const selection = window.getSelection?.();
+    if (!selection) return;
+    let range = null;
+    if (document.caretRangeFromPoint) {
+      range = document.caretRangeFromPoint(event.clientX, event.clientY);
+    } else if (document.caretPositionFromPoint) {
+      const pos = document.caretPositionFromPoint(event.clientX, event.clientY);
+      if (pos) {
+        range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.collapse(true);
+      }
+    }
+    if (range) {
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    editorRef.current.focus();
+  };
 
   const handleBeforeInput = (event) => {
     const blocked = [
@@ -59,23 +69,17 @@ const BlogEditor = ({ value, onChange }) => {
     }
   }, [value]);
 
-  const emitChange = (allowFormatting = false) => {
+  const emitChange = () => {
     if (!editorRef.current) return;
-    let html = sanitizeEmpty(editorRef.current.innerHTML || "");
-    if (!allowFormatting) {
-      html = stripInlineFormatting(html);
-      editorRef.current.innerHTML = html;
-    }
+    const html = sanitizeEmpty(editorRef.current.innerHTML || "");
     onChange?.(html);
   };
 
   const handleCommand = (command, value = null) => {
     if (!editorRef.current) return;
     editorRef.current.focus();
-    allowFormattingRef.current = true;
     document.execCommand(command, false, value);
-    emitChange(true);
-    allowFormattingRef.current = false;
+    emitChange();
   };
 
   const handleLink = () => {
@@ -87,7 +91,7 @@ const BlogEditor = ({ value, onChange }) => {
     emitChange();
   };
 
-  const handleInput = () => emitChange(allowFormattingRef.current);
+  const handleInput = () => emitChange();
 
   return (
     <div className="editor">
@@ -111,6 +115,7 @@ const BlogEditor = ({ value, onChange }) => {
         onBlur={handleInput}
         onKeyUp={handleInput}
         onPaste={handleInput}
+        onMouseDown={handleMouseDown}
         onKeyDown={handleKeyDown}
         onBeforeInput={handleBeforeInput}
         data-placeholder="Write your blog content..."
