@@ -1,73 +1,70 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import "quill/dist/quill.snow.css";
+import { useEffect, useRef, useState } from "react";
 
-const toolbarOptions = [
-  [{ header: [2, 3, false] }],
-  ["bold", "italic", "underline"],
-  [{ list: "ordered" }, { list: "bullet" }],
-  ["link"],
-  ["clean"],
-];
+const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></div>" ? "" : html);
 
 const BlogEditor = ({ value, onChange }) => {
-  const containerRef = useRef(null);
-  const quillRef = useRef(null);
+  const editorRef = useRef(null);
+  const [internal, setInternal] = useState(value || "");
 
   useEffect(() => {
-    (async () => {
-      if (!containerRef.current || quillRef.current) return;
-      const Quill = (await import("quill")).default;
-
-      const q = new Quill(containerRef.current, {
-        theme: "snow",
-        placeholder: "Write your blog content...",
-        modules: {
-          toolbar: toolbarOptions,
-          keyboard: {
-            bindings: {
-              bold: false,
-              italic: false,
-              underline: false,
-              link: false,
-            },
-          },
-        },
-      });
-
-      q.on("text-change", (_delta, _old, source) => {
-        if (source !== "user") return;
-        const html = q.root.innerHTML;
-        onChange?.(html === "<p><br></p>" ? "" : html);
-      });
-
-      if (typeof value === "string") {
-        q.clipboard.dangerouslyPasteHTML(value || "");
-      }
-
-      quillRef.current = q;
-    })();
-
-    return () => {
-      quillRef.current = null;
-    };
-  }, [onChange]);
-
-  useEffect(() => {
-    const q = quillRef.current;
-    if (q && typeof value === "string") {
-      const current = q.root.innerHTML;
-      const incoming = value || "";
-      if (incoming !== current && !(incoming === "" && current === "<p><br></p>")) {
-        q.clipboard.dangerouslyPasteHTML(incoming);
-      }
+    if (!editorRef.current) return;
+    const incoming = value || "";
+    if (incoming !== internal) {
+      setInternal(incoming);
+      editorRef.current.innerHTML = incoming || "";
     }
-  }, [value]);
+  }, [value, internal]);
+
+  const emitChange = () => {
+    if (!editorRef.current) return;
+    const html = sanitizeEmpty(editorRef.current.innerHTML || "");
+    setInternal(html);
+    onChange?.(html);
+  };
+
+  const handleCommand = (command) => {
+    if (!editorRef.current) return;
+    editorRef.current.focus();
+    document.execCommand(command, false, null);
+    emitChange();
+  };
+
+  const handleLink = () => {
+    if (!editorRef.current) return;
+    editorRef.current.focus();
+    const url = window.prompt("Enter URL:", "https://");
+    if (!url) return;
+    document.execCommand("createLink", false, url);
+    emitChange();
+  };
+
+  const handleInput = () => emitChange();
 
   return (
     <div className="editor">
-      <div ref={containerRef} />
+      <div className="editor__toolbar">
+        <button type="button" onClick={() => handleCommand("bold")}>B</button>
+        <button type="button" onClick={() => handleCommand("italic")}>I</button>
+        <button type="button" onClick={() => handleCommand("underline")}>U</button>
+        <button type="button" onClick={() => handleCommand("insertUnorderedList")}>•</button>
+        <button type="button" onClick={() => handleCommand("insertOrderedList")}>1.</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", false, "H2")}>H2</button>
+        <button type="button" onClick={() => handleCommand("formatBlock", false, "H3")}>H3</button>
+        <button type="button" onClick={handleLink}>🔗</button>
+        <button type="button" onClick={() => { if (editorRef.current) { editorRef.current.innerHTML = ""; emitChange(); } }}>Clear</button>
+      </div>
+      <div
+        ref={editorRef}
+        className="plain-editor"
+        contentEditable
+        suppressContentEditableWarning
+        onInput={handleInput}
+        onBlur={handleInput}
+        data-placeholder="Write your blog content..."
+        dangerouslySetInnerHTML={{ __html: internal }}
+      />
     </div>
   );
 };
