@@ -16,7 +16,6 @@ const BlogEditor = ({ value, onChange }) => {
   const quillRef = useRef(null);
 
   useEffect(() => {
-    let mounted = true;
     (async () => {
       if (!containerRef.current || quillRef.current) return;
       const Quill = (await import("quill")).default;
@@ -37,28 +36,32 @@ const BlogEditor = ({ value, onChange }) => {
         },
       });
 
-      q.on("text-change", () => {
+      q.on("text-change", (_delta, _old, source) => {
+        if (source !== "user") return;
         const html = q.root.innerHTML;
         onChange?.(html === "<p><br></p>" ? "" : html);
       });
 
-      if (typeof value === "string" && value) {
-        q.root.innerHTML = value;
+      if (typeof value === "string") {
+        q.clipboard.dangerouslyPasteHTML(value || "");
       }
 
       quillRef.current = q;
     })();
 
     return () => {
-      mounted = false;
       quillRef.current = null;
     };
   }, [onChange]);
 
   useEffect(() => {
     const q = quillRef.current;
-    if (q && typeof value === "string" && value !== q.root.innerHTML) {
-      q.root.innerHTML = value || "";
+    if (q && typeof value === "string") {
+      const current = q.root.innerHTML;
+      const incoming = value || "";
+      if (incoming !== current && !(incoming === "" && current === "<p><br></p>")) {
+        q.clipboard.dangerouslyPasteHTML(incoming);
+      }
     }
   }, [value]);
 
