@@ -7,6 +7,28 @@ const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></
 const BlogEditor = ({ value, onChange }) => {
   const editorRef = useRef(null);
 
+  const handleBeforeInput = (event) => {
+    const blocked = [
+      "formatBold",
+      "formatItalic",
+      "formatUnderline",
+      "formatStrikeThrough",
+      "formatRemove",
+      "formatBlock",
+      "insertLink",
+    ];
+    if (blocked.includes(event.inputType)) {
+      event.preventDefault();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    const key = event.key?.toLowerCase();
+    if ((event.metaKey || event.ctrlKey) && ["b", "i", "u", "k"].includes(key)) {
+      event.preventDefault();
+    }
+  };
+
   // Set initial content
   useEffect(() => {
     if (editorRef.current && typeof value === "string") {
@@ -70,6 +92,8 @@ const BlogEditor = ({ value, onChange }) => {
         onBlur={handleInput}
         onKeyUp={handleInput}
         onPaste={handleInput}
+        onKeyDown={handleKeyDown}
+        onBeforeInput={handleBeforeInput}
         data-placeholder="Write your blog content..."
       />
     </div>
