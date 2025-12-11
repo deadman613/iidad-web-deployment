@@ -71,7 +71,6 @@ const BlogEditor = ({ value, onChange }) => {
         onKeyUp={handleInput}
         onPaste={handleInput}
         data-placeholder="Write your blog content..."
-        dangerouslySetInnerHTML={{ __html: internal }}
       />
     </div>
   );
