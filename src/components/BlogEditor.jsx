@@ -1,10 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
-import "react-quill/dist/quill.snow.css";
-
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import { useEffect, useRef } from "react";
+import "quill/dist/quill.snow.css";
 
 const toolbarOptions = [
   [{ header: [2, 3, false] }],
@@ -15,36 +12,59 @@ const toolbarOptions = [
 ];
 
 const BlogEditor = ({ value, onChange }) => {
-  const modules = useMemo(
-    () => ({
-      toolbar: toolbarOptions,
-      keyboard: {
-        bindings: {
-          bold: { key: "b", shortKey: true, handler: () => {} },
-          italic: { key: "i", shortKey: true, handler: () => {} },
-          underline: { key: "u", shortKey: true, handler: () => {} },
-          link: { key: "k", shortKey: true, handler: () => {} },
-        },
-      },
-    }),
-    []
-  );
+  const containerRef = useRef(null);
+  const quillRef = useRef(null);
 
-  const formats = useMemo(
-    () => ["header", "bold", "italic", "underline", "list", "bullet", "link"],
-    []
-  );
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      if (!containerRef.current || quillRef.current) return;
+      const Quill = (await import("quill")).default;
+
+      const q = new Quill(containerRef.current, {
+        theme: "snow",
+        placeholder: "Write your blog content...",
+        modules: {
+          toolbar: toolbarOptions,
+          keyboard: {
+            bindings: {
+              bold: false,
+              italic: false,
+              underline: false,
+              link: false,
+            },
+          },
+        },
+      });
+
+      q.on("text-change", () => {
+        const html = q.root.innerHTML;
+        onChange?.(html === "<p><br></p>" ? "" : html);
+      });
+
+      if (typeof value === "string" && value) {
+        q.root.innerHTML = value;
+      }
+
+      quillRef.current = q;
+    })();
+
+    return () => {
+      mounted = false;
+      quillRef.current = null;
+    };
+  }, [onChange]);
+
+  useEffect(() => {
+    const q = quillRef.current;
+    if (q && typeof value === "string" && value !== q.root.innerHTML) {
+      q.root.innerHTML = value || "";
+    }
+  }, [value]);
 
   return (
     <div className="editor">
-      <ReactQuill
-        theme="snow"
-        value={value || ""}
-        onChange={(content) => onChange?.(content || "")}
-        modules={modules}
-        formats={formats}
-        placeholder="Write your blog content..."
-      />
+      <div ref={containerRef} />
     </div>
   );
 };
