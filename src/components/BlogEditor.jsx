@@ -7,6 +7,29 @@ const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></
 const BlogEditor = ({ value, onChange }) => {
   const editorRef = useRef(null);
 
+  const handleMouseDown = (event) => {
+    if (!editorRef.current) return;
+    event.preventDefault();
+    const selection = window.getSelection?.();
+    if (!selection) return;
+    let range = null;
+    if (document.caretRangeFromPoint) {
+      range = document.caretRangeFromPoint(event.clientX, event.clientY);
+    } else if (document.caretPositionFromPoint) {
+      const pos = document.caretPositionFromPoint(event.clientX, event.clientY);
+      if (pos) {
+        range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.collapse(true);
+      }
+    }
+    if (range) {
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    editorRef.current.focus();
+  };
+
   const handleBeforeInput = (event) => {
     const blocked = [
       "formatBold",
@@ -92,6 +115,7 @@ const BlogEditor = ({ value, onChange }) => {
         onBlur={handleInput}
         onKeyUp={handleInput}
         onPaste={handleInput}
+        onMouseDown={handleMouseDown}
         onKeyDown={handleKeyDown}
         onBeforeInput={handleBeforeInput}
         data-placeholder="Write your blog content..."

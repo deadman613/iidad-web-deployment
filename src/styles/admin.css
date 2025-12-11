@@ -519,14 +519,30 @@ small {
 
 /* Ensure all admin buttons are visible */
 .admin-panel .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 700;
   background: #ffffff;
   color: #1f2430;
-  border-color: #e3e6ed;
+  border: 1px solid #e3e6ed;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
 
 .admin-panel .btn:hover {
   background: #f8f9fb;
   border-color: #1f2430;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.admin-panel .btn:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
 }
 
 .admin-panel .btn--primary {
@@ -542,7 +558,7 @@ small {
 
 .admin-panel .btn--ghost {
   background: transparent;
-  border-color: #e3e6ed;
+  border: 1px solid #e3e6ed;
 }
 
 .admin-panel .btn--ghost:hover {
@@ -553,7 +569,7 @@ small {
 .admin-panel button[type="button"].btn {
   background: #ffffff;
   color: #dc2626;
-  border-color: #fecaca;
+  border: 1px solid #fecaca;
 }
 
 .admin-panel button[type="button"].btn:hover {
