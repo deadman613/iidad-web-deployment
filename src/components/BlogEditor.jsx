@@ -8,25 +8,9 @@ import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 
 const extensions = [
-  StarterKit.configure({
-    bold: {
-      HTMLAttributes: {
-        class: 'font-bold',
-      },
-    },
-    italic: {
-      HTMLAttributes: {
-        class: 'italic',
-      },
-    },
-  }),
+  StarterKit,
   Placeholder.configure({ placeholder: "Write your blog content..." }),
-  Link.configure({ 
-    openOnClick: false,
-    HTMLAttributes: {
-      class: 'text-blue-600 underline',
-    },
-  }),
+  Link.configure({ openOnClick: false }),
   Image.configure({ inline: false }),
 ];
 
@@ -93,12 +77,6 @@ const BlogEditor = ({ value, onChange }) => {
     extensions,
     content: value || "",
     immediatelyRender: false,
-    editorProps: {
-      attributes: {
-        class: 'prose prose-sm focus:outline-none',
-        spellcheck: 'false',
-      },
-    },
     onUpdate: ({ editor: currentEditor }) => {
       onChange?.(currentEditor.getHTML());
     },

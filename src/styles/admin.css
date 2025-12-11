@@ -159,80 +159,18 @@ small {
   outline: none;
   color: #1f2430;
   background: #ffffff;
-  font-size: 15px;
-  line-height: 1.7;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  cursor: text;
 }
 
-.editor .ProseMirror:focus {
-  outline: none;
-}
-
-.editor .ProseMirror p {
-  margin: 0.75rem 0;
-  color: #1f2430;
-}
-
+.editor .ProseMirror p,
 .editor .ProseMirror h1,
 .editor .ProseMirror h2,
 .editor .ProseMirror h3,
 .editor .ProseMirror h4,
 .editor .ProseMirror h5,
-.editor .ProseMirror h6 {
-  color: #1f2430;
-  font-weight: 700;
-  margin: 1.5rem 0 0.75rem;
-  line-height: 1.3;
-}
-
-.editor .ProseMirror h2 {
-  font-size: 1.5rem;
-}
-
-.editor .ProseMirror h3 {
-  font-size: 1.25rem;
-}
-
-.editor .ProseMirror ul,
-.editor .ProseMirror ol {
-  padding-left: 1.5rem;
-  margin: 0.75rem 0;
-}
-
-.editor .ProseMirror li {
-  color: #1f2430;
-  margin: 0.25rem 0;
-}
-
+.editor .ProseMirror h6,
+.editor .ProseMirror li,
 .editor .ProseMirror blockquote {
   color: #1f2430;
-  border-left: 3px solid #e2e8f0;
-  padding-left: 1rem;
-  margin: 1rem 0;
-  font-style: italic;
-}
-
-.editor .ProseMirror a {
-  color: #2563eb;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.editor .ProseMirror strong {
-  font-weight: 700;
-}
-
-.editor .ProseMirror em {
-  font-style: italic;
-}
-
-.editor .ProseMirror p:first-child {
-  margin-top: 0;
-}
-
-.editor .ProseMirror p:last-child {
-  margin-bottom: 0;
 }
 
 .editor .ProseMirror p.is-editor-empty:first-child::before {
