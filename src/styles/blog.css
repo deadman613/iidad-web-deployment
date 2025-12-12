@@ -141,6 +141,15 @@
   overflow-wrap: break-word;
 }
 
+.blog-card__body h3 a {
+  color: #f9fafb;
+  text-decoration: none;
+}
+
+.blog-card__body h3 a:hover {
+  color: #9fff8b;
+}
+
 .blog-card__body p {
   margin: 0;
   color: var(--color-muted);
@@ -177,10 +186,12 @@
   padding: 0.65rem 0.95rem;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
   font-size: clamp(0.92rem, 2vw, 1rem);
   margin-top: auto;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-align: center;
 }
 
 .blog-card__cta:hover {
