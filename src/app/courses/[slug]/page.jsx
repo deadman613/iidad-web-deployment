@@ -48,10 +48,11 @@ export default async function CoursePage({ params }) {
   if (!course) return notFound();
 
   const { price, oldPrice } = computePrices(course.duration);
+  const recommendedCourses = courses.filter((c) => c.slug !== slug).slice(0, 4);
 
   return (
     <main>
-      <CourseBanner course={course} />
+      <CourseBanner course={course} recommendedCourses={recommendedCourses} />
       <HomeSection2/>
       <HomeSection4 />
       <Homesection5 />
