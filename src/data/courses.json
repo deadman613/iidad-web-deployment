@@ -7,7 +7,7 @@
     "ratingsCount": "1,240",
     "duration": 3,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/certification/java%20script%203%20months.png",
     "description": "A compact certification covering core JavaScript concepts, DOM manipulation, and modern tooling for building interactive web experiences.",
     "slug": "certification-in-javascript-development"
   },
@@ -19,7 +19,7 @@
     "ratingsCount": "980",
     "duration": 4,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/certification/CSS%20DEVELOPMENT%203%20months.png",
     "description": "Practical CSS course covering layouts, responsive design, modern CSS features and component-based styling approaches.",
     "slug": "certification-in-css-development"
   },
@@ -31,7 +31,7 @@
     "ratingsCount": "2,100",
     "duration": 6,
     "tags": ["Bestseller"],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/advanced/frontend%206%20months.png",
     "description": "A deep dive into modern frontend engineering: frameworks, performance, and scalable architectures.",
     "slug": "advanced-frontend-development-course"
   },
@@ -43,7 +43,7 @@
     "ratingsCount": "1,750",
     "duration": 6,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/advanced/BACKEND%206%20months.png",
     "description": "Back-end systems, APIs, databases and deployment practices for production applications.",
     "slug": "advanced-backend-development-course"
   },
@@ -55,7 +55,7 @@
     "ratingsCount": "1,430",
     "duration": 6,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/advanced/Mobile%20app%20development%206%20months.png",
     "description": "Build cross-platform mobile apps using modern toolchains and UX best practices.",
     "slug": "advanced-mobile-app-development-course"
   },
@@ -67,7 +67,7 @@
     "ratingsCount": "860",
     "duration": 6,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/advanced/QA%20TESTING%20CERTIFICATION%206%20months.png",
     "description": "Testing strategies, automation, and quality practices to ship reliable software.",
     "slug": "advanced-qa-testing-certification-course"
   },
@@ -79,7 +79,7 @@
     "ratingsCount": "2,540",
     "duration": 6,
     "tags": ["Bestseller"],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/advanced/React%20%26%20Redux%206%20months.png",
     "description": "Advanced patterns in React, state management, and performance optimization.",
     "slug": "advanced-react-redux-course"
   },
@@ -91,7 +91,7 @@
     "ratingsCount": "3,120",
     "duration": 12,
     "tags": [],
-    "img": "/courseThumbnail/diploma/FRONTEND%20DEVELOPMENT%2012months.png",
+    "img": "/courseThumbnail/certification/java%20script%203%20months.png",
     "description": "A year-long diploma that prepares you for a career as a frontend developer.",
     "slug": "diploma-in-frontend-development"
   },
@@ -127,7 +127,7 @@
     "ratingsCount": "420",
     "duration": 3,
     "tags": [],
-    "img": "/placeholder.svg",
+    "img": "/courseThumbnail/certification/three.js.png",
     "description": "Create web animations and interactive visualizations using three.js.",
     "slug": "certification-in-animations-in-3-js"
   },
@@ -176,7 +176,7 @@
     "ratingsCount": "980",
     "duration": 4,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/certification/CSS%20DEVELOPMENT%203%20months.png",
     "description": "Practical CSS course covering layouts, responsive design, modern CSS features and component-based styling approaches."
   },
   {
@@ -187,7 +187,7 @@
     "ratingsCount": "2,100",
     "duration": 6,
     "tags": ["Bestseller"],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/advanced/frontend%206%20months.png",
     "description": "A deep dive into modern frontend engineering: frameworks, performance, and scalable architectures."
   },
   {
@@ -198,7 +198,7 @@
     "ratingsCount": "1,750",
     "duration": 6,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/advanced/BACKEND%206%20months.png",
     "description": "Back-end systems, APIs, databases and deployment practices for production applications."
   },
   {
@@ -209,7 +209,7 @@
     "ratingsCount": "1,430",
     "duration": 6,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/advanced/Mobile%20app%20development%206%20months.png",
     "description": "Build cross-platform mobile apps using modern toolchains and UX best practices."
   },
   {
@@ -220,7 +220,7 @@
     "ratingsCount": "860",
     "duration": 6,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/advanced/QA%20TESTING%20CERTIFICATION%206%20months.png",
     "description": "Testing strategies, automation, and quality practices to ship reliable software."
   },
   {
@@ -231,7 +231,7 @@
     "ratingsCount": "2,540",
     "duration": 6,
     "tags": ["Bestseller"],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/advanced/React%20%26%20Redux%206%20months.png",
     "description": "Advanced patterns in React, state management, and performance optimization."
   },
   {
@@ -242,7 +242,7 @@
     "ratingsCount": "3,120",
     "duration": 12,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/diploma/FRONTEND%20DEVELOPMENT%2012months.png",
     "description": "A year-long diploma that prepares you for a career as a frontend developer."
   },
   {
@@ -275,7 +275,7 @@
     "ratingsCount": "420",
     "duration": 3,
     "tags": [],
-    "img": "/images/course-placeholder.png",
+    "img": "/courseThumbnail/certification/three.js.png",
     "description": "Create web animations and interactive visualizations using three.js."
   },
   {

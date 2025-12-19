@@ -10,7 +10,7 @@ export const allCourses = [
     ratingsCount: '1,240',
     duration: 3,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/certification/java%20script%203%20months.png',
     description:
       'A compact certification covering core JavaScript concepts, DOM manipulation, and modern tooling for building interactive web experiences.',
   },
@@ -22,7 +22,7 @@ export const allCourses = [
     ratingsCount: '980',
     duration: 4,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/certification/CSS%20DEVELOPMENT%203%20months.png',
     description:
       'Practical CSS course covering layouts, responsive design, modern CSS features and component-based styling approaches.',
   },
@@ -34,7 +34,7 @@ export const allCourses = [
     ratingsCount: '2,100',
     duration: 6,
     tags: ['Bestseller'],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/advanced/frontend%206%20months.png',
     description: 'A deep dive into modern frontend engineering: frameworks, performance, and scalable architectures.',
   },
   {
@@ -45,7 +45,7 @@ export const allCourses = [
     ratingsCount: '1,750',
     duration: 6,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/advanced/BACKEND%206%20months.png',
     description: 'Back-end systems, APIs, databases and deployment practices for production applications.',
   },
   {
@@ -56,7 +56,7 @@ export const allCourses = [
     ratingsCount: '1,430',
     duration: 6,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/advanced/Mobile%20app%20development%206%20months.png',
     description: 'Build cross-platform mobile apps using modern toolchains and UX best practices.',
   },
   {
@@ -67,7 +67,7 @@ export const allCourses = [
     ratingsCount: '860',
     duration: 6,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/advanced/QA%20TESTING%20CERTIFICATION%206%20months.png',
     description: 'Testing strategies, automation, and quality practices to ship reliable software.',
   },
   {
@@ -78,7 +78,7 @@ export const allCourses = [
     ratingsCount: '2,540',
     duration: 6,
     tags: ['Bestseller'],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/advanced/React%20%26%20Redux%206%20months.png',
     description: 'Advanced patterns in React, state management, and performance optimization.',
   },
   {
@@ -122,7 +122,7 @@ export const allCourses = [
     ratingsCount: '420',
     duration: 3,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/certification/three.js.png',
     description: 'Create web animations and interactive visualizations using three.js.',
   },
   {
