@@ -89,7 +89,7 @@ export const allCourses = [
     ratingsCount: '3,120',
     duration: 12,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/diploma/FRONTEND%20DEVELOPMENT%2012months.png',
     description: 'A year-long diploma that prepares you for a career as a frontend developer.',
   },
   {
@@ -100,7 +100,7 @@ export const allCourses = [
     ratingsCount: '1,900',
     duration: 12,
     tags: [],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/diploma/JAVASCRIPT%20ALGORITHMS%2012months.png',
     description: 'Algorithmic thinking and JavaScript-focused algorithm study for interviews and problem solving.',
   },
   {
@@ -111,7 +111,7 @@ export const allCourses = [
     ratingsCount: '2,800',
     duration: 12,
     tags: ['Bestseller'],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/diploma/FULLSTACK%20DEVELOPMENT%2012months.png',
     description: 'Fullstack curriculum covering frontend, backend, databases and cloud deployment.',
   },
   {
@@ -144,7 +144,7 @@ export const allCourses = [
     ratingsCount: '3,400',
     duration: 12,
     tags: ['Bestseller'],
-    img: '/images/course-placeholder.png',
+    img: '/courseThumbnail/diploma/FULLSTACK%20DEVELOPMENT%20with%20gen%20ai%2012months.png',
     description: 'Fullstack development infused with generative AI modules and practical projects.',
   },
 ];

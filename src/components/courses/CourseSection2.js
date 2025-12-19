@@ -344,11 +344,12 @@ const CourseSection2 = () => {
                       <div className={styles.priceRow}>
                         {(() => {
                           const p = computePrices(course);
+                          const months = Math.max(1, Number(course.duration) || 1);
                           return (
                             <>
                               <span className={styles.price}>{formatPrice(p.price)}</span>
                               <span className={styles.oldPrice}>{formatPrice(p.oldPrice)}</span>
-                              <span className={styles.installment}>or {formatPrice(Math.ceil(p.price / 12))}/month</span>
+                              <span className={styles.installment}>or {formatPrice(Math.ceil(p.price / months))}/month</span>
                             </>
                           );
                         })()}

@@ -31,7 +31,8 @@ export default function EnrollPage({ params }) {
   const { price, oldPrice } = computePrices(course.duration);
   const saved = oldPrice > 0 ? oldPrice - price : 0;
   const pct = oldPrice > 0 ? Math.round((saved / oldPrice) * 100) : 0;
-  const thumbnailPath = `/courseThumbnail/${course.slug}.jpg`;
+  const installmentMonths = Math.max(1, Number(course.duration) || 1);
+  const thumbnailPath = course.img || `/courseThumbnail/${course.slug}.jpg`;
 
   return (
     <main className={styles.wrapper}>
@@ -115,8 +116,8 @@ export default function EnrollPage({ params }) {
               </div>
               <div className={styles.priceOption}>
                 <div className={styles.priceLabel}>Easy Installments</div>
-                <div className={styles.installmentPrice}>{formatPrice(Math.ceil(price / 12))}<span className={styles.perMonth}>/month</span></div>
-                <div className={styles.installmentNote}>12 monthly payments</div>
+                <div className={styles.installmentPrice}>{formatPrice(Math.ceil(price / installmentMonths))}<span className={styles.perMonth}>/month</span></div>
+                <div className={styles.installmentNote}>{installmentMonths} monthly payments</div>
               </div>
             </div>
 

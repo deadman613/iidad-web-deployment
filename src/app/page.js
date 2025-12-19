@@ -11,7 +11,7 @@ import CourseSection1 from '@/components/courses/CourseSection1';
 export default function Home() {
   return (
     <main>
-      <CourseSection1 />
+      <HomeSection1 />
       <HomeSection2 />
       <HomeSection3 />
       <HomeSection4 />

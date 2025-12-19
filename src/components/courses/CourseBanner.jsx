@@ -213,6 +213,7 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
   const { price, oldPrice } = computePrices(course.duration);
   const saved = oldPrice > 0 ? oldPrice - price : 0;
   const pct = oldPrice > 0 ? Math.round((saved / oldPrice) * 100) : 0;
+  const installmentMonths = Math.max(1, Number(course.duration) || 1);
 
   const includeGenAI = /generative\s*ai/i.test(`${course.title || ''} ${course.slug || ''} ${(course.tags || []).join(' ')}`);
   const modules = useMemo(() => buildModules(course.duration, includeGenAI), [course.duration, includeGenAI]);
@@ -249,8 +250,8 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
 
   const primaryTrainerName = trainers[0]?.name || defaultTrainer.name;
 
-  // Use course thumbnail from /courseThumbnail/{slug}.jpg (or .png)
-  const thumbnailPath = `/courseThumbnail/${course.slug}.jpg`;
+  // Prefer course-specific image if provided; otherwise, fall back to slug-based thumbnail.
+  const thumbnailPath = course.img || `/courseThumbnail/${course.slug}.jpg`;
 
   return (
     <>
@@ -398,8 +399,8 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
                 
                 <div className={styles.priceOption}>
                   <div className={styles.priceLabel}>Easy Installments</div>
-                  <div className={styles.installmentPrice}>{formatPrice(Math.ceil(price / 12))}<span className={styles.perMonth}>/month</span></div>
-                  <div className={styles.installmentNote}>12 monthly payments</div>
+                  <div className={styles.installmentPrice}>{formatPrice(Math.ceil(price / installmentMonths))}<span className={styles.perMonth}>/month</span></div>
+                  <div className={styles.installmentNote}>{installmentMonths} monthly payments</div>
                 </div>
               </div>
 
@@ -523,6 +524,7 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
           <div className={styles.recoGrid}>
             {recommendedCourses.map((c) => {
               const { price: recPrice, oldPrice: recOld } = computePrices(c.duration);
+                const recMonths = Math.max(1, Number(c.duration) || 1);
               const img = c.img || `/courseThumbnail/${c.slug}.jpg`;
               return (
                 <article key={c.slug} className={styles.recoCard}>
@@ -547,7 +549,7 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
                       <div className={styles.recoPriceRow}>
                         <span className={styles.recoPrice}>{formatPrice(recPrice)}</span>
                         <span className={styles.recoOldPrice}>{formatPrice(recOld)}</span>
-                        <span className={styles.recoInstallment}>or {formatPrice(Math.ceil(recPrice / 12))}/month</span>
+                        <span className={styles.recoInstallment}>or {formatPrice(Math.ceil(recPrice / recMonths))}/month</span>
                       </div>
                     </div>
                   </Link>
