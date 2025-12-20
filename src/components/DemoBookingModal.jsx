@@ -83,8 +83,7 @@ export default function DemoBookingModal({ open: propOpen, onClose: propOnClose 
       setSubmitting(false);
       alert("Failed to book demo. Try again later.");
     }
-  };
-  };
+  }
 
   if (!open) return null;
 
@@ -169,3 +168,4 @@ export default function DemoBookingModal({ open: propOpen, onClose: propOnClose 
     </div>
   );
 
+}
