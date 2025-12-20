@@ -2,9 +2,41 @@
 import styles from '@/components/ContactSection/contactSection1.module.css';
 
 export default function ContactSection() {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
+    const form = e.target;
+    const firstName = form[0].value.trim();
+    const lastName = form[1].value.trim();
+    const email = form[2].value.trim();
+    const country = form[3].value;
+    const phone = form[4].value.trim();
+    const message = form[5].value.trim();
+    // Collect checked interests
+    const interests = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextSibling.textContent.trim());
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      country,
+      phone,
+      message,
+      interests: interests.join(', ')
+    };
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzZ2K0rNi0J7Pqhm8cmtbktVXxBtWP6qD5uInyG_Diz29yewsr-OGj_-c3pnXTQngJf/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (response.ok) {
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } else {
+        alert('There was an error submitting the form. Please try again.');
+      }
+    } catch (err) {
+      alert('There was an error submitting the form. Please try again.');
+    }
   };
 
   return (
@@ -92,9 +124,9 @@ export default function ContactSection() {
             <div className={styles.infoBlock}>
               <h3 className={styles.infoTitle}>Call us</h3>
               <p className={styles.infoText}>Call our team Mon-Sat from 9am to 6pm.</p>
-              <a href="tel:+919876543210" className={styles.link}>
+              <a href="tel:+919205435653" className={styles.link}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                +91 98765 43210
+                +91 92054 35653
               </a>
             </div>
 

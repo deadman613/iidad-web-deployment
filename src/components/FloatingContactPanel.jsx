@@ -1,8 +1,8 @@
 import styles from "./floatingContactPanel.module.css";
 
 export default function FloatingContactPanel() {
-  const phoneNumber = "+919876543210";
-  const whatsappNumber = "919876543210"; // without + for wa.me
+  const phoneNumber = "+919205435653";
+  const whatsappNumber = "919205435653"; // without + for wa.me
 
   return (
     <div className={styles.wrapper} aria-label="Quick contact actions">

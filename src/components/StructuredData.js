@@ -20,7 +20,7 @@ export default function StructuredData({ type = "organization" }) {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Admissions",
-      "telephone": "+91-XXX-XXX-XXXX",
+      "telephone": "+91-9205435653",
       "email": "admissions@iidad.in"
     },
     "sameAs": [
