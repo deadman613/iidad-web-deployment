@@ -52,24 +52,38 @@ export default function DemoBookingModal({ open: propOpen, onClose: propOnClose 
       return;
     }
 
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      interest
+    };
+
     try {
-      // TODO: replace with real API call
-      await new Promise((r) => setTimeout(r, 800));
-      setSuccess(true);
-      setTimeout(() => {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzX2pbdedAJbFzL0EF2DvfY0x40TTEEYjVXiubmj03AxxOSlWejnNQCBhOiqNklLCeo/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (response.ok) {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          handleClose();
+          setName("");
+          setPhone("");
+          setEmail("");
+          setInterest("Frontend");
+        }, 1000);
+      } else {
         setSubmitting(false);
-        setSuccess(false);
-        handleClose();
-        setName("");
-        setPhone("");
-        setEmail("");
-        setInterest("Frontend");
-      }, 1000);
+        alert("Failed to book demo. Try again later.");
+      }
     } catch (err) {
-      console.error(err);
       setSubmitting(false);
       alert("Failed to book demo. Try again later.");
     }
+  };
   };
 
   if (!open) return null;
