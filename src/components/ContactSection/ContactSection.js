@@ -23,7 +23,7 @@ export default function ContactSection() {
       interests: interests.join(', ')
     };
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzZ2K0rNi0J7Pqhm8cmtbktVXxBtWP6qD5uInyG_Diz29yewsr-OGj_-c3pnXTQngJf/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzX2pbdedAJbFzL0EF2DvfY0x40TTEEYjVXiubmj03AxxOSlWejnNQCBhOiqNklLCeo/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
