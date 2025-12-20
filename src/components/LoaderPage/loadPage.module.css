@@ -72,7 +72,7 @@
   text-align: right;
 }
 
-.line h1 {
+.lineHeading {
   font-size: 6.2vw;
   text-transform: uppercase;
   font-weight: 900;
@@ -82,7 +82,7 @@
   transition: transform 0.6s ease;
 }
 
-.line h1.slideIn {
+.lineHeading.slideIn {
   transform: translateY(0);
 }
 
@@ -156,7 +156,7 @@
     width: 10vw;
   }
 
-  .line h1 {
+  .lineHeading {
     font-size: 9vw;
   }
 

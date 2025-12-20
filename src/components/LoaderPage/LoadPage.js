@@ -65,13 +65,13 @@ export default function FrontPage({ onComplete }) {
           <h5 className={styles.counter}>{counter.toString().padStart(2, '0')}</h5>
           <h4>- 100</h4>
         </div>
-        <h1 className={animationPhase >= 1 ? styles.slideIn : ''}>Your</h1>
+        <p className={`${styles.lineHeading} ${animationPhase >= 1 ? styles.slideIn : ''}`}>Your</p>
       </div>
       <div className={styles.line}>
-        <h1 className={animationPhase >= 1 ? styles.slideIn : ''}>Web Experiences</h1>
+        <p className={`${styles.lineHeading} ${animationPhase >= 1 ? styles.slideIn : ''}`}>Web Experiences</p>
       </div>
       <div className={styles.line}>
-        <h1 className={animationPhase >= 1 ? styles.slideIn : ''}>is loading right</h1>
+        <p className={`${styles.lineHeading} ${animationPhase >= 1 ? styles.slideIn : ''}`}>is loading right</p>
         <h2 className={`${styles.now} ${animationPhase >= 2 ? styles.animate : ''}`}>NOW</h2>
       </div>
     </div>

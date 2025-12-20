@@ -1,0 +1,165 @@
+.section {
+  width: 100%;
+  padding: 32px 20px;
+  background: linear-gradient(135deg, #141414, #101411);
+  overflow: hidden;
+  border-top: 1px solid rgba(159, 255, 139, 0.14);
+  border-bottom: 1px solid rgba(159, 255, 139, 0.12);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.controlsRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.trackViewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.card {
+  flex: 0 0 auto;
+  background: #9fff8b;
+  color: #0b0d12;
+  border-radius: 999px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, flex-basis 0.35s ease, width 0.35s ease, padding 0.2s ease, gap 0.2s ease;
+}
+
+.cardActive {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.cardExpanded {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  gap: 14px;
+}
+
+.cardTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.trackTitle {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0b0d12;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.captionInline {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #0b0d12;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cardExpanded .captionInline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.playBtn {
+  flex: 0 0 auto;
+  background: #0f140f;
+  color: #9fff8b;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+  margin-left: auto;
+}
+
+.playBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  background: #132115;
+  color: #c8ffb5;
+}
+
+.navButtons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(159, 255, 139, 0.25);
+  background: rgba(159, 255, 139, 0.08);
+  color: #d9ffe0;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, border 0.12s ease;
+}
+
+.navBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(159, 255, 139, 0.14);
+  color: #ffffff;
+  border-color: rgba(159, 255, 139, 0.35);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 24px 14px;
+  }
+
+  .controlsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .navButtons {
+    justify-content: flex-end;
+  }
+
+  .card {
+    width: 82vw;
+  }
+
+  .cardExpanded {
+    width: 100%;
+  }
+}

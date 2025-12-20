@@ -1,0 +1,241 @@
+.testimonials {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 30px 32px;
+  background: radial-gradient(circle at 20% 50%, rgba(87, 113, 255, 0.15), transparent 35%),
+    radial-gradient(circle at 80% 50%, rgba(255, 152, 108, 0.15), transparent 35%),
+    linear-gradient(135deg, #141414, #141414 55%, #141414);
+  color: #f7f8fb;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 8% 12%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0, transparent 55%);
+  filter: blur(30px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.lede {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1;
+}
+
+.kicker {
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #9ab4ff;
+}
+
+.heading {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  color: #cfd4e0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin: 6px 0 4px;
+}
+
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.statChip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(154, 180, 255, 0.4);
+  background: rgba(15, 17, 26, 0.6);
+  color: #dfe5f5;
+  font-size: 0.95rem;
+  backdrop-filter: blur(6px);
+}
+
+.cardGrid {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.card {
+  position: relative;
+  padding: 22px 20px 20px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 20% 20%, rgba(154, 180, 255, 0.08), transparent 50%),
+    rgba(14, 16, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(87, 113, 255, 0.08), rgba(255, 152, 108, 0.06));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.initial {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #5569ff, #8b61ff);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #f7f8fb;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #f7f8fb;
+}
+
+.title {
+  font-size: 0.95rem;
+  color: #b9c2d6;
+}
+
+.badge {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffe3c7;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+}
+
+.quote {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #e7ebf6;
+  padding-left: 8px;
+}
+
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -4px;
+  top: -10px;
+  font-size: 2.6rem;
+  color: rgba(154, 180, 255, 0.35);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  gap: 10px;
+}
+
+.score {
+  font-weight: 600;
+  color: #9ab4ff;
+}
+
+.cohort {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cfd4e0;
+  background: rgba(17, 20, 32, 0.7);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .testimonials {
+    padding: 90px 24px;
+  }
+  .heading {
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .cardGrid {
+    gap: 16px;
+  }
+  .card {
+    padding: 18px 16px 16px;
+  }
+  .cardHeader {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+  }
+  .badge {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 4px;
+  }
+  .quote {
+    font-size: 0.98rem;
+  }
+  .statRow {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .testimonials {
+    padding: 70px 18px;
+  }
+  .lede {
+    margin-bottom: 44px;
+  }
+  .statChip {
+    width: 100%;
+    text-align: center;
+  }
+  .cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

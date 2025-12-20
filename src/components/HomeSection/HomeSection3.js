@@ -1,47 +1,34 @@
 import styles from "./homeSection3.module.css";
 
 export default function HomeSection3() {
+  const rows = [
+    "UI/UX Design - Web Development - Mobile Apps -",
+    "Graphic Design - Product Design - Branding -",
+    "Front-End - Back-End - Full-Stack -",
+    "Animation - Motion Design - 3D Modeling -",
+  ];
+
   return (
     <section className={styles.page5}>
       <div className={styles.elem}>
-        <h1>
-          <span>UI/UX Design</span> - Web Development - Mobile Apps - 
-          <span>UI/UX Design</span> - Web Development - Mobile Apps - 
-        </h1>
-        <h1>
-          UI/UX Design - Web Development - <span>Mobile Apps</span> - 
-          UI/UX Design - Web Development - <span>Mobile Apps</span> -
-        </h1>
+        <p className={styles.marqueeRow} data-text={rows[0]}>
+          <span>UI/UX Design</span> - Web Development - Mobile Apps - {rows[0]}
+        </p>
       </div>
       <div className={styles.elem2}>
-        <h1>
-          Graphic Design - <span>Product Design</span> - Branding -
-          Graphic Design - <span>Product Design</span> - Branding -
-        </h1>
-        <h1>
-          <span>Graphic Design</span> - Product Design - Branding -
-          <span>Graphic Design</span> - Product Design - Branding -
-        </h1>
+        <p className={styles.marqueeRow} data-text={rows[1]}>
+          Graphic Design - <span>Product Design</span> - Branding - {rows[1]}
+        </p>
       </div>
       <div className={styles.elem}>
-        <h1>
-          Front-End - <span>Back-End</span> - Full-Stack -
-          Front-End - <span>Back-End</span> - Full-Stack -
-        </h1>
-        <h1>
-          Front-End - Back-End - <span>Full-Stack</span> -
-          Front-End - Back-End - <span>Full-Stack</span> -
-        </h1>
+        <p className={styles.marqueeRow} data-text={rows[2]}>
+          Front-End - <span>Back-End</span> - Full-Stack - {rows[2]}
+        </p>
       </div>
       <div className={styles.elem2}>
-        <h1>
-          Animation - Motion Design - <span>3D Modeling</span> -
-          Animation - Motion Design - <span>3D Modeling</span> -
-        </h1>
-        <h1>
-          Animation - Motion Design - <span>3D Modeling</span> -
-          Animation - Motion Design - <span>3D Modeling</span> -
-        </h1>
+        <p className={styles.marqueeRow} data-text={rows[3]}>
+          Animation - Motion Design - <span>3D Modeling</span> - {rows[3]}
+        </p>
       </div>
     </section>
   );

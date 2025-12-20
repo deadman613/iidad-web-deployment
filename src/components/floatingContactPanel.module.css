@@ -1,0 +1,45 @@
+.wrapper {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1200;
+}
+
+.btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(159, 255, 139, 0.45);
+  background: rgba(20, 20, 20, 0.9);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
+  border-color: rgba(159, 255, 139, 0.65);
+  background: rgba(28, 28, 28, 0.95);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    right: 16px;
+    bottom: 16px;
+  }
+  .btn {
+    width: 48px;
+    height: 48px;
+  }
+}

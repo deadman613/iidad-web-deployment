@@ -30,6 +30,10 @@ export default function HomeSection4() {
         Comprehensive Programs<br />
         For Your Creative Career
       </h2>
+      <div className={styles.ctaButtons}>
+        <button className={`${styles.primaryBtn} demoButtonForm`}>Reserve Your Seat</button>
+        <button className={`${styles.ghostBtn} demoButtonForm`}>Lock Your Price Today</button>
+      </div>
       <div className={styles.cardsGrid}>
         {cardData.map((card, idx) => (
           <div key={card.label + idx} className={styles.cardItem}>

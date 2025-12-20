@@ -77,6 +77,14 @@ export default function HomeSection5() {
           </div>
         ))}
       </div>
+      <div className={styles.ctaBar}>
+        <span className={styles.ctaMain}>Choose the Skill That Gets You Hired</span>
+        <span className={styles.ctaSub}>Not sure? We’ll guide you.</span>
+      </div>
+      <div className={styles.ctaButtons}>
+        <button className={`${styles.primaryBtn} demoButtonForm`}>Reserve Your Seat Before It’s Gone</button>
+        <button className={`${styles.ghostBtn} demoButtonForm`}>Help Me Choose the Right Course</button>
+      </div>
     </section>
   );
 }
