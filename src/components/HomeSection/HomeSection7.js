@@ -7,6 +7,10 @@ const people = [
   { name: "Mr. Jatin Gautam", role: "Senior Developer", img: "/teamPic/Gemini_Generated_Image_iv7bbgiv7bbgiv7b-removebg-preview.webp", desc: "Seasoned full-stack developer with expertise in modern web technologies and scalable application architecture. Passionate about mentoring aspiring developers." },
   { name: "Mr. Deepanshu Soni", role: "Senior Developer", img: "/teamPic/Gemini_Generated_Image_ggtlqfggtlqfggtl-removebg-preview.webp", desc: "Expert in full-stack development with a strong focus on creating efficient, user-centric solutions. Dedicated to delivering high-quality code and innovative features." },
   { name: "Mr. Harsh Shakya", role: "Developer", img: "/teamPic/Gemini_Generated_Image_3gmign3gmign3gmi__1_-removebg-preview.webp", desc: "Talented developer specializing in modern web frameworks and responsive design. Bringing fresh perspectives and technical excellence to every project." },
+  { name: "Ms. Shagun Shrivastava", role: "AI Head", img: "/teamPic/Shagun3__1_-removebg-preview.png", desc: "Leads AI initiatives and crafts intelligent learning experiences across IIDAD programs." },
+  { name: "Mr. Harvinder Singh", role: "Content Head", img: "/teamPic/Prompt_generate_an_202512051119-removebg-preview.png", desc: "Oversees curriculum storytelling and content quality to keep learners engaged and outcomes-focused." },
+  { name: "Mr. Ritesh Mahawar", role: "Video Editor", img: "/teamPic/Generate_an_ultrarealistic_2k_202512201127-removebg-preview.png", desc: "Crafts high-impact video lessons and polishes student showcases with cinematic editing." },
+  { name: "Mr. Govind Bisht", role: "SEO Expert", img: "/teamPic/Gemini_Generated_Image_xm81zbxm81zbxm81-removebg-preview.png", desc: "Drives search strategy to grow IIDAD's reach and ensures content ranks for the right learners." },
  // { name: "Sneha Kapoor", role: "Alumni - UI Designer", img: "/teamPic/Gemini_Generated_Image_3gmign3gmign3gmi__1_-removebg-preview.png", desc: "IIDAD alumna now working as Senior UI Designer at Adobe. Credits IIDAD for launching her successful design career." },
   //{ name: "Arjun Reddy", role: "Alumni - Full Stack Dev", img: "/teamPic/Gemini_Generated_Image_ggtlqfggtlqfggtl-removebg-preview.png", desc: "Graduated from IIDAD's web development program, now building innovative startups and mentoring aspiring developers." },
   //{ name: "Maya Iyer", role: "Motion Design Faculty", img: "/teamPic/Gemini_Generated_Image_iv7bbgiv7bbgiv7b-removebg-preview.png", desc: "Animation and motion graphics specialist. Created visuals for major film studios and advertising campaigns worldwide." },
@@ -24,6 +28,7 @@ export default function HomeSection7() {
   const [currentPage, setCurrentPage] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
   const touchStartX = useRef(0);
+  const autoScrollRef = useRef();
 
   // Responsive: update card count on resize
   useEffect(() => {
@@ -37,6 +42,21 @@ export default function HomeSection7() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Auto-scroll carousel one card at a time
+  useEffect(() => {
+    if (visibleCount < 1) return;
+    if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    autoScrollRef.current = setInterval(() => {
+      setCurrentPage(prev => {
+        const totalPages = Math.ceil(people.length / visibleCount);
+        if (prev < totalPages - 1) return prev + 1;
+        return 0;
+      });
+      setHovered(-1);
+    }, 3500);
+    return () => clearInterval(autoScrollRef.current);
+  }, [visibleCount]);
 
   const totalPages = Math.ceil(people.length / visibleCount);
 

@@ -3,14 +3,14 @@ import './footer.css';
 import { FaInstagram, FaBehance, FaLinkedin } from 'react-icons/fa';
 
 const footerLinks = [
-  { label: "Programs", href: "#" },
+  { label: "Programs", href: "/courses" },
   { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
 ];
 
 const footerLinksRight = [
-  { label: "Admissions", href: "#" },
-  { label: "Campus Life", href: "#" },
+  { label: "Admissions", href: "/contact-us" },
+  { label: "Campus Life", href: "/about" },
   { label: "Contact", href: "/contact-us" },
 ];
 

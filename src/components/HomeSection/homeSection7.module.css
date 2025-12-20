@@ -1,3 +1,18 @@
+.carouselRowWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 380px;
+}
+
+.carouselRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  /* Remove transition here, handled inline for animation */
+}
 /* Global body rule (explicit) to avoid impure selector in CSS Modules */
 :global(body) {
   font-family: 'Helvetica Neue', Arial, sans-serif;
