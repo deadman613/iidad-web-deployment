@@ -63,16 +63,25 @@ export default function Header() {
         <div className="menu-wrapper delay-dropdown">
           <button className="menu-btn">Our domain ▼</button>
           <ul className="dropdown-list">
-            <li className="dropdown-item">
-              <span className="item-text">UI / UX Design</span>
+            <li className="dropdown-item" onClick={() => {
+              window.dispatchEvent(new CustomEvent('courseSection2:search', { detail: 'Full stack' }));
+              window.location.href = '/courses#section2';
+            }}>
+              <span className="item-text">Full stack</span>
               <span className="item-arrow">➜</span>
             </li>
-            <li className="dropdown-item">
-              <span className="item-text">Web Development</span>
+            <li className="dropdown-item" onClick={() => {
+              window.dispatchEvent(new CustomEvent('courseSection2:search', { detail: 'Frontend' }));
+              window.location.href = '/courses#section2';
+            }}>
+              <span className="item-text">Frontend</span>
               <span className="item-arrow">➜</span>
             </li>
-            <li className="dropdown-item">
-              <span className="item-text">Marketing & Branding</span>
+            <li className="dropdown-item" onClick={() => {
+              window.dispatchEvent(new CustomEvent('courseSection2:search', { detail: 'Backend' }));
+              window.location.href = '/courses#section2';
+            }}>
+              <span className="item-text">Backend</span>
               <span className="item-arrow">➜</span>
             </li>
           </ul>

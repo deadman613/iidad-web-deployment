@@ -17,6 +17,15 @@ const CourseSection2 = () => {
   const [categoryFilter, setCategoryFilter] = useState([]); // strings: Diploma, Advanced, Certification
   const [newestFirst, setNewestFirst] = useState(false);
 
+  // Listen for search trigger from navbar
+  useEffect(() => {
+    function handleSearchEvent(e) {
+      if (typeof e.detail === 'string') setQuery(e.detail);
+    }
+    window.addEventListener('courseSection2:search', handleSearchEvent);
+    return () => window.removeEventListener('courseSection2:search', handleSearchEvent);
+  }, []);
+
   // helper: compute price and oldPrice (numbers)
   const computePrices = (c) => {
     const monthly = 10000;
