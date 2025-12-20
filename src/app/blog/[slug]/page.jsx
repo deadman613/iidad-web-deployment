@@ -162,7 +162,7 @@ export default async function BlogDetails(props) {
   };
 
   return (
-    <main id="main-content" className="blog-detail" role="main">
+    <main id="main-content" className="blog-detail" role="main" style={{color:"white"}}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
