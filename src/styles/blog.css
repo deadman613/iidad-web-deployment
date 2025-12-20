@@ -292,14 +292,14 @@
 .blog-detail .content {
   font-size: clamp(1rem, 2vw, 1.1rem);
   line-height: 1.85;
-  color: var(--color-muted);
+  color: #e8f0f5;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
 .blog-detail .content h2,
 .blog-detail .content h3 {
-  color: var(--color-text);
+  color: #ffffff;
   margin-top: 2rem;
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.3;
@@ -321,6 +321,7 @@
 
 .blog-detail .content li {
   margin: 0.5rem 0;
+  color: #e8f0f5;
 }
 
 .blog-detail .content img {
@@ -332,7 +333,7 @@
 }
 
 .blog-detail .content a {
-  color: var(--color-accent);
+  color: #9fff8b;
   text-decoration: underline;
   word-break: break-word;
 }
@@ -340,14 +341,16 @@
 .blog-detail .content pre {
   overflow-x: auto;
   padding: 1rem;
-  background: var(--color-surface);
+  background: rgba(20, 22, 20, 0.9);
   border-radius: var(--radius-md);
   margin: 1rem 0;
+  color: #e8f0f5;
 }
 
 .blog-detail .content code {
   font-size: 0.9em;
   word-break: break-word;
+  color: #9fff8b;
 }
 
 .blog-detail .content blockquote {
@@ -355,7 +358,7 @@
   padding-left: 1.5rem;
   margin: 1.5rem 0;
   font-style: italic;
-  color: var(--color-muted);
+  color: #dbe7ee;
 }
 
 .blog-detail .content table {
@@ -364,11 +367,12 @@
   display: block;
   border-collapse: collapse;
   margin: 1.5rem 0;
+  color: #e8f0f5;
 }
 
 .blog-detail .content table td,
 .blog-detail .content table th {
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(159, 255, 139, 0.2);
   padding: 0.5rem;
   text-align: left;
 }
