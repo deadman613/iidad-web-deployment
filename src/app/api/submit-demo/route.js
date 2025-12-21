@@ -1,25 +1,32 @@
 // Next.js API route to proxy demo booking form data to Google Apps Script
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
 
+export async function POST(request) {
   try {
+    const body = await request.json();
     const response = await fetch(
       'https://script.google.com/macros/s/AKfycbxH1wyzn3yUQLDKmwWIETp4oL5J6o2TBTGtb2dnCn54CHEc_zDoULNgOQv0p7MnsNPR/exec',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(req.body),
+        body: JSON.stringify(body),
       }
     );
     const data = await response.json();
     if (response.ok) {
-      res.status(200).json(data);
+      return new Response(JSON.stringify(data), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
     } else {
-      res.status(500).json({ error: 'Failed to submit to Google Apps Script' });
+      return new Response(JSON.stringify({ error: 'Failed to submit to Google Apps Script' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Server error', details: error.message });
+    return new Response(JSON.stringify({ error: 'Server error', details: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
