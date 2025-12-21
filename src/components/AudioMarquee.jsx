@@ -4,40 +4,64 @@ import styles from "./audioMarquee.module.css";
 
 const tracks = [
   {
-    id: "design-futures",
-    title: "Design Futures",
-    caption: "How design leaders shape resilient products in 2025 and beyond.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
+    id: "ashley",
+    title: "Priya Sharma",
+    caption: "Indian female voice (Priya Sharma)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Ashley_12-21-2025 22-56-20.mp3",
   },
   {
-    id: "studio-culture",
-    title: "Studio Culture",
-    caption: "What makes product teams ship faster together.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-6s.mp3",
+    id: "deborah",
+    title: "Anjali Nair",
+    caption: "Indian female voice (Anjali Nair)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Deborah_12-21-2025 22-44-33.mp3",
   },
   {
-    id: "product-legends",
-    title: "Product Legends",
-    caption: "How disciplined teams keep shipping when scope shifts.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-9s.mp3",
+    id: "dennis",
+    title: "Amit Verma",
+    caption: "Indian male voice (Amit Verma)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Dennis_12-21-2025 22-57-18.mp3",
   },
   {
-    id: "tech-careers",
-    title: "Tech Careers",
-    caption: "Career pivots, mentorship, and habits that accelerate junior devs.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-6s.mp3",
+    id: "edward",
+    title: "Rahul Mehra",
+    caption: "Indian male voice (Rahul Mehra)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Edward_12-21-2025 22-50-19.mp3",
   },
   {
-    id: "ai-practitioner",
-    title: "AI Practitioner",
-    caption: "Building with AI responsibly: workflows, guardrails, and impact.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-9s.mp3",
+    id: "hana",
+    title: "Sneha Iyer",
+    caption: "Indian female voice (Sneha Iyer)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Hana_12-21-2025 23-00-34.mp3",
   },
   {
-    id: "ops-culture",
-    title: "Ops Culture",
-    caption: "Shipping reliable releases without slowing the team down.",
-    src: "https://samplelib.com/lib/preview/mp3/sample-12s.mp3",
+    id: "riya1",
+    title: "Riya Singh",
+    caption: "Indian female voice (Riya Singh)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-47-44.mp3",
+  },
+  {
+    id: "riya2",
+    title: "Aisha Patel",
+    caption: "Indian female voice (Aisha Patel)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-48-52.mp3",
+  },
+  {
+    id: "riya3",
+    title: "Meera Joshi",
+    caption: "Indian female voice (Meera Joshi)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-54-21.mp3",
+  },
+  {
+    id: "riya4",
+    title: "Pooja Reddy",
+    caption: "Indian female voice (Pooja Reddy)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-55-17.mp3",
+  },
+  {
+    id: "timothy",
+    title: "Arjun Deshmukh",
+    caption: "Indian male voice (Arjun Deshmukh)",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Timothy_12-21-2025 22-59-26.mp3",
   },
 ];
 
@@ -276,7 +300,14 @@ export default function AudioMarquee() {
         </div>
       </div>
 
-      <audio ref={audioRef} preload="none" />
+      <audio
+        ref={audioRef}
+        preload="none"
+        controlsList="nodownload noplaybackrate nofullscreen"
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        aria-hidden="true"
+      />
     </section>
   );
 }
