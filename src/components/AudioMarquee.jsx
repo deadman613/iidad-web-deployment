@@ -3,66 +3,67 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./audioMarquee.module.css";
 
 const tracks = [
-  {
-    id: "ashley",
-    title: "Priya Sharma",
-    caption: "Indian female voice (Priya Sharma)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Ashley_12-21-2025 22-56-20.mp3",
-  },
-  {
-    id: "deborah",
-    title: "Anjali Nair",
-    caption: "Indian female voice (Anjali Nair)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Deborah_12-21-2025 22-44-33.mp3",
-  },
-  {
-    id: "dennis",
-    title: "Amit Verma",
-    caption: "Indian male voice (Amit Verma)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Dennis_12-21-2025 22-57-18.mp3",
-  },
-  {
-    id: "edward",
-    title: "Rahul Mehra",
-    caption: "Indian male voice (Rahul Mehra)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Edward_12-21-2025 22-50-19.mp3",
-  },
-  {
-    id: "hana",
-    title: "Sneha Iyer",
-    caption: "Indian female voice (Sneha Iyer)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Hana_12-21-2025 23-00-34.mp3",
-  },
-  {
-    id: "riya1",
-    title: "Riya Singh",
-    caption: "Indian female voice (Riya Singh)",
-    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-47-44.mp3",
-  },
-  {
+    {
     id: "riya2",
     title: "Aisha Patel",
-    caption: "Indian female voice (Aisha Patel)",
+    caption: "Learning React at IIDAD went beyond tutorials. The focus on clean code and best practices made a big difference. It directly reflects in the quality of work I deliver today.",
     src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-48-52.mp3",
   },
   {
     id: "riya3",
     title: "Meera Joshi",
-    caption: "Indian female voice (Meera Joshi)",
+    caption: "As a fresher, confidence was my biggest challenge. IIDAD’s project-based learning and mentorship made me job-ready. My interviews focused more on experience than just theory.",
     src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-54-21.mp3",
   },
   {
     id: "riya4",
     title: "Pooja Reddy",
-    caption: "Indian female voice (Pooja Reddy)",
+    caption: "IIDAD didn’t just teach the MERN stack—they made us build with it. From development to deployment, everything was hands-on. That experience reduced the learning curve at my workplace.",
     src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-55-17.mp3",
   },
   {
     id: "timothy",
     title: "Arjun Deshmukh",
-    caption: "Indian male voice (Arjun Deshmukh)",
+    caption: "Working in a startup requires problem-solving, not just coding. IIDAD trained us to think logically and take ownership of tasks. That mindset helps me adapt quickly in a fast-paced environment.",
     src: "/audioFiles/Inworld_inworld-tts-1-max_Timothy_12-21-2025 22-59-26.mp3",
   },
+  {
+    id: "ashley",
+    title: "Priya Sharma",
+    caption: "I learned how to translate designs into scalable, maintainable code. IIDAD helped bridge the gap between design and development. Collaborating with designers is much smoother now.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Ashley_12-21-2025 22-56-20.mp3",
+  },
+  {
+    id: "deborah",
+    title: "Anjali Nair",
+    caption: "I had theoretical knowledge before, but lacked real-world exposure. At IIDAD, I worked on actual projects with proper guidance. That hands-on experience made my transition into a professional role seamless. I apply those learnings every day at work.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Deborah_12-21-2025 22-44-33.mp3",
+  },
+  {
+    id: "dennis",
+    title: "Amit Verma",
+    caption: "I came from a non-technical background. IIDAD’s structured learning and consistent practice helped me break into IT. Today, I’m working as a developer with confidence.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Dennis_12-21-2025 22-57-18.mp3",
+  },
+  {
+    id: "edward",
+    title: "Rahul Mehra",
+    caption: "Backend concepts felt complex before joining IIDAD. The step-by-step approach and real API development helped build confidence. Handling production systems now feels natural.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Edward_12-21-2025 22-50-19.mp3",
+  },
+  {
+    id: "hana",
+    title: "Sneha Iyer",
+    caption: "IIDAD shaped how I approach development, not just how I write code. Debugging, structuring solutions, and continuous learning became habits. Those skills are essential in my professional journey.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Hana_12-21-2025 23-00-34.mp3",
+  },
+  {
+    id: "riya1",
+    title: "Durgesh kr. Prajapati",
+    caption: "IIDAD helped me understand how frontend and backend connect in real products. The training was practical, structured, and industry-focused. It prepared me well for real deadlines and team-based development.",
+    src: "/audioFiles/Inworld_inworld-tts-1-max_Riya_12-21-2025 22-47-44.mp3",
+  },
+
 ];
 
 export default function AudioMarquee() {
