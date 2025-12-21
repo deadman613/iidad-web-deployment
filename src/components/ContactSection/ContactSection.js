@@ -14,16 +14,19 @@ export default function ContactSection() {
     // Collect checked interests
     const interests = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextSibling.textContent.trim());
     const payload = {
-      firstName,
-      lastName,
+      access_key: "5a98cfe6-d32f-4812-9d9d-12c057816c27",
+      name: `${firstName} ${lastName}`.trim(),
       email,
       country,
       phone,
       message,
-      interests: interests.join(', ')
+      interests: interests.join(', '),
+      subject: "New Contact Form Submission from IIDAD Website",
+      from_name: `${firstName} ${lastName}`.trim(),
+      redirect: window.location.href + "?success=1"
     };
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzX2pbdedAJbFzL0EF2DvfY0x40TTEEYjVXiubmj03AxxOSlWejnNQCBhOiqNklLCeo/exec', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
