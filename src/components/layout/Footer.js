@@ -60,9 +60,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* Legal notice OUTSIDE footer box */}
+      {/* Copyright notice OUTSIDE footer box */}
       <div className="footer-legal">
-        Legal Notice
+        copyright@ iidad ,made with love by iidad
       </div>
     </>
   );
