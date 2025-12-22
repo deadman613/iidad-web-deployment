@@ -1,3 +1,15 @@
+  useEffect(() => {
+    // Listen for audio marquee play/mute events
+    const handleAudioMarquee = (e) => {
+      if (videoRef.current) {
+        videoRef.current.muted = !!e.detail.playing;
+      }
+    };
+    window.addEventListener('audio-marquee-playing', handleAudioMarquee);
+    return () => {
+      window.removeEventListener('audio-marquee-playing', handleAudioMarquee);
+    };
+  }, []);
 "use client"
 import React, { useState, useEffect, useRef } from 'react'
 import styles from "./homeSection2.module.css";

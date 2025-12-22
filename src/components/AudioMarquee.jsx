@@ -107,6 +107,8 @@ export default function AudioMarquee() {
       setIsPlaying(false);
       setActiveId(null);
       setIsAutoplaying(true);
+      // Dispatch custom event to unmute video
+      window.dispatchEvent(new CustomEvent('audio-marquee-playing', { detail: { playing: false } }));
     };
 
     audio.addEventListener("ended", handleEnded);
@@ -136,6 +138,8 @@ export default function AudioMarquee() {
       setIsPlaying(false);
       setActiveId(null);
       setIsAutoplaying(true);
+      // Dispatch custom event to unmute video
+      window.dispatchEvent(new CustomEvent('audio-marquee-playing', { detail: { playing: false } }));
       return;
     }
 
@@ -153,6 +157,8 @@ export default function AudioMarquee() {
         if (baseIdx >= 0) setCurrentIndex(targetIndex);
         setActiveInstanceIndex(targetIndex);
         setIsAutoplaying(false);
+        // Dispatch custom event to mute video
+        window.dispatchEvent(new CustomEvent('audio-marquee-playing', { detail: { playing: true } }));
       })
       .catch(() => {
         setActiveId(track.id);
