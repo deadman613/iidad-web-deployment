@@ -1,5 +1,14 @@
+
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import styles from "./homeSection2.module.css";
+import gsap from "gsap";
+
+export default function HomeSection2() {
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  // Listen for audio marquee play/mute events
   useEffect(() => {
-    // Listen for audio marquee play/mute events
     const handleAudioMarquee = (e) => {
       if (videoRef.current) {
         videoRef.current.muted = !!e.detail.playing;
@@ -10,10 +19,6 @@
       window.removeEventListener('audio-marquee-playing', handleAudioMarquee);
     };
   }, []);
-"use client"
-import React, { useState, useEffect, useRef } from 'react'
-import styles from "./homeSection2.module.css";
-import gsap from "gsap";
 
 export default function HomeSection2() {
   const sectionRef = useRef(null);
