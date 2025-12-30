@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import React, { useEffect } from 'react';
 import styles from "./audioMarquee.module.css";
 
 const tracks = [
