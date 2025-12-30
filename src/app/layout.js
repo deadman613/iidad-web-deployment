@@ -4,7 +4,6 @@ import "@/styles/blog.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
 import HomeLoaderGate from '@/components/HomeLoaderGate'
-"use client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
