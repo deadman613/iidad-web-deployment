@@ -4,6 +4,8 @@ import "@/styles/blog.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import StructuredData from "@/components/StructuredData";
 import HomeLoaderGate from '@/components/HomeLoaderGate'
+"use client";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,6 +90,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics gtag.js */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0KPE5YEP"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EG0KPE5YEP');
+          `,
+        }} />
         <StructuredData type="organization" />
         <StructuredData type="website" />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL || "https://iidad.in"} />

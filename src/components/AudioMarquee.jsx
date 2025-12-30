@@ -132,28 +132,6 @@ export default function AudioMarquee() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    useEffect(() => {
-      // Google Analytics gtag.js script injection
-      const scriptTag = document.createElement('script');
-      scriptTag.async = true;
-      scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-EG0KPE5YEP';
-      document.head.appendChild(scriptTag);
-
-      const inlineScript = document.createElement('script');
-      inlineScript.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-EG0KPE5YEP');
-      `;
-      document.head.appendChild(inlineScript);
-
-      return () => {
-        document.head.removeChild(scriptTag);
-        document.head.removeChild(inlineScript);
-      };
-    }, []);
-
     // If clicking the same track while playing, pause it.
     if (isPlaying && activeId === track.id) {
       audio.pause();
