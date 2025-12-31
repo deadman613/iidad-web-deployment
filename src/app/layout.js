@@ -109,7 +109,6 @@ export default function RootLayout({ children }) {
         }} />
         <StructuredData type="organization" />
         <StructuredData type="website" />
-        <link rel="canonical" href="https://www.iidad.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
