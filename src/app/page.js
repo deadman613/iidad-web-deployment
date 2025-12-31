@@ -1,4 +1,3 @@
-"use client";
 export const metadata = {
   alternates: {
     canonical: "https://www.iidad.com/",
