@@ -1,14 +1,11 @@
 import prisma from "@/lib/prisma";
-import { getBaseUrl } from "@/lib/base-url";
+import courses from "@/data/courses.json";
+import { NextResponse } from "next/server";
 
 export const revalidate = 3600;
 
-export default async function sitemap() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    (await getBaseUrl()) ||
-    "https://iidad.in";
+export async function GET() {
+  const baseUrl = "https://www.iidad.com";
 
   // Fetch blog posts for dynamic sitemap
   let blogs = [];
@@ -19,44 +16,38 @@ export default async function sitemap() {
       take: 1000,
     });
   } catch (error) {
-    console.error("Error fetching blogs for sitemap via prisma:", error);
+    blogs = [];
   }
+
+  // Dynamic courses
+  const courseUrls = Array.isArray(courses)
+    ? courses.map(course => `/courses/${course.slug}`)
+    : [];
 
   // Static pages
   const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact-us`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
+    "",
+    "about",
+    "courses",
+    "contact-us",
+    "blog",
+    "thank-you"
   ];
 
-  // Dynamic blog pages
-  const blogPages = blogs.map((blog) => ({
-    url: `${baseUrl}/blog/${blog.slug}`,
-    lastModified: new Date(blog.updatedAt || blog.createdAt),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+  const urls = [
+    ...staticPages.map(path => `${baseUrl}/${path}`.replace(/\/$/, "")),
+    ...courseUrls.map(path => `${baseUrl}${path}`),
+    ...blogs.map(blog => `${baseUrl}/blog/${blog.slug}`)
+  ];
 
-  return [...staticPages, ...blogPages];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    urls.map(url => `  <url><loc>${url}</loc></url>`).join("\n") +
+    `\n</urlset>`;
+
+  return new NextResponse(xml, {
+    headers: {
+      "Content-Type": "application/xml"
+    }
+  });
 }
