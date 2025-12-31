@@ -3,6 +3,9 @@ import styles from "./page.module.css";
 
 export const metadata = {
   title: "Thank you | IIDAD",
+  alternates: {
+    canonical: "https://www.iidad.com/thank-you",
+  },
 };
 
 export default function ThankYouPage() {

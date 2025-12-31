@@ -72,6 +72,9 @@
   .marqueeRow {
     font-size: 3.7rem;
   }
+  .page5 {
+padding: 30px 0;
+}
 }
 
 @media (max-width: 500px) {

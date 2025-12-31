@@ -143,15 +143,17 @@
       display: grid;
   grid-template-columns: 1fr;
     min-height: auto; 
-    margin-top: 10vh; 
-    margin-bottom: 15vh;
-    padding: 0 20px;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    padding: 0 30px;
   }
   .leftCol { 
     padding: 0 20px; 
     min-width: 0; 
     box-sizing: border-box;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
   }
@@ -182,10 +184,14 @@
 
 @media (max-width: 600px) {
   .sectionWrapper {
-    margin-top: 17vh;
-    margin-bottom: 10vh;
+    margin-top: 20px;
+    margin-bottom: 30px;
     padding: 0 16px;
   }
+  .ctaButtons {
+  display: flex;
+  flex-direction: column;
+}
   .leftCol {
     padding: 0 16px;
     margin-bottom: 30px;

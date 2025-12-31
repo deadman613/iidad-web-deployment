@@ -10,7 +10,26 @@ import Homesection5 from "@/components/HomeSection/HomeSection5";
 import HomeSection6 from "@/components/HomeSection/HomeSection6";
 import HomeSection7 from "@/components/HomeSection/HomeSection7";
 export const metadata = {
-  title: "courses"
+  title: "Full Stack Developer Course With Hands-On Mastery",
+  description: "Become a confident developer with our full stack developer course. Learn front-end, back-end, and tools used by real professionals in today's tech world.",
+  keywords: [
+    "development course",
+    "best development course",
+    "best web development courses",
+    "mern stack developer",
+    "salesforce developer course",
+    "master in software engineering",
+    "full stack developer course online",
+    "python full stack developer course",
+    "mern stack course",
+    "best mern stack course",
+    "front end developer course online",
+    "full stack developer course",
+    "web development courses"
+  ],
+  alternates: {
+    canonical: "https://www.iidad.com/courses",
+  },
 };
 
 export default function AboutPage() {

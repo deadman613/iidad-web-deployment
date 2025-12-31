@@ -18,8 +18,8 @@ const fetchBlogs = async (searchParams) => {
 };
 
 export const metadata = {
-  title: "IIDAD Blog - Design Insights, News & Updates",
-  description: "Explore the IIDAD blog for latest design trends, student projects, industry insights, campus news, and educational resources. Stay updated with the Indian Institute of Design and Development's community, events, and thought leadership in design education.",
+  title: "iidad Developer Hub – Coding Energy, Creative Logic & New-Age Tech",
+  description: "iidad Developer Hub gives you everything you need to grow—coding lessons, trending technologies, student-focused resources, and future-ready development knowledge.",
   keywords: [
     "IIDAD blog",
     "design blog India",
@@ -29,7 +29,15 @@ export const metadata = {
     "IIDAD news",
     "design insights",
     "creative education blog",
-    "design institute updates"
+    "design institute updates",
+    "web development",
+    "designing and development",
+    "web development blog",
+    "programming blog",
+    "full stack developer",
+    "full stack",
+    "mern stack developer",
+    "python developer"
   ],
   openGraph: {
     title: "IIDAD Blog - Design Insights, News & Updates | Indian Institute of Design and Development",
@@ -52,7 +60,7 @@ export const metadata = {
     images: ["/twitter-blog.jpg"],
   },
   alternates: {
-    canonical: "/blog",
+    canonical: "https://www.iidad.com/blog",
   },
 };
 

@@ -23,6 +23,9 @@ export async function generateMetadata({ params }) {
       description: course.description,
       images: course.img ? [course.img] : undefined,
     },
+    alternates: {
+      canonical: `https://www.iidad.com/courses/${slug}`,
+    },
   };
 }
 

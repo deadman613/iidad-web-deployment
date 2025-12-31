@@ -35,7 +35,6 @@ export default function CampusSection() {
           </div>
           <div className={styles.ctaButtons}>
             <button className={`${styles.primaryBtn} demoButtonForm`}>Book a Campus Tour</button>
-            <button className={styles.ghostBtn}>See Our Spaces</button>
           </div>
         </div>
 

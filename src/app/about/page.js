@@ -3,8 +3,8 @@ import AboutSection2 from "@/components/AboutSection/AboutSection2";
 import HomeSection7 from "@/components/HomeSection/HomeSection7";
 
 export const metadata = {
-  title: "About IIDAD - History, Vision & Mission",
-  description: "Learn about the Indian Institute of Design and Development (IIDAD) - our history, vision, mission, values, and commitment to excellence in design education. Discover what makes IIDAD India's premier design institute.",
+  title: "About IIDAD – Web Development Diploma & MERN Training",
+  description: "Know the team and mission behind IIDAD. Our Web Development Diploma and MERN Stack Course with Placement are designed for industry-ready growth",
   keywords: [
     "about IIDAD",
     "IIDAD history",
@@ -13,7 +13,16 @@ export const metadata = {
     "design education philosophy",
     "IIDAD values",
     "design college about",
-    "Indian design institute"
+    "Indian design institute",
+    "web development diploma",
+    "mern stack course with placement",
+    "web development courses with certificates",
+    "full stack developer course with placement guarantee",
+    "software engineer diploma courses",
+    "mern stack training",
+    "full stack web developer certification",
+    "web developer training",
+    "full stack developer course with certification"
   ],
   openGraph: {
     title: "About IIDAD - History, Vision & Mission | Indian Institute of Design and Development",
@@ -36,7 +45,7 @@ export const metadata = {
     images: ["/twitter-about.jpg"],
   },
   alternates: {
-    canonical: "/about",
+    canonical: "https://www.iidad.com/about",
   },
 };
 

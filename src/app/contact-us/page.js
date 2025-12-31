@@ -2,8 +2,8 @@ import ContactSection from "@/components/ContactSection/ContactSection";
 // import "@/styles/blog.css";
 
 export const metadata = {
-  title: "Contact IIDAD - Get in Touch",
-  description: "Contact the Indian Institute of Design and Development (IIDAD) for admissions, inquiries, campus visits, and more. Reach out to our team for information about design programs, courses, and facilities. We're here to help you start your design journey.",
+  title: "Contact IIDAD for Quick Support & Guidance",
+  description: "Contact IIDAD for quick help and course guidance. Visit us in GK-II, New delhi or call +91-8810606010.",
   keywords: [
     "contact IIDAD",
     "IIDAD address",
@@ -37,6 +37,9 @@ export const metadata = {
   },
   alternates: {
     canonical: "/contact-us",
+  },
+  alternates: {
+    canonical: "https://www.iidad.com/contact-us",
   },
 };
 

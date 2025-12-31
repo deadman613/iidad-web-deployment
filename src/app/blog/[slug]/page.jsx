@@ -2,32 +2,32 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBaseUrl } from "@/lib/base-url";
-
-const fetchBlog = async (slug) => {
-  const baseUrl = await getBaseUrl();
-  const res = await fetch(`${baseUrl}/api/blog/${slug}`, {
-    next: { revalidate: 60 },
-  });
-
-  if (res.status === 404) {
-    return null;
-  }
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch blog");
-  }
-
-  return res.json();
-};
-
-const fetchRelated = async (slug) => {
-  const baseUrl = await getBaseUrl();
-  const res = await fetch(`${baseUrl}/api/blog?relatedTo=${slug}&limit=3`, {
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) return { data: [] };
-  return res.json();
-};
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      images: ogImage ? [
+        {
+          url: ogImage,
+          alt: imageAlt,
+        }
+      ] : undefined,
+      type: "article",
+      url: canonical,
+      siteName: "IIDAD - Indian Institute of Design and Development",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: ogImage ? [ogImage] : undefined,
+    },
+    alternates: {
+      canonical: `https://www.iidad.com/blog/${blog.slug}`,
+    },
+  };
 
 export async function generateMetadata(props) {
   const params = await props?.params;
