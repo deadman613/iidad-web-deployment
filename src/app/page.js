@@ -1,9 +1,9 @@
+"use client";
 export const metadata = {
   alternates: {
     canonical: "https://www.iidad.com/",
   },
 };
-"use client";
 import HomeSection1 from "@/components/HomeSection/HomeSection1";
 import HomeSection2 from "@/components/HomeSection/HomeSection2";
 import HomeSection3 from "@/components/HomeSection/HomeSection3";
