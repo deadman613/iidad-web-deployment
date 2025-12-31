@@ -20,7 +20,8 @@ export const metadata = {
   title: {
     default: "Best Institute for Web Development | Create Sites with Confidence"
   },
-  description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
+  canonical:"https://www.iidad.com/",
+  description: "If you want a career in tech, learn from the best institute for web development. Our website development course turns beginners into confident creators.",
   keywords: [
     "IIDAD",
     "Indian Institute of Design and Development",
@@ -59,7 +60,7 @@ export const metadata = {
     url: "/",
     siteName: "IIDAD - Indian Institute of Design and Development",
     title: "Best Institute for Web Development | Create Sites with Confidence",
-    description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
+    description: "If you want a career in tech, learn from the best institute for web development. Our website development course turns beginners into confident creators.",
     images: [
       {
         url: "/og-image.png",
@@ -72,7 +73,7 @@ export const metadata = {
   twitter: {
     card: "/thumbnail.png",
     title: "Best Institute for Web Development | Create Sites with Confidence",
-    description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
+    description: "If you want a career in tech, learn from the best institute for web development. Our swebsite development course turns beginners into confident creators.",
     images: ["/og-image.png"],
     creator: "@iidad",
   },
