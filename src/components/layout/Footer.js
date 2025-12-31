@@ -1,6 +1,6 @@
 import React from 'react';
 import './footer.css';
-import { FaInstagram, FaBehance, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const footerLinks = [
   { label: "Programs", href: "/courses" },
@@ -52,10 +52,26 @@ const Footer = () => {
           </div>
           <div className="footer-divider" />
           <div className="footer-right">
-            <div className="footer-icons">
-              <FaInstagram size={32} />
-              <FaBehance size={32} />
-              <FaLinkedin size={32} />
+            <div className="footer-contact-info">
+              <div>
+                <a href="mailto:info@iidad.com" className="footer-contact-link">info@iidad.com</a>
+              </div>
+              <div>
+                <a href="tel:+919205435653" className="footer-contact-link">+91 92054 35653</a>
+              </div>
+              <div>
+                <a href="https://maps.google.com/?q=IIDAD+Campus,+New+Delhi" target="_blank" rel="noopener noreferrer" className="footer-contact-link">
+                  IIDAD Campus, New Delhi<br />123 Design Street, Delhi, India
+                </a>
+              </div>
+            </div>
+            <div className="footer-icons" style={{ marginTop: 'auto', display: 'flex', gap: '16px' }}>
+              <a href="https://instagram.com/iidad.in" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram size={32} />
+              </a>
+              <a href="https://linkedin.com/company/iidad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin size={32} />
+              </a>
             </div>
           </div>
         </div>

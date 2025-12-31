@@ -18,24 +18,32 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://iidad.in'),
   title: {
-    default: "IIDAD - Indian Institute of Design and Development | Premier Design Education",
-    template: "%s | IIDAD - Indian Institute of Design and Development"
+    default: "Best Institute for Web Development | Create Sites with Confidence"
   },
-  description: "Indian Institute of Design and Development (IIDAD) offers world-class design education, fostering creativity and innovation. Explore programs in product design, communication design, interior design, and more. Join India's leading design institute.",
+  description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
   keywords: [
     "IIDAD",
     "Indian Institute of Design and Development",
-    "design college India",
-    "design education",
-    "product design",
-    "communication design",
-    "interior design",
-    "fashion design",
-    "UX UI design",
-    "design institute",
-    "creative education",
-    "design courses India",
-    "best design college"
+    "website development course",
+  "web development institute near me",
+  "complete web development course",
+  "mern stack course with placement",
+  "best institute for web development",
+  "advanced web development course",
+  "web development courses",
+  "mern course",
+  "software development courses",
+  "full stack development course",
+  "best web development courses",
+  "online web development courses",
+  "front end development course",
+  "web development classes",
+  "mern stack course",
+  "web development courses near me",
+  "web design and development course",
+  "web development full course",
+  "stack development course",
+  "full stack development course near me"
   ],
   authors: [{ name: "IIDAD" }],
   creator: "Indian Institute of Design and Development",
@@ -50,11 +58,11 @@ export const metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "IIDAD - Indian Institute of Design and Development",
-    title: "IIDAD - Indian Institute of Design and Development | Premier Design Education",
-    description: "Join IIDAD, India's leading design institute offering comprehensive programs in product design, communication design, interior design, and more. Shape the future through design.",
+    title: "Best Institute for Web Development | Create Sites with Confidence",
+    description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "IIDAD - Indian Institute of Design and Development",
@@ -62,10 +70,10 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "IIDAD - Indian Institute of Design and Development",
-    description: "India's premier design institute offering world-class education in product design, communication design, interior design, and more.",
-    images: ["/twitter-image.jpg"],
+    card: "/thumbnail.png",
+    title: "Best Institute for Web Development | Create Sites with Confidence",
+    description: "If you want a career in tech, learn from the best institute for web development. Our hands-on website development course turns beginners into confident creators.",
+    images: ["/og-image.png"],
     creator: "@iidad",
   },
   robots: {
@@ -80,7 +88,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "Zero10-en+o1",
   },
 };
 
