@@ -66,11 +66,21 @@ export async function PUT(request, context) {
     const resolvedSlug = await generateUniqueSlug(slug || title, params.handle);
     const preparedTags = normalizeTags(tags);
 
+    // Sanitize content: strip inline styles and unsafe tags before update
+    const sanitizeContent = (html) => {
+      if (!html || typeof html !== "string") return "";
+      return html
+        .replace(/\sstyle=\"[^\"]*\"/gi, "")
+        .replace(/\sstyle='[^']*'/gi, "")
+        .replace(/<\/?font[^>]*>/gi, "")
+        .replace(/\sid=\"docs-internal-guid-[^\"]*\"/gi, "");
+    };
+
     const updated = await prisma.blog.update({
       where: { id: params.handle },
       data: {
         title: title.trim(),
-        content,
+        content: sanitizeContent(content),
         coverImg: coverImg?.trim() || null,
         ogImage: ogImage?.trim() || null,
         metaTitle: metaTitle?.trim() || null,

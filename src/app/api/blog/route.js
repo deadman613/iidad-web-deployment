@@ -9,6 +9,19 @@ import { getClientIp } from "@/lib/request-info";
 const DEFAULT_LIMIT = 9;
 const MAX_LIMIT = 24;
 
+// Strip inline styles and unsafe tags from rich text HTML before saving
+const sanitizeContent = (html) => {
+  if (!html || typeof html !== "string") return "";
+  return html
+    // Remove style attributes (double and single quoted)
+    .replace(/\sstyle=\"[^\"]*\"/gi, "")
+    .replace(/\sstyle='[^']*'/gi, "")
+    // Remove deprecated font tags entirely
+    .replace(/<\/?font[^>]*>/gi, "")
+    // Remove Google Docs internal GUID ids
+    .replace(/\sid=\"docs-internal-guid-[^\"]*\"/gi, "");
+};
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -109,7 +122,7 @@ export async function POST(request) {
     const blog = await prisma.blog.create({
       data: {
         title: title.trim(),
-        content,
+        content: sanitizeContent(content),
         coverImg: coverImg?.trim() || null,
         ogImage: ogImage?.trim() || null,
         metaTitle: metaTitle?.trim() || null,

@@ -1,7 +1,22 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBaseUrl } from "@/lib/base-url";
+
+// Fetch a single blog by slug from the API
+const fetchBlog = async (slug) => {
+  const baseUrl = await getBaseUrl();
+  const res = await fetch(`${baseUrl}/api/blog/${slug}`);
+  if (!res.ok) return null;
+  return res.json();
+};
+
+// Fetch related blogs (stub: returns empty for now)
+const fetchRelated = async (slug) => {
+  // You can implement logic to fetch related posts if needed
+  return { data: [] };
+};
 
 export async function generateMetadata(props) {
   const params = await props?.params;
@@ -136,7 +151,7 @@ export default async function BlogDetails(props) {
   };
 
   return (
-    <main id="main-content" className="blog-detail" role="main" style={{color:"white"}}>
+    <main id="main-content" className="blog-detail" role="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

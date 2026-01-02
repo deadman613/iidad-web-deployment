@@ -126,17 +126,6 @@ export const allCourses = [
     description: 'Create web animations and interactive visualizations using three.js.',
   },
   {
-    id: 12,
-    title: 'Diploma in Backend Development',
-    author: 'IIDAD Academy',
-    rating: 4.6,
-    ratingsCount: '1,750',
-    duration: 12,
-    tags: [],
-    img: '/images/course-placeholder.png',
-    description: 'Comprehensive backend diploma focused on reliability, APIs and data modeling.',
-  },
-  {
     id: 13,
     title: 'Diploma in Fullstack Development with Generative AI',
     author: 'IIDAD Academy',
