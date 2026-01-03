@@ -1,13 +1,16 @@
 import prisma from "@/lib/prisma";
 import courses from "@/data/courses.json";
-import { NextResponse } from "next/server";
 
 export const revalidate = 3600;
 
-export async function GET() {
-  const baseUrl = "https://www.iidad.com";
+export default async function sitemap() {
+  const baseUrlRaw =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "") ||
+    "https://www.iidad.com";
+  const baseUrl = baseUrlRaw.endsWith("/") ? baseUrlRaw.slice(0, -1) : baseUrlRaw;
 
-  // Fetch blog posts for dynamic sitemap
   let blogs = [];
   try {
     blogs = await prisma.blog.findMany({
@@ -15,39 +18,35 @@ export async function GET() {
       orderBy: { updatedAt: "desc" },
       take: 1000,
     });
-  } catch (error) {
+  } catch {
     blogs = [];
   }
 
-  // Dynamic courses
-  const courseUrls = Array.isArray(courses)
-    ? courses.map(course => `/courses/${course.slug}`)
+  const now = new Date();
+  const staticPages = ["", "/about", "/courses", "/contact-us", "/blog", "/thank-you"];
+
+  const staticEntries = staticPages.map((path) => ({
+    url: `${baseUrl}${path || ""}`,
+    lastModified: now,
+  }));
+
+  const courseEntries = Array.isArray(courses)
+    ? courses
+        .filter((course) => course?.slug)
+        .map((course) => ({
+          url: `${baseUrl}/courses/${course.slug}`,
+          lastModified: now,
+        }))
     : [];
 
-  // Static pages
-  const staticPages = [
-    "",
-    "about",
-    "courses",
-    "contact-us",
-    "blog",
-    "thank-you"
-  ];
+  const blogEntries = Array.isArray(blogs)
+    ? blogs
+        .filter((blog) => blog?.slug)
+        .map((blog) => ({
+          url: `${baseUrl}/blog/${blog.slug}`,
+          lastModified: blog.updatedAt ?? blog.createdAt ?? now,
+        }))
+    : [];
 
-  const urls = [
-    ...staticPages.map(path => `${baseUrl}/${path}`.replace(/\/$/, "")),
-    ...courseUrls.map(path => `${baseUrl}${path}`),
-    ...blogs.map(blog => `${baseUrl}/blog/${blog.slug}`)
-  ];
-
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    urls.map(url => `  <url><loc>${url}</loc></url>`).join("\n") +
-    `\n</urlset>`;
-
-  return new NextResponse(xml, {
-    headers: {
-      "Content-Type": "application/xml"
-    }
-  });
+  return [...staticEntries, ...courseEntries, ...blogEntries];
 }
