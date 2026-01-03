@@ -23,8 +23,28 @@ export const getBaseUrl = async () => {
     console.warn("getBaseUrl: falling back to NEXT_PUBLIC_APP_URL", error);
   }
 
+  const normalize = (value) => {
+    if (!value || typeof value !== "string") return value;
+    return value.endsWith("/") ? value.slice(0, -1) : value;
+  };
+
+  // Prefer explicit base URLs when running without request headers (e.g. ISR).
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return normalize(process.env.NEXT_PUBLIC_BASE_URL);
+  }
+
   if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
+    return normalize(process.env.NEXT_PUBLIC_APP_URL);
+  }
+
+  // Vercel provides VERCEL_URL in production builds/runtimes.
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // Avoid falling back to localhost in production.
+  if (process.env.NODE_ENV === "production") {
+    return "https://iidad.in";
   }
 
   return "http://localhost:3000";
