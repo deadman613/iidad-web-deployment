@@ -4,10 +4,12 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBaseUrl } from "@/lib/base-url";
 
+export const dynamic = "force-dynamic";
+
 // Fetch a single blog by slug from the API
 const fetchBlog = async (slug) => {
   const baseUrl = await getBaseUrl();
-  const res = await fetch(`${baseUrl}/api/blog/${slug}`);
+  const res = await fetch(`${baseUrl}/api/blog/${slug}`, { cache: "no-store" });
   if (!res.ok) return null;
   return res.json();
 };
@@ -52,6 +54,8 @@ export async function generateMetadata(props) {
   // Generate image alt text
   const imageAlt = `Cover image for ${blog.title}`;
 
+  const resolvedKeywords = Array.isArray(blog.keywords) && blog.keywords.length ? blog.keywords : blog.tags || [];
+
   return {
     title: metaTitle,
     description: metaDescription,
@@ -84,7 +88,7 @@ export async function generateMetadata(props) {
       ] : undefined,
       creator: "@iidad",
     },
-    keywords: blog.tags || [],
+    keywords: resolvedKeywords,
     authors: blog.author ? [{ name: blog.author }] : [{ name: "IIDAD" }],
     publisher: "Indian Institute of Design and Development",
     alternates: { canonical },
@@ -113,49 +117,16 @@ export default async function BlogDetails(props) {
   const imageSrc = hasCover ? cover : "/placeholder.svg";
   const isPlaceholder = !hasCover;
   const baseUrl = await getBaseUrl();
-  const canonical = `${baseUrl}/blog/${blog.slug}`;
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: blog.title,
-    url: canonical,
-    datePublished: blog.createdAt,
-    dateModified: blog.updatedAt ?? blog.createdAt,
-    author: {
-      "@type": blog.author ? "Person" : "Organization",
-      name: blog.author || "IIDAD Editorial Team",
-    },
-    publisher: {
-      "@type": "EducationalOrganization",
-      name: "Indian Institute of Design and Development",
-      alternateName: "IIDAD",
-      url: baseUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${baseUrl}/logo.png`,
-      },
-    },
-    image: hasCover
-      ? isExternalCover
-        ? imageSrc
-        : new URL(imageSrc, baseUrl).toString()
-      : undefined,
-    description: blog.metaDescription?.trim() || blog.content.replace(/<[^>]+>/g, " ").slice(0, 160),
-    keywords: blog.tags?.join(", ") || "",
-    articleSection: "Design Education",
-    inLanguage: "en-IN",
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": canonical,
-    },
-  };
+  const schemaJson = blog.schema && typeof blog.schema === "object" ? blog.schema : null;
 
   return (
     <main id="main-content" className="blog-detail" role="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {schemaJson ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJson) }}
+        />
+      ) : null}
       <article aria-labelledby="blog-title">
         <header>
           <p className="eyebrow">{new Date(blog.createdAt).toLocaleDateString()}</p>

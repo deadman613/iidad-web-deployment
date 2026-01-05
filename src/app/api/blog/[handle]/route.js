@@ -6,6 +6,24 @@ import { ensureAdminApi } from "@/lib/auth";
 import { recordAudit } from "@/lib/audit";
 import { getClientIp } from "@/lib/request-info";
 
+const parseSchemaJson = (input) => {
+  if (input === undefined) return undefined;
+  if (input === null) return null;
+  if (typeof input === "string") {
+    const trimmed = input.trim();
+    if (!trimmed) return null;
+    try {
+      return JSON.parse(trimmed);
+    } catch {
+      throw new Error("Invalid schema JSON");
+    }
+  }
+  if (typeof input === "object") {
+    return input;
+  }
+  throw new Error("Invalid schema JSON");
+};
+
 const resolveLookup = async (handle, lookup) => {
   if (lookup === "id") {
     return prisma.blog.findUnique({ where: { id: handle } });
@@ -52,7 +70,7 @@ export async function PUT(request, context) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, slug } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -65,6 +83,13 @@ export async function PUT(request, context) {
 
     const resolvedSlug = await generateUniqueSlug(slug || title, params.handle);
     const preparedTags = normalizeTags(tags);
+    const preparedKeywords = keywords === undefined ? undefined : normalizeTags(keywords);
+    let preparedSchema = undefined;
+    try {
+      preparedSchema = parseSchemaJson(schema);
+    } catch (error) {
+      return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
+    }
 
     // Sanitize content: strip inline styles and unsafe tags before update
     const sanitizeContent = (html) => {
@@ -76,18 +101,28 @@ export async function PUT(request, context) {
         .replace(/\sid=\"docs-internal-guid-[^\"]*\"/gi, "");
     };
 
+    const data = {
+      title: title.trim(),
+      content: sanitizeContent(content),
+      coverImg: coverImg?.trim() || null,
+      ogImage: ogImage?.trim() || null,
+      metaTitle: metaTitle?.trim() || null,
+      metaDescription: metaDescription?.trim() || null,
+      tags: preparedTags,
+      slug: resolvedSlug,
+    };
+
+    if (preparedKeywords !== undefined) {
+      data.keywords = preparedKeywords;
+    }
+
+    if (preparedSchema !== undefined) {
+      data.schema = preparedSchema;
+    }
+
     const updated = await prisma.blog.update({
       where: { id: params.handle },
-      data: {
-        title: title.trim(),
-        content: sanitizeContent(content),
-        coverImg: coverImg?.trim() || null,
-        ogImage: ogImage?.trim() || null,
-        metaTitle: metaTitle?.trim() || null,
-        metaDescription: metaDescription?.trim() || null,
-        tags: preparedTags,
-        slug: resolvedSlug,
-      },
+      data,
     });
 
     const ip = await getClientIp(request);

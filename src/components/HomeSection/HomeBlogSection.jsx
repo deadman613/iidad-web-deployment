@@ -4,7 +4,7 @@ import Link from "next/link";
 import BlogCard from "@/components/BlogCard";
 import styles from "./homeBlogSection.module.css";
 
-const MAX_POSTS = 4;
+const MAX_POSTS = 3;
 
 export default function HomeBlogSection() {
   const [blogs, setBlogs] = useState([]);

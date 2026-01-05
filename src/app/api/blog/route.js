@@ -9,6 +9,23 @@ import { getClientIp } from "@/lib/request-info";
 const DEFAULT_LIMIT = 9;
 const MAX_LIMIT = 24;
 
+const parseSchemaJson = (input) => {
+  if (input === undefined || input === null) return null;
+  if (typeof input === "string") {
+    const trimmed = input.trim();
+    if (!trimmed) return null;
+    try {
+      return JSON.parse(trimmed);
+    } catch {
+      throw new Error("Invalid schema JSON");
+    }
+  }
+  if (typeof input === "object") {
+    return input;
+  }
+  throw new Error("Invalid schema JSON");
+};
+
 // Strip inline styles and unsafe tags from rich text HTML before saving
 const sanitizeContent = (html) => {
   if (!html || typeof html !== "string") return "";
@@ -42,6 +59,7 @@ export async function GET(request) {
           { title: { contains: search, mode: "insensitive" } },
           { content: { contains: search, mode: "insensitive" } },
           { tags: { has: search.toLowerCase() } },
+          { keywords: { has: search.toLowerCase() } },
         ],
       });
     }
@@ -110,7 +128,7 @@ export async function POST(request) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, slug } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -118,6 +136,13 @@ export async function POST(request) {
 
     const finalSlug = await generateUniqueSlug(slug || title);
     const preparedTags = normalizeTags(tags);
+    const preparedKeywords = normalizeTags(keywords);
+    let preparedSchema = null;
+    try {
+      preparedSchema = parseSchemaJson(schema);
+    } catch (error) {
+      return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
+    }
 
     const blog = await prisma.blog.create({
       data: {
@@ -128,6 +153,8 @@ export async function POST(request) {
         metaTitle: metaTitle?.trim() || null,
         metaDescription: metaDescription?.trim() || null,
         tags: preparedTags,
+        keywords: preparedKeywords,
+        schema: preparedSchema,
         slug: finalSlug,
       },
     });

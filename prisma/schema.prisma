@@ -23,6 +23,8 @@ model Blog {
   metaTitle       String?
   metaDescription String?
   tags            String[]
+  keywords        String[]
+  schema          Json?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

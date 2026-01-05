@@ -13,6 +13,8 @@ const baseState = {
   metaTitle: "",
   metaDescription: "",
   tags: "",
+  keywords: "",
+  schema: "",
   content: "",
 };
 
@@ -27,6 +29,8 @@ const clientSlugify = (raw = "") =>
 
 const slugHelpId = "blog-form-slug-help";
 const tagsHelpId = "blog-form-tags-help";
+const keywordsHelpId = "blog-form-keywords-help";
+const schemaHelpId = "blog-form-schema-help";
 
 const BlogForm = ({ initialData = null, mode = "create" }) => {
   const router = useRouter();
@@ -34,6 +38,11 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
     ...baseState,
     ...initialData,
     tags: initialData?.tags?.join(", ") || initialData?.tags || "",
+    keywords: initialData?.keywords?.join(", ") || initialData?.keywords || "",
+    schema:
+      initialData?.schema && typeof initialData.schema === "object"
+        ? JSON.stringify(initialData.schema, null, 2)
+        : initialData?.schema || "",
     content: initialData?.content || "",
     ogImage: initialData?.ogImage || "",
     metaTitle: initialData?.metaTitle || "",
@@ -110,6 +119,8 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
         metaTitle: formValues.metaTitle?.trim() || "",
         metaDescription: formValues.metaDescription?.trim() || "",
         tags: formValues.tags,
+        keywords: formValues.keywords,
+        schema: formValues.schema,
         content: formValues.content,
       };
 
@@ -216,6 +227,32 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
             aria-describedby={tagsHelpId}
           />
           <small id={tagsHelpId}>Comma-separated. Used for filtering and related posts.</small>
+        </label>
+
+        <label>
+          Keywords (SEO)
+          <input
+            type="text"
+            name="keywords"
+            placeholder="design courses, UI UX, interior design"
+            value={formValues.keywords}
+            onChange={(event) => setField("keywords", event.target.value)}
+            aria-describedby={keywordsHelpId}
+          />
+          <small id={keywordsHelpId}>Comma-separated. Used for SEO meta keywords (defaults to tags if empty).</small>
+        </label>
+
+        <label>
+          Schema JSON (optional)
+          <textarea
+            name="schema"
+            rows="6"
+            placeholder='{"@context":"https://schema.org","@type":"BlogPosting","headline":"..."}'
+            value={formValues.schema}
+            onChange={(event) => setField("schema", event.target.value)}
+            aria-describedby={schemaHelpId}
+          />
+          <small id={schemaHelpId}>Paste valid JSON-LD. If empty, the blog will output no schema.</small>
         </label>
 
         <label>
