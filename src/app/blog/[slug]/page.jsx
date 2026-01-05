@@ -116,8 +116,8 @@ export default async function BlogDetails(props) {
   const hasCover = Boolean(cover);
   const imageSrc = hasCover ? cover : "/placeholder.svg";
   const isPlaceholder = !hasCover;
-  const baseUrl = await getBaseUrl();
   const schemaJson = blog.schema && typeof blog.schema === "object" ? blog.schema : null;
+  const faqSchemaJson = blog.faqSchema && typeof blog.faqSchema === "object" ? blog.faqSchema : null;
 
   return (
     <main id="main-content" className="blog-detail" role="main">
@@ -125,6 +125,12 @@ export default async function BlogDetails(props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJson) }}
+        />
+      ) : null}
+      {faqSchemaJson ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchemaJson) }}
         />
       ) : null}
       <article aria-labelledby="blog-title">

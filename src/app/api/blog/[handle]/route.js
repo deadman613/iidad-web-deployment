@@ -70,7 +70,7 @@ export async function PUT(request, context) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema, faqSchema } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -89,6 +89,13 @@ export async function PUT(request, context) {
       preparedSchema = parseSchemaJson(schema);
     } catch (error) {
       return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
+    }
+
+    let preparedFaqSchema = undefined;
+    try {
+      preparedFaqSchema = parseSchemaJson(faqSchema);
+    } catch (error) {
+      return NextResponse.json({ error: error.message || "Invalid FAQ schema JSON" }, { status: 400 });
     }
 
     // Sanitize content: strip inline styles and unsafe tags before update
@@ -118,6 +125,10 @@ export async function PUT(request, context) {
 
     if (preparedSchema !== undefined) {
       data.schema = preparedSchema;
+    }
+
+    if (preparedFaqSchema !== undefined) {
+      data.faqSchema = preparedFaqSchema;
     }
 
     const updated = await prisma.blog.update({

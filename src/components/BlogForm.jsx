@@ -15,6 +15,7 @@ const baseState = {
   tags: "",
   keywords: "",
   schema: "",
+  faqSchema: "",
   content: "",
 };
 
@@ -31,6 +32,7 @@ const slugHelpId = "blog-form-slug-help";
 const tagsHelpId = "blog-form-tags-help";
 const keywordsHelpId = "blog-form-keywords-help";
 const schemaHelpId = "blog-form-schema-help";
+const faqSchemaHelpId = "blog-form-faq-schema-help";
 
 const BlogForm = ({ initialData = null, mode = "create" }) => {
   const router = useRouter();
@@ -43,6 +45,10 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
       initialData?.schema && typeof initialData.schema === "object"
         ? JSON.stringify(initialData.schema, null, 2)
         : initialData?.schema || "",
+    faqSchema:
+      initialData?.faqSchema && typeof initialData.faqSchema === "object"
+        ? JSON.stringify(initialData.faqSchema, null, 2)
+        : initialData?.faqSchema || "",
     content: initialData?.content || "",
     ogImage: initialData?.ogImage || "",
     metaTitle: initialData?.metaTitle || "",
@@ -121,6 +127,7 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
         tags: formValues.tags,
         keywords: formValues.keywords,
         schema: formValues.schema,
+        faqSchema: formValues.faqSchema,
         content: formValues.content,
       };
 
@@ -253,6 +260,19 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
             aria-describedby={schemaHelpId}
           />
           <small id={schemaHelpId}>Paste valid JSON-LD. If empty, the blog will output no schema.</small>
+        </label>
+
+        <label>
+          FAQ Schema JSON (optional)
+          <textarea
+            name="faqSchema"
+            rows="6"
+            placeholder='{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}'
+            value={formValues.faqSchema}
+            onChange={(event) => setField("faqSchema", event.target.value)}
+            aria-describedby={faqSchemaHelpId}
+          />
+          <small id={faqSchemaHelpId}>Paste valid FAQPage JSON-LD. If empty, no FAQ schema is rendered.</small>
         </label>
 
         <label>

@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/styles/blog.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import StructuredData from "@/components/StructuredData";
 import HomeLoaderGate from '@/components/HomeLoaderGate'
 
 const geistSans = Geist({
@@ -107,8 +106,6 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-EG0KPE5YEP');
           `,
         }} />
-        <StructuredData type="organization" />
-        <StructuredData type="website" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

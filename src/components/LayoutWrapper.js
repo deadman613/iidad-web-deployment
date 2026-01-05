@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import GlobalStructuredData from "@/components/GlobalStructuredData";
 
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function LayoutWrapper({ children }) {
   // Regular routes: show header and footer
   return (
     <>
+      <GlobalStructuredData />
       <Header />
       <div data-scroll-container>
         {children}

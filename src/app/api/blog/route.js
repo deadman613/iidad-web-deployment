@@ -128,7 +128,7 @@ export async function POST(request) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema, faqSchema } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -144,6 +144,13 @@ export async function POST(request) {
       return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
     }
 
+    let preparedFaqSchema = null;
+    try {
+      preparedFaqSchema = parseSchemaJson(faqSchema);
+    } catch (error) {
+      return NextResponse.json({ error: error.message || "Invalid FAQ schema JSON" }, { status: 400 });
+    }
+
     const blog = await prisma.blog.create({
       data: {
         title: title.trim(),
@@ -155,6 +162,7 @@ export async function POST(request) {
         tags: preparedTags,
         keywords: preparedKeywords,
         schema: preparedSchema,
+        faqSchema: preparedFaqSchema,
         slug: finalSlug,
       },
     });

@@ -3,6 +3,8 @@
  * Provides JSON-LD schema markup for better search engine understanding
  */
 
+"use client";
+
 export default function StructuredData({ type = "organization" }) {
   const organizationSchema = {
     "@context": "https://schema.org",
