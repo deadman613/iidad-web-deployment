@@ -1,72 +1,50 @@
-"use client"
-import styles from "./homeSection6.module.css";
-import { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+"use client";
+
+import Faqs from "@/components/Faqs/Faqs";
 
 const items = [
   {
-    q: "What programs does IIDAD offer?",
-    a: "IIDAD offers comprehensive programs in UI/UX Design, Web Development, Mobile App Development, Graphic Design, Product Design, Animation, and Digital Marketing. We provide certificate courses, diploma programs, and degree courses tailored to different skill levels.",
+    q: "Which is the best web development course at IIDAD for beginners?",
+    a: "The best web development course at IIDAD for beginners is the Full Web Development Course, because it starts from absolute basics and moves step by step. Students first learn HTML and CSS, then JavaScript, and finally work on real websites and projects. This course is ideal for students after 12th, college students, and working professionals with no coding background.",
   },
   {
-    q: "What is the duration of the courses?",
-    a: "Course durations vary: Certificate courses range from 3-6 months, Diploma programs are 12-18 months, and Degree programs span 2-3 years. We also offer intensive bootcamps and weekend workshops for working professionals.",
+    q: "Why is IIDAD one of the best web development institutes in Delhi?",
+    a: "IIDAD is considered one of the best web development institutes in Delhi because it focuses on practical learning, live projects, and simple teaching methods. Instead of only theory, students learn by building real websites. IIDAD also provides career guidance and placement assistance, which helps students start their careers confidently.",
   },
   {
-    q: "Do you provide placement assistance?",
-    a: "Yes! IIDAD has a dedicated placement cell that works closely with leading companies in the design and tech industry. We provide resume building, portfolio reviews, interview preparation, and direct placement opportunities with our partner companies.",
+    q: "What does a web developer actually do?",
+    a: "A web developer designs, builds, and maintains websites and web applications. This includes writing code, creating page layouts, fixing bugs, improving website speed, and making websites mobile-friendly. Web developers also ensure that websites work properly on different browsers and devices.",
   },
   {
-    q: "What are the prerequisites for admission?",
-    a: "Most programs require completion of 10+2 education. For advanced courses, prior experience or a bachelor's degree may be preferred. However, we welcome passionate learners from all backgrounds. Each program has specific requirements detailed on our admissions page.",
+    q: "What is the salary of a beginner web developer in India?",
+    a: "A beginner web developer in India usually earns between ₹3 LPA to ₹6 LPA, depending on skills, projects, and company size. Developers with strong practical knowledge and good portfolios often get better salary packages even as freshers.",
   },
   {
-    q: "Are the courses available online?",
-    a: "Yes, IIDAD offers both on-campus and online learning options. Our hybrid model allows you to choose the format that best suits your lifestyle. Online students get access to live sessions, recorded lectures, and all course materials.",
+    q: "How quickly can I learn web development at IIDAD?",
+    a: "At IIDAD, most students understand the basics of web development within 2–3 months. With regular practice, assignments, and projects, students can become job-ready in 5–6 months. Learning speed depends on practice consistency and interest.",
   },
   {
-    q: "What tools and software will I learn?",
-    a: "You will master industry-standard tools including Figma, Adobe Creative Suite, Sketch, React, Node.js, Python, Flutter, Unity, Blender, and more. We provide software licenses and access to cutting-edge technology throughout your learning journey.",
+    q: "Is web development a good career in 2026?",
+    a: "Yes, web development is a very good career choice in 2026. Businesses, startups, and companies of all sizes need websites and web applications. Skilled web developers are in high demand, and opportunities exist in jobs, freelancing, and remote work.",
   },
   {
-    q: "How can I apply to IIDAD?",
-    a: "Applications can be submitted through our website. The process includes filling out an application form, submitting your academic transcripts, and attending a counseling session. Some programs may require a portfolio review or entrance test.",
+    q: "Do I need coding experience before joining IIDAD?",
+    a: "No, you do not need any prior coding experience. IIDAD web development courses are specially designed for complete beginners. Trainers explain concepts in a simple way, making it easy for anyone to learn.",
+  },
+  {
+    q: "Does IIDAD provide practical training and real projects?",
+    a: "Yes, IIDAD focuses heavily on practical training. Students work on real-world projects such as business websites, landing pages, and web applications. This practical exposure helps students gain confidence and industry-ready skills.",
+  },
+  {
+    q: "Can I get a job after completing a web development course from IIDAD?",
+    a: "Yes, many students get entry-level web developer jobs after completing courses from IIDAD. The institute provides resume building, interview preparation, and placement assistance, which helps students prepare for job opportunities.",
+  },
+  {
+    q: "Will AI replace web developers?",
+    a: "AI will not replace web developers, but it will change how developers work. Developers who learn modern tools, frameworks, and AI-assisted development will have more career opportunities and better productivity.",
   },
 ];
 
 export default function HomeSection6() {
-  const [open, setOpen] = useState(-1);
-
-  return (
-    <section className={styles.wrapper}>
-      <div className={styles.container}>
-        {items.map((item, idx) => (
-          <div
-            className={`${styles.item} ${
-              open === idx ? styles.active : ""
-            }`}
-            key={idx}
-          >
-            <button
-              className={styles.question}
-              aria-expanded={open === idx}
-              onClick={() => setOpen(open === idx ? -1 : idx)}
-            >
-              <span className={styles.qText}>{item.q}</span>
-              <span className={styles.arrow}>
-                {item.a
-                  ? open === idx
-                    ? <FaChevronUp />
-                    : <FaChevronDown />
-                  : <FaChevronDown />}
-              </span>
-            </button>
-            {item.a && open === idx && (
-              <div className={styles.answer}>{item.a}</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+  return <Faqs items={items} />;
 }

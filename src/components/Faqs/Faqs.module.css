@@ -1,0 +1,243 @@
+.wrapper {
+  width: 100%;
+  /* background: #111; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 20px 50px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  margin: 0 auto 26px auto;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 6px 0;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 64px;
+  margin: 10px auto 0 auto;
+  background: linear-gradient(90deg, transparent 0%, #57d773cc 50%, transparent 100%);
+}
+
+.subtitle {
+  margin: 0;
+  color: #bbb;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+.qText {
+  flex: 1;
+  text-align: left;
+  line-height: 1.35;
+}
+
+.item {
+  margin: 10px auto;
+  width: 100%;
+
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0;
+  transition: border-color 0.22s;
+  position: relative;
+}
+
+/* --- GREEN GRADIENT ON QUESTION AND ANSWER (hover question) --- */
+.question {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 20px 32px;
+  cursor: pointer;
+  transition: background 0.26s cubic-bezier(0.6, 0.35, 0.54, 0.95), box-shadow 0.26s;
+  /* border-radius: 8px; */
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.question::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, transparent 75%, #57d773cc 100%);
+  transition: width 0.4s cubic-bezier(0.76, 0.17, 0.18, 0.85);
+  z-index: 1;
+  /* border-radius: 8px; */
+}
+
+.question:hover::after {
+  width: 120%;
+}
+
+.question > * {
+  position: relative;
+  z-index: 2;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.24rem;
+  width: 44px;
+  height: 44px;
+  background: #111;
+  border-radius: 6px;
+  transition: box-shadow 0.22s, background 0.17s, transform 0.3s;
+  box-shadow: 0 0 10px #222;
+}
+
+.question:hover .arrow {
+  background: #1e1e28;
+  box-shadow: 0 0 12px #57d773aa;
+}
+
+/* --- GREEN GRADIENT ON ANSWER (hover question) --- */
+.answer {
+  position: relative;
+  overflow: hidden;
+  color: #bbb;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  margin: 0 0px 0px 32px;
+  cursor: default;
+  /* border-radius: 4px; */
+  padding: 18px 0 20px 0;
+  transition: color 0.16s, background 0.28s;
+}
+
+.answer::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, transparent 75%, #57d773cc 100%);
+  transition: width 0.4s cubic-bezier(0.76, 0.17, 0.18, 0.85);
+  z-index: 1;
+  /* border-radius: 4px; */
+}
+
+.question:hover + .answer::after {
+  width: 120%;
+}
+
+.answer > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .header {
+    margin: 0 auto 22px auto;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 0.98rem;
+  }
+  .question {
+    font-size: 1.02rem;
+    padding: 20px 14px;
+  }
+  .answer {
+    font-size: 0.98rem;
+    margin: 0 0px 12px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    margin: 0 auto 18px auto;
+  }
+  .title {
+    font-size: 1.55rem;
+  }
+  .subtitle {
+    font-size: 0.92rem;
+  }
+  .title::after {
+    width: 54px;
+  }
+  .question {
+    font-size: 0.93rem;
+    padding: 13px 8px;
+  }
+  .answer {
+    font-size: 0.91rem;
+    margin: 0 0px 10px 8px;
+  }
+  .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 357px) {
+  /* Prevent fixed-width causing horizontal overflow: use fluid width with a max constraint */
+  .wrapper {
+    width: 100%;
+    max-width: 350px;
+  }
+  .question {
+    font-size: 0.85rem;
+    padding: 12px 10px;
+    gap: 6px;
+  }
+  .answer {
+    font-size: 0.83rem;
+    margin: 0 0px 6px 10px;
+    padding: 10px 0 14px 0;
+  }
+  .arrow {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    font-size: 0.95rem;
+  }
+  .item {
+    margin: 8px auto;
+  }
+}

@@ -1,4 +1,5 @@
 import ContactSection from "@/components/ContactSection/ContactSection";
+import Faqs from "@/components/Faqs/Faqs";
 // import "@/styles/blog.css";
 
 export const metadata = {
@@ -36,17 +37,42 @@ export const metadata = {
     images: ["/twitter-contact.jpg"],
   },
   alternates: {
-    canonical: "/contact-us",
-  },
-  alternates: {
     canonical: "https://www.iidad.com/contact-us",
   },
 };
 
 export default function ContactPage() {
+  const items = [
+    {
+      q: "How can I contact IIDAD?",
+      a: "You can contact IIDAD through phone, email, or by filling the contact form on the official website.",
+    },
+    {
+      q: "Where is IIDAD located?",
+      a: "IIDAD is located in Delhi, making it accessible for students nearby.",
+    },
+    {
+      q: "Can I visit IIDAD for counselling?",
+      a: "Yes, students can visit IIDAD for free counselling and course guidance.",
+    },
+    {
+      q: "Does IIDAD provide online counselling?",
+      a: "Yes, IIDAD offers online counselling for students who cannot visit the institute physically.",
+    },
+    {
+      q: "How can I enroll in an IIDAD course?",
+      a: "You can enroll by contacting IIDAD directly or registering through the official website.",
+    },
+    {
+      q: "Is career guidance available at IIDAD?",
+      a: "Yes, career guidance is provided to help students choose the right course and career path.",
+    },
+  ];
+
   return (
-    <main >
+    <main>
       <ContactSection />
+      <Faqs items={items} />
     </main>
   );
 }
