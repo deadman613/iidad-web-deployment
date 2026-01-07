@@ -96,7 +96,7 @@ export default function HomeSection2() {
             onError={(e) => console.error("Video failed to load", e)}
             onEnded={handleEnded}
           >
-            <source src={encodeURI('/Manjeet sir web page .mp4')} type="video/mp4" />
+            <source src={encodeURI('/Manjeet sir web page .webm')} type="video/webm" />
           </video>
         </div>
       </div>
