@@ -1,12 +1,13 @@
 import Link from "next/link";
-import prisma from "@/lib/prisma";
 import courses from "@/data/courses.json";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 86400;
 
 export default async function HtmlSitemapPage() {
   let blogs = [];
   try {
+    const { default: prisma } = await import("@/lib/prisma");
     blogs = await prisma.blog.findMany({
       select: { slug: true, title: true, updatedAt: true, createdAt: true },
       orderBy: { updatedAt: "desc" },

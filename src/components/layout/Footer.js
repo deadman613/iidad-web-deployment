@@ -9,7 +9,7 @@ const footerLinks = [
 ];
 
 const footerLinksRight = [
-  { label: "Admissions", href: "/contact-us" },
+  { label: "FAQ's", href: "/faq" },
   { label: "Campus Life", href: "/about" },
   { label: "Contact", href: "/contact-us" },
 ];
