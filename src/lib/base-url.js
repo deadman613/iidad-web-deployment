@@ -20,12 +20,19 @@ export const getBaseUrl = async () => {
       return `${protocol}://${host}`;
     }
   } catch (error) {
-    console.warn("getBaseUrl: falling back to NEXT_PUBLIC_APP_URL", error);
+    if (process.env.NODE_ENV === "development") {
+      console.warn("getBaseUrl: falling back to NEXT_PUBLIC_APP_URL", error);
+    }
   }
 
   const normalize = (value) => {
     if (!value || typeof value !== "string") return value;
-    return value.endsWith("/") ? value.slice(0, -1) : value;
+    let normalized = value.endsWith("/") ? value.slice(0, -1) : value;
+    if (!/^https?:\/\//i.test(normalized)) {
+      const protocol = normalized.includes("localhost") || normalized.startsWith("127.") ? "http" : "https";
+      normalized = `${protocol}://${normalized}`;
+    }
+    return normalized;
   };
 
   // Prefer explicit base URLs when running without request headers (e.g. ISR).

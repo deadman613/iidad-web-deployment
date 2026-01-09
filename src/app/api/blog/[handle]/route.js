@@ -6,22 +6,69 @@ import { ensureAdminApi } from "@/lib/auth";
 import { recordAudit } from "@/lib/audit";
 import { getClientIp } from "@/lib/request-info";
 
+const extractJsonLdFromScriptTag = (raw) => {
+  const trimmed = raw.trim();
+  if (!/^<script\b/i.test(trimmed)) return trimmed;
+
+  const matches = [...trimmed.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+  if (matches.length > 1) {
+    throw new Error("Multiple <script> blocks found. Add each JSON-LD as a separate schema entry.");
+  }
+  if (matches.length === 1) {
+    return (matches[0][1] || "").trim();
+  }
+
+  return trimmed
+    .replace(/^<script\b[^>]*>/i, "")
+    .replace(/<\/script>\s*$/i, "")
+    .trim();
+};
+
 const parseSchemaJson = (input) => {
   if (input === undefined) return undefined;
   if (input === null) return null;
   if (typeof input === "string") {
     const trimmed = input.trim();
     if (!trimmed) return null;
+
+    const normalized = extractJsonLdFromScriptTag(trimmed);
+    if (/"image"\s*:\s*,/.test(normalized)) {
+      throw new Error('Invalid schema JSON: "image" is missing a value. Remove the "image" line or set it to a URL string.');
+    }
     try {
-      return JSON.parse(trimmed);
-    } catch {
-      throw new Error("Invalid schema JSON");
+      return JSON.parse(normalized);
+    } catch (error) {
+      throw new Error(`Invalid schema JSON: ${error.message || "Unable to parse"}`);
     }
   }
   if (typeof input === "object") {
     return input;
   }
   throw new Error("Invalid schema JSON");
+};
+
+const parseSchemasArray = (schemas) => {
+  if (schemas === undefined) return undefined;
+  if (!Array.isArray(schemas)) return [];
+  
+  const parsed = [];
+  for (let i = 0; i < schemas.length; i++) {
+    const schema = schemas[i];
+    if (!schema || (typeof schema === 'string' && !schema.trim())) {
+      continue; // Skip empty schemas
+    }
+    
+    try {
+      const parsedSchema = parseSchemaJson(schema);
+      if (parsedSchema) {
+        parsed.push(parsedSchema);
+      }
+    } catch (error) {
+      throw new Error(`Schema ${i + 1}: ${error.message}`);
+    }
+  }
+  
+  return parsed;
 };
 
 const resolveLookup = async (handle, lookup) => {
@@ -70,7 +117,7 @@ export async function PUT(request, context) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema, faqSchema } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schemas } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -84,18 +131,12 @@ export async function PUT(request, context) {
     const resolvedSlug = await generateUniqueSlug(slug || title, params.handle);
     const preparedTags = normalizeTags(tags);
     const preparedKeywords = keywords === undefined ? undefined : normalizeTags(keywords);
-    let preparedSchema = undefined;
+    
+    let preparedSchemas = undefined;
     try {
-      preparedSchema = parseSchemaJson(schema);
+      preparedSchemas = parseSchemasArray(schemas);
     } catch (error) {
-      return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
-    }
-
-    let preparedFaqSchema = undefined;
-    try {
-      preparedFaqSchema = parseSchemaJson(faqSchema);
-    } catch (error) {
-      return NextResponse.json({ error: error.message || "Invalid FAQ schema JSON" }, { status: 400 });
+      return NextResponse.json({ error: error.message || "Invalid schemas" }, { status: 400 });
     }
 
     // Sanitize content: strip inline styles and unsafe tags before update
@@ -123,12 +164,8 @@ export async function PUT(request, context) {
       data.keywords = preparedKeywords;
     }
 
-    if (preparedSchema !== undefined) {
-      data.schema = preparedSchema;
-    }
-
-    if (preparedFaqSchema !== undefined) {
-      data.faqSchema = preparedFaqSchema;
+    if (preparedSchemas !== undefined) {
+      data.schemas = preparedSchemas;
     }
 
     const updated = await prisma.blog.update({

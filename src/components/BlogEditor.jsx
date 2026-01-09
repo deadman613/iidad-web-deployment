@@ -1,124 +1,81 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
 
-const sanitizeEmpty = (html) => (html === "<p><br></p>" || html === "<div><br></div>" ? "" : html);
+// Dynamic import to avoid SSR issues
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 const BlogEditor = ({ value, onChange }) => {
-  const editorRef = useRef(null);
+  // Custom toolbar configuration with comprehensive formatting options
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          // Headers
+          [{ header: [1, 2, 3, false] }],
+          
+          // Text formatting
+          ["bold", "italic", "underline", "strike"],
+          
+          // Text color and background
+          [{ color: [] }, { background: [] }],
+          
+          // Lists
+          [{ list: "ordered" }, { list: "bullet" }],
+          
+          // Text alignment
+          [{ align: [] }],
+          
+          // Indentation
+          [{ indent: "-1" }, { indent: "+1" }],
+          
+          // Blockquote and code block
+          ["blockquote", "code-block"],
+          
+          // Links and images
+          ["link", "image"],
+          
+          // Clean formatting
+          ["clean"],
+        ],
+      },
+      clipboard: {
+        matchVisual: false,
+      },
+    }),
+    []
+  );
 
-  const handleMouseDown = (event) => {
-    if (!editorRef.current) return;
-    event.preventDefault();
-    const selection = window.getSelection?.();
-    if (!selection) return;
-    let range = null;
-    if (document.caretRangeFromPoint) {
-      range = document.caretRangeFromPoint(event.clientX, event.clientY);
-    } else if (document.caretPositionFromPoint) {
-      const pos = document.caretPositionFromPoint(event.clientX, event.clientY);
-      if (pos) {
-        range = document.createRange();
-        range.setStart(pos.offsetNode, pos.offset);
-        range.collapse(true);
-      }
-    }
-    if (range) {
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-    editorRef.current.focus();
-  };
-
-  const handleBeforeInput = (event) => {
-    const blocked = [
-      "formatBold",
-      "formatItalic",
-      "formatUnderline",
-      "formatStrikeThrough",
-      "formatRemove",
-      "formatBlock",
-      "insertLink",
-    ];
-    if (blocked.includes(event.inputType)) {
-      event.preventDefault();
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    const key = event.key?.toLowerCase();
-    if ((event.metaKey || event.ctrlKey) && ["b", "i", "u", "k"].includes(key)) {
-      event.preventDefault();
-    }
-  };
-
-  // Set initial content
-  useEffect(() => {
-    if (editorRef.current && typeof value === "string") {
-      editorRef.current.innerHTML = value || "";
-    }
-  }, []);
-
-  // Sync when external value changes
-  useEffect(() => {
-    if (!editorRef.current || typeof value !== "string") return;
-    const incoming = value || "";
-    const current = editorRef.current.innerHTML || "";
-    if (incoming !== current && !(incoming === "" && current === "<p><br></p>")) {
-      editorRef.current.innerHTML = incoming;
-    }
-  }, [value]);
-
-  const emitChange = () => {
-    if (!editorRef.current) return;
-    const html = sanitizeEmpty(editorRef.current.innerHTML || "");
-    onChange?.(html);
-  };
-
-  const handleCommand = (command, value = null) => {
-    if (!editorRef.current) return;
-    editorRef.current.focus();
-    document.execCommand(command, false, value);
-    emitChange();
-  };
-
-  const handleLink = () => {
-    if (!editorRef.current) return;
-    editorRef.current.focus();
-    const url = window.prompt("Enter URL:", "https://");
-    if (!url) return;
-    document.execCommand("createLink", false, url);
-    emitChange();
-  };
-
-  const handleInput = () => emitChange();
+  // Quill formats to allow
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "color",
+    "background",
+    "list",
+    "align",
+    "indent",
+    "blockquote",
+    "code-block",
+    "link",
+    "image",
+  ];
 
   return (
     <div className="editor">
-      <div className="editor__toolbar">
-        <button type="button" onClick={() => handleCommand("bold")}>B</button>
-        <button type="button" onClick={() => handleCommand("italic")}>I</button>
-        <button type="button" onClick={() => handleCommand("underline")}>U</button>
-        <button type="button" onClick={() => handleCommand("insertUnorderedList")}>•</button>
-        <button type="button" onClick={() => handleCommand("insertOrderedList")}>1.</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", "<h2>")}>H2</button>
-        <button type="button" onClick={() => handleCommand("formatBlock", "<h3>")}>H3</button>
-        <button type="button" onClick={handleLink}>🔗</button>
-        <button type="button" onClick={() => { if (editorRef.current) { editorRef.current.innerHTML = ""; emitChange(); } }}>Clear</button>
-      </div>
-      <div
-        ref={editorRef}
-        className="plain-editor"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={handleInput}
-        onBlur={handleInput}
-        onKeyUp={handleInput}
-        onPaste={handleInput}
-        onMouseDown={handleMouseDown}
-        onKeyDown={handleKeyDown}
-        onBeforeInput={handleBeforeInput}
-        data-placeholder="Write your blog content..."
+      <ReactQuill
+        theme="snow"
+        value={value || ""}
+        onChange={onChange}
+        modules={modules}
+        formats={formats}
+        placeholder="Write your blog content..."
+        className="blog-editor-quill"
       />
     </div>
   );

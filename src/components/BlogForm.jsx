@@ -14,8 +14,7 @@ const baseState = {
   metaDescription: "",
   tags: "",
   keywords: "",
-  schema: "",
-  faqSchema: "",
+  schemas: [],
   content: "",
 };
 
@@ -31,8 +30,7 @@ const clientSlugify = (raw = "") =>
 const slugHelpId = "blog-form-slug-help";
 const tagsHelpId = "blog-form-tags-help";
 const keywordsHelpId = "blog-form-keywords-help";
-const schemaHelpId = "blog-form-schema-help";
-const faqSchemaHelpId = "blog-form-faq-schema-help";
+const schemasHelpId = "blog-form-schemas-help";
 
 const BlogForm = ({ initialData = null, mode = "create" }) => {
   const router = useRouter();
@@ -41,14 +39,12 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
     ...initialData,
     tags: initialData?.tags?.join(", ") || initialData?.tags || "",
     keywords: initialData?.keywords?.join(", ") || initialData?.keywords || "",
-    schema:
-      initialData?.schema && typeof initialData.schema === "object"
-        ? JSON.stringify(initialData.schema, null, 2)
-        : initialData?.schema || "",
-    faqSchema:
-      initialData?.faqSchema && typeof initialData.faqSchema === "object"
-        ? JSON.stringify(initialData.faqSchema, null, 2)
-        : initialData?.faqSchema || "",
+    schemas:
+      (initialData?.schemas?.length
+        ? initialData.schemas
+        : [initialData?.schema, initialData?.faqSchema].filter(Boolean))
+        ?.map((s) => (typeof s === "object" ? JSON.stringify(s, null, 2) : s)) ||
+      [],
     content: initialData?.content || "",
     ogImage: initialData?.ogImage || "",
     metaTitle: initialData?.metaTitle || "",
@@ -72,6 +68,27 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
 
   const setField = (field, value) => {
     setFormValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const addSchema = () => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: [...prev.schemas, ""],
+    }));
+  };
+
+  const updateSchema = (index, value) => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: prev.schemas.map((s, i) => (i === index ? value : s)),
+    }));
+  };
+
+  const removeSchema = (index) => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: prev.schemas.filter((_, i) => i !== index),
+    }));
   };
 
   const handleFileChange = async (event) => {
@@ -126,8 +143,7 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
         metaDescription: formValues.metaDescription?.trim() || "",
         tags: formValues.tags,
         keywords: formValues.keywords,
-        schema: formValues.schema,
-        faqSchema: formValues.faqSchema,
+        schemas: formValues.schemas,
         content: formValues.content,
       };
 
@@ -248,33 +264,53 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
           />
           <small id={keywordsHelpId}>Comma-separated. Used for SEO meta keywords (defaults to tags if empty).</small>
         </label>
+      </div>
 
-        <label>
-          Schema JSON (optional)
-          <textarea
-            name="schema"
-            rows="6"
-            placeholder='{"@context":"https://schema.org","@type":"BlogPosting","headline":"..."}'
-            value={formValues.schema}
-            onChange={(event) => setField("schema", event.target.value)}
-            aria-describedby={schemaHelpId}
-          />
-          <small id={schemaHelpId}>Paste valid JSON-LD. If empty, the blog will output no schema.</small>
-        </label>
+      <div className="schemas-section">
+        <div className="schemas-header">
+          <label className="editor-label">Structured Data Schemas (JSON-LD)</label>
+          <button type="button" className="btn btn--secondary btn--small" onClick={addSchema}>
+            + Add Schema
+          </button>
+        </div>
+        <small id={schemasHelpId} style={{ display: 'block', marginBottom: '1rem', color: '#64748b' }}>
+          Add multiple JSON-LD schemas (BlogPosting, FAQPage, etc.). Paste valid JSON (preferred) or a single JSON-LD {"<script>"} block. Each entry renders as a separate script tag.
+        </small>
+        
+        {formValues.schemas.length === 0 ? (
+          <p style={{ padding: '1rem', background: '#f8f9fa', borderRadius: '8px', color: '#64748b', textAlign: 'center' }}>
+            No schemas added yet. Click "+ Add Schema" to add structured data.
+          </p>
+        ) : (
+          <div className="schemas-list">
+            {formValues.schemas.map((schema, index) => (
+              <div key={index} className="schema-item">
+                <div className="schema-item-header">
+                  <span>Schema {index + 1}</span>
+                  <button
+                    type="button"
+                    className="btn btn--danger btn--small"
+                    onClick={() => removeSchema(index)}
+                    aria-label={`Remove schema ${index + 1}`}
+                  >
+                    Remove
+                  </button>
+                </div>
+                <textarea
+                  name={`schema-${index}`}
+                  rows="8"
+                  placeholder='{"@context":"https://schema.org","@type":"BlogPosting",...}'
+                  value={schema}
+                  onChange={(event) => updateSchema(index, event.target.value)}
+                  aria-label={`Schema ${index + 1} JSON`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
-        <label>
-          FAQ Schema JSON (optional)
-          <textarea
-            name="faqSchema"
-            rows="6"
-            placeholder='{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}'
-            value={formValues.faqSchema}
-            onChange={(event) => setField("faqSchema", event.target.value)}
-            aria-describedby={faqSchemaHelpId}
-          />
-          <small id={faqSchemaHelpId}>Paste valid FAQPage JSON-LD. If empty, no FAQ schema is rendered.</small>
-        </label>
-
+      <div className="form-grid">
         <label>
           Cover Image URL
           <input

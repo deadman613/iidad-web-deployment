@@ -116,23 +116,26 @@ export default async function BlogDetails(props) {
   const hasCover = Boolean(cover);
   const imageSrc = hasCover ? cover : "/placeholder.svg";
   const isPlaceholder = !hasCover;
-  const schemaJson = blog.schema && typeof blog.schema === "object" ? blog.schema : null;
-  const faqSchemaJson = blog.faqSchema && typeof blog.faqSchema === "object" ? blog.faqSchema : null;
+
+  // Process schemas array (plus backward-compatible fields)
+  const schemas = [];
+  if (Array.isArray(blog.schemas)) {
+    for (const schema of blog.schemas) {
+      if (schema && typeof schema === "object") schemas.push(schema);
+    }
+  }
+  if (blog.schema && typeof blog.schema === "object") schemas.push(blog.schema);
+  if (blog.faqSchema && typeof blog.faqSchema === "object") schemas.push(blog.faqSchema);
 
   return (
     <main id="main-content" className="blog-detail" role="main">
-      {schemaJson ? (
+      {schemas.map((schema, index) => (
         <script
+          key={index}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
-      ) : null}
-      {faqSchemaJson ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchemaJson) }}
-        />
-      ) : null}
+      ))}
       <article aria-labelledby="blog-title">
         <header>
           <p className="eyebrow">{new Date(blog.createdAt).toLocaleDateString()}</p>

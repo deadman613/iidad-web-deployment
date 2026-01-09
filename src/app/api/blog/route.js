@@ -9,21 +9,67 @@ import { getClientIp } from "@/lib/request-info";
 const DEFAULT_LIMIT = 9;
 const MAX_LIMIT = 24;
 
+const extractJsonLdFromScriptTag = (raw) => {
+  const trimmed = raw.trim();
+  if (!/^<script\b/i.test(trimmed)) return trimmed;
+
+  const matches = [...trimmed.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+  if (matches.length > 1) {
+    throw new Error("Multiple <script> blocks found. Add each JSON-LD as a separate schema entry.");
+  }
+  if (matches.length === 1) {
+    return (matches[0][1] || "").trim();
+  }
+
+  return trimmed
+    .replace(/^<script\b[^>]*>/i, "")
+    .replace(/<\/script>\s*$/i, "")
+    .trim();
+};
+
 const parseSchemaJson = (input) => {
   if (input === undefined || input === null) return null;
   if (typeof input === "string") {
     const trimmed = input.trim();
     if (!trimmed) return null;
+
+    const normalized = extractJsonLdFromScriptTag(trimmed);
+    if (/"image"\s*:\s*,/.test(normalized)) {
+      throw new Error('Invalid schema JSON: "image" is missing a value. Remove the "image" line or set it to a URL string.');
+    }
     try {
-      return JSON.parse(trimmed);
-    } catch {
-      throw new Error("Invalid schema JSON");
+      return JSON.parse(normalized);
+    } catch (error) {
+      throw new Error(`Invalid schema JSON: ${error.message || "Unable to parse"}`);
     }
   }
   if (typeof input === "object") {
     return input;
   }
   throw new Error("Invalid schema JSON");
+};
+
+const parseSchemasArray = (schemas) => {
+  if (!Array.isArray(schemas)) return [];
+  
+  const parsed = [];
+  for (let i = 0; i < schemas.length; i++) {
+    const schema = schemas[i];
+    if (!schema || (typeof schema === 'string' && !schema.trim())) {
+      continue; // Skip empty schemas
+    }
+    
+    try {
+      const parsedSchema = parseSchemaJson(schema);
+      if (parsedSchema) {
+        parsed.push(parsedSchema);
+      }
+    } catch (error) {
+      throw new Error(`Schema ${i + 1}: ${error.message}`);
+    }
+  }
+  
+  return parsed;
 };
 
 // Strip inline styles and unsafe tags from rich text HTML before saving
@@ -128,7 +174,21 @@ export async function POST(request) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schema, faqSchema } = payload;
+    const {
+      title,
+      content,
+      coverImg,
+      ogImage,
+      metaTitle,
+      metaDescription,
+      tags,
+      keywords,
+      slug,
+      schemas,
+      // Backward compat (older UI)
+      schema,
+      faqSchema,
+    } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -137,18 +197,20 @@ export async function POST(request) {
     const finalSlug = await generateUniqueSlug(slug || title);
     const preparedTags = normalizeTags(tags);
     const preparedKeywords = normalizeTags(keywords);
+    let preparedSchemas = [];
     let preparedSchema = null;
-    try {
-      preparedSchema = parseSchemaJson(schema);
-    } catch (error) {
-      return NextResponse.json({ error: error.message || "Invalid schema JSON" }, { status: 400 });
-    }
-
     let preparedFaqSchema = null;
+
     try {
+      preparedSchemas = parseSchemasArray(schemas);
+      preparedSchema = parseSchemaJson(schema);
       preparedFaqSchema = parseSchemaJson(faqSchema);
+
+      // Store legacy fields inside schemas[] too, so the page can render all scripts.
+      if (preparedSchema) preparedSchemas.push(preparedSchema);
+      if (preparedFaqSchema) preparedSchemas.push(preparedFaqSchema);
     } catch (error) {
-      return NextResponse.json({ error: error.message || "Invalid FAQ schema JSON" }, { status: 400 });
+      return NextResponse.json({ error: error.message || "Invalid schemas" }, { status: 400 });
     }
 
     const blog = await prisma.blog.create({
@@ -163,6 +225,7 @@ export async function POST(request) {
         keywords: preparedKeywords,
         schema: preparedSchema,
         faqSchema: preparedFaqSchema,
+        schemas: preparedSchemas,
         slug: finalSlug,
       },
     });
