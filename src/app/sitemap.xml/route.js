@@ -39,7 +39,7 @@ export async function GET(request) {
   }
 
   const now = new Date();
-  const staticPages = ["", "/about", "/courses", "/contact-us", "/blog", "/faq", "/thank-you", "/sitemap"];
+  const staticPages = ["", "/about", "/courses", "/contact-us", "/blog", "/faq", "/thank-you", "/sitemap.html"];
 
   const entries = [];
 

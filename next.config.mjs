@@ -8,6 +8,28 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/sitemap",
+        destination: "/sitemap.html",
+        permanent: true,
+      },
+      {
+        source: "/sitemap/",
+        destination: "/sitemap.html",
+        permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap.html",
+        destination: "/sitemap",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
