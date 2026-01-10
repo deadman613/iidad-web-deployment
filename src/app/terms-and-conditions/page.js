@@ -45,7 +45,7 @@ export default function TermsAndConditionsPage() {
 
       <p>
         These Terms and Conditions govern your use of this website and related
-        services provided by {COMPANY.name} ("we", "us", "our"). By accessing
+        services provided by {COMPANY.name} (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;). By accessing
         or using our website, you agree to these terms. If you do not agree,
         please stop using the website.
       </p>

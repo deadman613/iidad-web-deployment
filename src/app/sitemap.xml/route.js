@@ -49,7 +49,7 @@ export async function GET(request) {
     "/thank-you",
     "/privacy-policy",
     "/terms-and-conditions",
-    "/sitemap.html",
+    "/sitemap",
   ];
 
   const entries = [];

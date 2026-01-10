@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
       </p>
 
       <p>
-        This Privacy Policy explains how {COMPANY.name} ("we", "us", "our")
+        This Privacy Policy explains how {COMPANY.name} (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;)
         collects, uses, shares, and protects information when you visit or use
         our website.
       </p>
