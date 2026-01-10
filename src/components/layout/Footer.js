@@ -15,6 +15,7 @@ const footerLinksRight = [
 ];
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <>
       <div className="footer-bg">
@@ -89,7 +90,11 @@ const Footer = () => {
       </div>
       {/* Copyright notice OUTSIDE footer box */}
       <div className="footer-legal">
-        copyright@ iidad ,made with love by iidad
+        © {year} IIDAD. All rights reserved.{' '}
+        <span className="footer-legal-sep">|</span>{' '}
+        <a className="footer-legal-link" href="/privacy-policy">Privacy Policy</a>{' '}
+        <span className="footer-legal-sep">|</span>{' '}
+        <a className="footer-legal-link" href="/terms-and-conditions">Terms &amp; Conditions</a>
       </div>
     </>
   );

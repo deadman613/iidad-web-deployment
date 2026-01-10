@@ -24,6 +24,8 @@ export default async function HtmlSitemapPage() {
     { href: "/blog", label: "Blog" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact-us", label: "Contact" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-and-conditions", label: "Terms & Conditions" },
   ];
 
   const courseLinks = Array.isArray(courses)
