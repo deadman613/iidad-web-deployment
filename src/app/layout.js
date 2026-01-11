@@ -20,6 +20,13 @@ export const metadata = {
     default: "Best Institute for Web Development | Create Sites with Confidence"
   },
   canonical:"https://www.iidad.com/",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/g10.png", type: "image/png" },
+    ],
+    apple: [{ url: "/g10.png", type: "image/png" }],
+  },
   description: "If you want a career in tech, learn from the best institute for web development. Our website development course turns beginners into confident creators.",
   keywords: [
     "IIDAD",

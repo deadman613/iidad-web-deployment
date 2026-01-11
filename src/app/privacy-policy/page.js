@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
     <main
       style={{
         maxWidth: 980,
-        margin: "0 auto",
+        margin: "100px auto 0 auto",
         padding: "2.5rem 1rem 3rem",
         lineHeight: 1.7,
       }}
