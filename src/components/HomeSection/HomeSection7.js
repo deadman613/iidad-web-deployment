@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "@/components/HomeSection/homeSection7.module.css";
 
 const people = [
-  { name: "Mr. Manjeet Singh", role: "Founder", img: "/teamPic/manjeet3-removebg-preview.webp", desc: "Visionary founder and leader of IIDAD with extensive experience in design education and industry partnerships. Committed to nurturing the next generation of creative professionals." },
+  { name: "Mr. Manjeet Singh", role: "Project Head", img: "/teamPic/manjeet3-removebg-preview.webp", desc: "Visionary founder and leader of IIDAD with extensive experience in design education and industry partnerships. Committed to nurturing the next generation of creative professionals." },
   { name: "Mr. Jatin Gautam", role: "Senior Developer", img: "/teamPic/Gemini_Generated_Image_iv7bbgiv7bbgiv7b-removebg-preview.webp", desc: "Seasoned full-stack developer with expertise in modern web technologies and scalable application architecture. Passionate about mentoring aspiring developers." },
   { name: "Mr. Deepanshu Soni", role: "Senior Developer", img: "/teamPic/Gemini_Generated_Image_ggtlqfggtlqfggtl-removebg-preview.webp", desc: "Expert in full-stack development with a strong focus on creating efficient, user-centric solutions. Dedicated to delivering high-quality code and innovative features." },
   { name: "Mr. Harsh Shakya", role: "Developer", img: "/teamPic/Gemini_Generated_Image_3gmign3gmign3gmi__1_-removebg-preview.webp", desc: "Talented developer specializing in modern web frameworks and responsive design. Bringing fresh perspectives and technical excellence to every project." },
