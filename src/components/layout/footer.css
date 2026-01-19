@@ -107,9 +107,8 @@
 }
 
 .footer-link:hover {
-  color: #fff;
-  text-shadow: 0 0 8px #fff, 0 0 18px #444;
-  filter: brightness(1.3) drop-shadow(0 0 5px #fff);
+  color: #84ed77;
+  
 }
 
 
@@ -141,9 +140,8 @@
 }
 
 .footer-contact-link:hover {
-  color: #fff;
-  text-shadow: 0 0 8px #fff, 0 0 18px #444;
-  filter: brightness(1.3) drop-shadow(0 0 5px #fff);
+  color:#84ed77;
+ 
 }
 
 .footer-icons {
