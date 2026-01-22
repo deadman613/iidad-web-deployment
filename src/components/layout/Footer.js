@@ -27,7 +27,7 @@ const Footer = () => {
                   <img src="/g10.png" alt="IIDAD Logo" className="footer-logo-img" />
                 </div>
                 <div className="footer-subtext">
-                  Indian Institute of  <br />design & development
+                  Indian Institute of  <br />design and development
                 </div>
               </div>
             </div>
