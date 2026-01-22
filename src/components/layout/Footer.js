@@ -27,9 +27,20 @@ const Footer = () => {
                   <img src="/g10.png" alt="IIDAD Logo" className="footer-logo-img" />
                 </div>
                 <div className="footer-subtext">
-                  Shaping tomorrow through<br />design & development
+                  Indian Institute of  <br />design & development
                 </div>
               </div>
+            </div>
+              <div className="footer-icons" style={{ marginTop: 'auto', display: 'flex', gap: '16px', flexDirection: 'row' }}>
+              <a href="https://www.instagram.com/iidad_officials/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram size={42} />
+              </a>
+              <a href="https://www.facebook.com/people/IIDAD/61581261069736/?sk=photos" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FaFacebook size={42} />
+              </a>
+              <a href="https://www.linkedin.com/in/manaregr8/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin size={42} />
+              </a>
             </div>
           </div>
           <div className="footer-divider" />
@@ -67,24 +78,14 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="footer-contact-link"
                 >
-                  Spacetime Management Pvt Ltd Design House,<br />
-                  behind Savitri Cinema Complex,<br />
-                  Greater Kailash II, Chittaranjan Park,<br />
+                  Spacetime Management Pvt Ltd Design House,
+                  behind Savitri Cinema Complex,
+                  Greater Kailash II, Chittaranjan Park,
                   New Delhi, Delhi 110048
                 </a>
               </div>
             </div>
-            <div className="footer-icons" style={{ marginTop: 'auto', display: 'flex', gap: '16px', flexDirection: 'row' }}>
-              <a href="https://www.instagram.com/iidad_officials/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <FaInstagram size={32} />
-              </a>
-              <a href="https://www.facebook.com/people/IIDAD/61581261069736/?sk=photos" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <FaFacebook size={32} />
-              </a>
-              <a href="https://www.linkedin.com/in/manaregr8/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <FaLinkedin size={32} />
-              </a>
-            </div>
+          
           </div>
         </div>
       </div>

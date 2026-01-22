@@ -10,10 +10,6 @@ const people = [
   { name: "Ms. Shagun Shrivastava", role: "AI Head", img: "/teamPic/Shagun3__1_-removebg-preview.png", desc: "Leads AI initiatives and crafts intelligent learning experiences across IIDAD programs." },
   { name: "Mr. Harvinder Singh", role: "Content Head", img: "/teamPic/Prompt_generate_an_202512051119-removebg-preview.png", desc: "Oversees curriculum storytelling and content quality to keep learners engaged and outcomes-focused." },
   { name: "Mr. Govind Bisht", role: "SEO Expert", img: "/teamPic/Gemini_Generated_Image_xm81zbxm81zbxm81-removebg-preview.png", desc: "Drives search strategy to grow IIDAD's reach and ensures content ranks for the right learners." },
- // { name: "Sneha Kapoor", role: "Alumni - UI Designer", img: "/teamPic/Gemini_Generated_Image_3gmign3gmign3gmi__1_-removebg-preview.png", desc: "IIDAD alumna now working as Senior UI Designer at Adobe. Credits IIDAD for launching her successful design career." },
-  //{ name: "Arjun Reddy", role: "Alumni - Full Stack Dev", img: "/teamPic/Gemini_Generated_Image_ggtlqfggtlqfggtl-removebg-preview.png", desc: "Graduated from IIDAD's web development program, now building innovative startups and mentoring aspiring developers." },
-  //{ name: "Maya Iyer", role: "Motion Design Faculty", img: "/teamPic/Gemini_Generated_Image_iv7bbgiv7bbgiv7b-removebg-preview.png", desc: "Animation and motion graphics specialist. Created visuals for major film studios and advertising campaigns worldwide." },
-  //{ name: "Karthik Nair", role: "Alumni - Product Manager", img: "/teamPic/manjeet3-removebg-preview.png", desc: "IIDAD graduate leading product development at Amazon. Combines design thinking with technical excellence." },
 ];
 
 // Simple touch device check  
@@ -26,6 +22,7 @@ export default function HomeSection7() {
   const [hovered, setHovered] = useState(-1);
   const [currentPage, setCurrentPage] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
+  const [isCarouselHovered, setIsCarouselHovered] = useState(false);
   const touchStartX = useRef(0);
   const autoScrollRef = useRef();
 
@@ -42,20 +39,25 @@ export default function HomeSection7() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-scroll carousel one card at a time
+  // Auto-scroll carousel - STOPS when isCarouselHovered is true
   useEffect(() => {
     if (visibleCount < 1) return;
     if (autoScrollRef.current) clearInterval(autoScrollRef.current);
-    autoScrollRef.current = setInterval(() => {
-      setCurrentPage(prev => {
-        const totalPages = Math.ceil(people.length / visibleCount);
-        if (prev < totalPages - 1) return prev + 1;
-        return 0;
-      });
-      setHovered(-1);
-    }, 3500);
+    
+    // Only start auto-scroll if carousel is NOT hovered
+    if (!isCarouselHovered) {
+      autoScrollRef.current = setInterval(() => {
+        setCurrentPage(prev => {
+          const totalPages = Math.ceil(people.length / visibleCount);
+          if (prev < totalPages - 1) return prev + 1;
+          return (prev+1)% totalPages; // Loop back to first page
+        });
+        setHovered(-1);
+      }, 3500);
+    }
+    
     return () => clearInterval(autoScrollRef.current);
-  }, [visibleCount]);
+  }, [visibleCount, isCarouselHovered]); // Added isCarouselHovered dependency
 
   const totalPages = Math.ceil(people.length / visibleCount);
 
@@ -134,6 +136,8 @@ export default function HomeSection7() {
       </div>
       <div
         className={styles.carouselContainer}
+        onMouseEnter={() => setIsCarouselHovered(true)}
+        onMouseLeave={() => setIsCarouselHovered(false)}
       >
         <button
           className={styles.navButton}
