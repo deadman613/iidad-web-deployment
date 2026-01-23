@@ -299,7 +299,7 @@ export default function CourseBanner({ course, recommendedCourses = [] }) {
             </div>
 
             <div className={styles.contentCard}>
-              <h2 className={styles.sectionHeading}>What you'll learn</h2>
+              <h2 className={styles.sectionHeading}>What you&apos;ll learn</h2>
               <div className={styles.learnGrid}>
                 <div className={styles.learnItem}>
                   <svg className={styles.checkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

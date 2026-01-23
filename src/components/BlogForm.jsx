@@ -274,12 +274,12 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
           </button>
         </div>
         <small id={schemasHelpId} style={{ display: 'block', marginBottom: '1rem', color: '#64748b' }}>
-          Add multiple JSON-LD schemas (BlogPosting, FAQPage, etc.). Paste valid JSON (preferred) or a single JSON-LD {"<script>"} block. Each entry renders as a separate script tag.
+          Add multiple JSON-LD schemas (BlogPosting, FAQPage, etc.). Paste valid JSON (preferred) or a single JSON-LD &lt;script&gt; block. Each entry renders as a separate script tag.
         </small>
         
         {formValues.schemas.length === 0 ? (
           <p style={{ padding: '1rem', background: '#f8f9fa', borderRadius: '8px', color: '#64748b', textAlign: 'center' }}>
-            No schemas added yet. Click "+ Add Schema" to add structured data.
+            No schemas added yet. Click the + Add Schema button to add structured data.
           </p>
         ) : (
           <div className="schemas-list">

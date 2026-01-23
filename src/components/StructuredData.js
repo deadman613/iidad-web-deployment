@@ -11,9 +11,9 @@ export default function StructuredData({ type = "organization" }) {
     "@type": "EducationalOrganization",
     "name": "Indian Institute of Design and Development",
     "alternateName": "IIDAD",
-    "url": "https://iidad.in",
-    "logo": "https://iidad.in/logo.png",
-    "description": "Indian Institute of Design and Development (IIDAD) is a premier design education institution offering comprehensive programs in product design, communication design, interior design, fashion design, and more.",
+    "url": "https://iidad.com",
+    "logo": "https://iidad.com/g10.png",
+    "description": "Become a confident developer with our full stack developer course. Learn front-end, back-end, and tools used by real professionals in today's tech world.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IN",
@@ -23,64 +23,23 @@ export default function StructuredData({ type = "organization" }) {
       "@type": "ContactPoint",
       "contactType": "Admissions",
       "telephone": "+91-9205435653",
-      "email": "admissions@iidad.in"
+      "email": "info@iidad.in"
     },
     "sameAs": [
-      "https://www.facebook.com/iidad",
-      "https://www.twitter.com/iidad",
-      "https://www.instagram.com/iidad",
-      "https://www.linkedin.com/school/iidad",
-      "https://www.youtube.com/iidad"
+      "https://www.facebook.com/people/Indian-Institute-of-design-and-development-IIDAD/61586102586145/",
+      "https://www.instagram.com/iidad_officials"
     ],
     "areaServed": "IN",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Design Education Programs",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "Product Design",
-            "description": "Comprehensive product design education"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "Communication Design",
-            "description": "Visual and graphic communication design program"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "Interior Design",
-            "description": "Interior and spatial design education"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "Fashion Design",
-            "description": "Fashion and textile design program"
-          }
-        }
-      ]
-    }
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "IIDAD - Indian Institute of Design and Development",
-    "url": "https://iidad.in",
+    "url": "https://iidad.com",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://iidad.in/blog?search={search_term_string}",
+      "target": "https://iidad.com/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -93,7 +52,7 @@ export default function StructuredData({ type = "organization" }) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://iidad.in"
+        "item": "https://iidad.com"
       }
     ]
   };

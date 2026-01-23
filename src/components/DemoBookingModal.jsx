@@ -12,11 +12,6 @@ export default function DemoBookingModal({ open: propOpen, onClose: propOnClose 
   const [success, setSuccess] = useState(false);
   const mountedRef = useRef(false);
 
-  // Reflect controlled prop if provided
-  useEffect(() => {
-    if (propOpen !== undefined) setOpen(Boolean(propOpen));
-  }, [propOpen]);
-
   // Attach document-level click listener to open modal when any element with
   // class `demoButtonForm` is clicked. This makes the modal reusable and
   // independent of a specific button component.
@@ -162,7 +157,7 @@ export default function DemoBookingModal({ open: propOpen, onClose: propOnClose 
             </button>
           </div>
 
-          {success && <div className={styles.success}>Booked! We'll contact you shortly.</div>}
+          {success && <div className={styles.success}>Booked! We&apos;ll contact you shortly.</div>}
         </form>
       </div>
     </div>

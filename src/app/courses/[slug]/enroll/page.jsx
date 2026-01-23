@@ -3,7 +3,7 @@
 import Link from "next/link";
 import courses from "@/data/courses.json";
 import styles from "./enroll.module.css";
-import { useState, use } from "react";
+import { useState } from "react";
 
 const computePrices = (duration) => {
   const monthly = 10000;
@@ -22,11 +22,11 @@ const formatPrice = (n) => {
 };
 
 export default function EnrollPage({ params }) {
-  const { slug } = use(params);
+  const [submitted, setSubmitted] = useState(false);
+
+  const slug = params?.slug;
   const course = courses.find((c) => c.slug === slug);
   if (!course) return <main className={styles.wrapper}><div className={styles.container}><p className={styles.muted}>Course not found.</p></div></main>;
-
-  const [submitted, setSubmitted] = useState(false);
 
   const { price, oldPrice } = computePrices(course.duration);
   const saved = oldPrice > 0 ? oldPrice - price : 0;

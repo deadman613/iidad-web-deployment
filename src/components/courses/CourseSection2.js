@@ -370,7 +370,7 @@ const CourseSection2 = () => {
 
               {filteredCourses.length === 0 && (
                 <div className={styles.noResult}>
-                  <p>No courses found for "{query}"</p>
+                  <p>No courses found for &quot;{query}&quot;</p>
                   <button onClick={handleClearSearch} className={styles.clearResultBtn}>Clear search</button>
                 </div>
               )}

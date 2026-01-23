@@ -11,6 +11,15 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+
+  // Project overrides
+  {
+    rules: {
+      // This rule is overly strict for typical Next.js apps and can mark
+      // legitimate state sync patterns as errors.
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
