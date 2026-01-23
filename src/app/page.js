@@ -165,8 +165,8 @@ export default function Home() {
       <HomeBlogSection />
       <HomeSection4 />
       <Homesection5 />
-      <HomeSection6 />
       <HomeSection7 />
+      <HomeSection6 />
       <FloatingContactPanel />
     </main>
   );

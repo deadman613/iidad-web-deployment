@@ -151,8 +151,8 @@
   top: 0;
   bottom: 0;
   width: 0;
-  background: linear-gradient(90deg, transparent 75%, #57d773cc 100%);
-  transition: width 0.4s cubic-bezier(0.76, 0.17, 0.18, 0.85);
+  /* background: linear-gradient(90deg, transparent 75%, #57d773cc 100%); */
+  /* transition: width 0.4s cubic-bezier(0.76, 0.17, 0.18, 0.85); */
   z-index: 1;
   /* border-radius: 4px; */
 }
