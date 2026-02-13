@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import courses from "@/data/courses.json";
 import styles from "./enroll.module.css";
 import { useState } from "react";
@@ -23,8 +24,27 @@ const formatPrice = (n) => {
 
 export default function EnrollPage({ params }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const slug = params?.slug;
+  const routeParams = useParams();
+  const routeSlug = routeParams?.slug;
+  const slug =
+    typeof routeSlug === "string"
+      ? routeSlug
+      : Array.isArray(routeSlug)
+        ? routeSlug[0]
+        : params?.slug;
+
+  if (!slug) {
+    return (
+      <main className={styles.wrapper}>
+        <div className={styles.container}>
+          <p className={styles.muted}>Loading course…</p>
+        </div>
+      </main>
+    );
+  }
   const course = courses.find((c) => c.slug === slug);
   if (!course) return <main className={styles.wrapper}><div className={styles.container}><p className={styles.muted}>Course not found.</p></div></main>;
 
@@ -51,9 +71,58 @@ export default function EnrollPage({ params }) {
             <p className={styles.subtext}>Fill in your details and our team will reach out with the next steps.</p>
             <form
               className={styles.form}
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                setSubmitted(true);
+                setError("");
+                setSubmitted(false);
+
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const name = String(formData.get("name") || "").trim();
+                const email = String(formData.get("email") || "").trim();
+                const phone = String(formData.get("phone") || "").trim();
+                const goal = String(formData.get("goal") || "").trim();
+                const notes = String(formData.get("notes") || "").trim();
+
+                if (!name || !email || !phone) {
+                  setError("Please fill name, phone and email.");
+                  return;
+                }
+
+                const payload = {
+                  name,
+                  email,
+                  phone,
+                  // Keep same shape as popup form so the existing Google Sheet mapping works.
+                  interest: course.title,
+                  // Extra metadata (Apps Script can store/ignore as configured)
+                  source: "enroll",
+                  courseSlug: course.slug,
+                  courseTitle: course.title,
+                  goal,
+                  notes,
+                };
+
+                try {
+                  setSubmitting(true);
+                  const response = await fetch("/api/submit-demo", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                  });
+
+                  if (!response.ok) {
+                    setError("Failed to submit enrollment. Try again later.");
+                    return;
+                  }
+
+                  setSubmitted(true);
+                  form.reset();
+                } catch {
+                  setError("Failed to submit enrollment. Try again later.");
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               <label>
@@ -76,9 +145,15 @@ export default function EnrollPage({ params }) {
                 Additional notes
                 <textarea name="notes" rows={3} placeholder="Anything else we should know?" />
               </label>
-              <button type="submit" className={styles.submitButton}>Submit enrollment</button>
+              <button type="submit" className={styles.submitButton} disabled={submitting}>
+                {submitting ? "Submitting…" : "Submit enrollment"}
+              </button>
               <p className={styles.muted}>
-                {submitted ? "Thanks! We will reach out soon." : "By submitting, you agree to be contacted about this course."}
+                {submitted
+                  ? "Thanks! We will reach out soon."
+                  : error
+                    ? error
+                    : "By submitting, you agree to be contacted about this course."}
               </p>
             </form>
           </section>
