@@ -295,6 +295,8 @@
   line-height: 1.85;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
   font-family: var(--font-geist-sans, "Inter"), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 
@@ -350,6 +352,8 @@
 
 .blog-detail .content li {
   margin: 0.5rem 0;
+  color: #d7dce7 !important;
+}
 
 /* Ensure nested spans/strong/em inside headings also inherit green */
 .blog-detail .content h1 *,
@@ -359,8 +363,6 @@
 .blog-detail .content h5 *,
 .blog-detail .content h6 * {
   color: #9fff8b !important;
-}
-  color: #d7dce7 !important; /* light grey baseline */
 }
 
 /* Green list markers for both UL and OL */
@@ -395,7 +397,8 @@
 .blog-detail .content a {
   color: #9fff8b !important;
   text-decoration: underline;
-  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .blog-detail .content pre {
@@ -409,7 +412,8 @@
 
 .blog-detail .content code {
   font-size: 0.9em;
-  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-break: normal;
   color: #9fff8b !important;
 }
 

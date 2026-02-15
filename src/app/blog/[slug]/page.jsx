@@ -14,6 +14,11 @@ const fetchBlog = async (slug) => {
   return res.json();
 };
 
+const normalizeBlogHtml = (html) => {
+  if (!html) return "";
+  return String(html).replace(/&nbsp;/g, " ").replace(/\u00A0/g, " ");
+};
+
 // Fetch related blogs (stub: returns empty for now)
 const fetchRelated = async (slug) => {
   // You can implement logic to fetch related posts if needed
@@ -37,8 +42,10 @@ export async function generateMetadata(props) {
   const metaTitle = blog.metaTitle?.trim() || blog.title;
   
   // Use metaDescription if available, otherwise extract from content
-  const metaDescription = blog.metaDescription?.trim() || 
-    blog.content.replace(/<[^>]+>/g, " ").trim().slice(0, 160);
+  const normalizedContent = normalizeBlogHtml(blog.content);
+  const metaDescription =
+    blog.metaDescription?.trim() ||
+    normalizedContent.replace(/<[^>]+>/g, " ").trim().slice(0, 160);
   
   // Use ogImage if available, otherwise use coverImg
   const imageUrl = blog.ogImage?.trim() || blog.coverImg?.trim();
@@ -110,6 +117,8 @@ export default async function BlogDetails(props) {
     notFound();
   }
 
+  const contentHtml = normalizeBlogHtml(blog.content);
+
   const related = await fetchRelated(slug);
   const cover = blog.coverImg?.trim();
   const isExternalCover = Boolean(cover && /^(https?:)?\/\//i.test(cover));
@@ -156,7 +165,7 @@ export default async function BlogDetails(props) {
           {isPlaceholder ? <span className="cover__hint">Upload a cover image from the admin panel to replace this default artwork.</span> : null}
         </div>
 
-        <div className="content" dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <div className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
         {related?.data?.length ? (
           <aside className="related">
