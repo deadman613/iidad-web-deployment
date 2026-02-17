@@ -13,7 +13,7 @@ import HomeSection7 from "@/components/HomeSection/HomeSection7";
 import PlacementSection from "@/components/HomeSection/PlacementSection";
 import CampusSection from "@/components/HomeSection/CampusSection";
 import HomeBlogSection from "@/components/HomeSection/HomeBlogSection";
-import CourseSection1 from '@/components/courses/CourseSection1';
+import CourseSection2 from '@/components/courses/CourseSection2';
 import AudioMarquee from '@/components/AudioMarquee';
 import Testimonials from '@/components/HomeSection/Testimonials';
 import DemoBookingModal from "@/components/DemoBookingModal";
@@ -159,6 +159,7 @@ export default function Home() {
       <AudioMarquee />
       <HomeSection2 />
       <HomeSection3 />
+      <CourseSection2 variant="home" />
       <Testimonials/>
       <PlacementSection />
       <CampusSection />

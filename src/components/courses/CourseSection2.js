@@ -4,12 +4,13 @@ import styles from "./courseSection2.module.css";
 import { getAllCourses } from "@/lib/courses";
 import Link from 'next/link';
 
-const TABS = ["Popular", "Diploma", "Advanced", "Certification"];
+const TABS = ["All", "Popular", "Diploma", "Advanced", "Certification"];
 
 const allCourses = getAllCourses();
 
-const CourseSection2 = () => {
-  const [activeTab, setActiveTab] = useState("Most popular");
+const CourseSection2 = ({ variant = "default" }) => {
+  const isHomeVariant = variant === "home";
+  const [activeTab, setActiveTab] = useState(() => (isHomeVariant ? "Popular" : "All"));
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [priceFilter, setPriceFilter] = useState("all");
@@ -91,12 +92,12 @@ const CourseSection2 = () => {
       list = list.filter((c) => c.title.toLowerCase().includes("certification"));
     }
 
-    // Sorting: newest toggle sorts by id desc; otherwise keep default (ratings when Most popular)
+    // Sorting: newest toggle sorts by id desc; otherwise keep default (ratings when Popular)
     if (newestFirst) {
       list = list.slice().sort((a, b) => b.id - a.id);
     }
 
-    if (activeTab === "Most popular") {
+    if (activeTab === "Popular") {
       // sort by ratingsCount numeric desc and limit to 4
       const sortedByRatings = list
         .slice()
@@ -159,108 +160,110 @@ const CourseSection2 = () => {
     <section ref={rootRef} className={styles.wrapper}>
       <div className={styles.inner}>
         <div className={styles.content}>
-          <aside id="course-filters" className={`${styles.sidebar} ${sidebarOpen ? styles.open : ""}`}>
-            <div className={styles.filterGroup}>
-              <h4>Search</h4>
-              <input
-                type="text"
-                placeholder="Search courses"
-                className={styles.filterSearch}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </div>
-
-            <div className={styles.filterGroup}>
-              <h4>Category</h4>
-              {[
-                { key: "Diploma", label: "Diploma" },
-                { key: "Advanced", label: "Advanced" },
-                { key: "Certification", label: "Certification" },
-              ].map((c) => (
-                <label key={c.key} className={styles.switch}>
-                  <input
-                    type="checkbox"
-                    checked={categoryFilter.includes(c.key)}
-                    onChange={(e) => {
-                      setCategoryFilter((prev) =>
-                        e.target.checked ? [...prev, c.key] : prev.filter((x) => x !== c.key)
-                      );
-                    }}
-                    aria-label={c.label}
-                  />
-                  <span className={styles.slider} />
-                  <span className={styles.switchLabel}>{c.label}</span>
-                </label>
-              ))}
-            </div>
-
-            <div className={styles.filterGroup}>
-              <h4>Duration</h4>
-              {[
-                { key: 3, label: "3 months" },
-                { key: 4, label: "3-4 months" },
-                { key: 6, label: "6 months" },
-                { key: 12, label: "12 months" },
-              ].map((d) => (
-                <label key={d.key} className={styles.switch}>
-                  <input
-                    type="checkbox"
-                    checked={durationFilter.includes(d.key)}
-                    onChange={(e) => {
-                      setDurationFilter((prev) =>
-                        e.target.checked ? [...prev, d.key] : prev.filter((x) => x !== d.key)
-                      );
-                    }}
-                    aria-label={d.label}
-                  />
-                  <span className={styles.slider} />
-                  <span className={styles.switchLabel}>{d.label}</span>
-                </label>
-              ))}
-            </div>
-
-            <div className={styles.filterGroup}>
-              <h4>Price</h4>
-              <select
-                value={priceFilter}
-                onChange={(e) => setPriceFilter(e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="all">All prices</option>
-                <option value="<=30000">Up to ₹30,000</option>
-                <option value="<=60000">Up to ₹60,000</option>
-                <option value="<=120000">Up to ₹120,000</option>
-              </select>
-            </div>
-
-            <div className={styles.filterGroup}>
-              <label className={styles.switch}>
+          {!isHomeVariant && (
+            <aside id="course-filters" className={`${styles.sidebar} ${sidebarOpen ? styles.open : ""}`}>
+              <div className={styles.filterGroup}>
+                <h4>Search</h4>
                 <input
-                  type="checkbox"
-                  checked={newestFirst}
-                  onChange={(e) => setNewestFirst(e.target.checked)}
-                  aria-label="Newest first"
+                  type="text"
+                  placeholder="Search courses"
+                  className={styles.filterSearch}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
-                <span className={styles.slider} />
-                <span className={styles.switchLabel}>Newest first</span>
-              </label>
-            </div>
+              </div>
 
-            <div className={styles.filterGroup}>
-              <button
-                className={styles.clearFiltersBtn}
-                onClick={() => {
-                  setPriceFilter("all");
-                  setDurationFilter([]);
-                  setCategoryFilter([]);
-                  setNewestFirst(false);
-                }}
-              >
-                Clear filters
-              </button>
-            </div>
-          </aside>
+              <div className={styles.filterGroup}>
+                <h4>Category</h4>
+                {[
+                  { key: "Diploma", label: "Diploma" },
+                  { key: "Advanced", label: "Advanced" },
+                  { key: "Certification", label: "Certification" },
+                ].map((c) => (
+                  <label key={c.key} className={styles.switch}>
+                    <input
+                      type="checkbox"
+                      checked={categoryFilter.includes(c.key)}
+                      onChange={(e) => {
+                        setCategoryFilter((prev) =>
+                          e.target.checked ? [...prev, c.key] : prev.filter((x) => x !== c.key)
+                        );
+                      }}
+                      aria-label={c.label}
+                    />
+                    <span className={styles.slider} />
+                    <span className={styles.switchLabel}>{c.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              <div className={styles.filterGroup}>
+                <h4>Duration</h4>
+                {[
+                  { key: 3, label: "3 months" },
+                  { key: 4, label: "3-4 months" },
+                  { key: 6, label: "6 months" },
+                  { key: 12, label: "12 months" },
+                ].map((d) => (
+                  <label key={d.key} className={styles.switch}>
+                    <input
+                      type="checkbox"
+                      checked={durationFilter.includes(d.key)}
+                      onChange={(e) => {
+                        setDurationFilter((prev) =>
+                          e.target.checked ? [...prev, d.key] : prev.filter((x) => x !== d.key)
+                        );
+                      }}
+                      aria-label={d.label}
+                    />
+                    <span className={styles.slider} />
+                    <span className={styles.switchLabel}>{d.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              <div className={styles.filterGroup}>
+                <h4>Price</h4>
+                <select
+                  value={priceFilter}
+                  onChange={(e) => setPriceFilter(e.target.value)}
+                  className={styles.filterSelect}
+                >
+                  <option value="all">All prices</option>
+                  <option value="<=30000">Up to ₹30,000</option>
+                  <option value="<=60000">Up to ₹60,000</option>
+                  <option value="<=120000">Up to ₹120,000</option>
+                </select>
+              </div>
+
+              <div className={styles.filterGroup}>
+                <label className={styles.switch}>
+                  <input
+                    type="checkbox"
+                    checked={newestFirst}
+                    onChange={(e) => setNewestFirst(e.target.checked)}
+                    aria-label="Newest first"
+                  />
+                  <span className={styles.slider} />
+                  <span className={styles.switchLabel}>Newest first</span>
+                </label>
+              </div>
+
+              <div className={styles.filterGroup}>
+                <button
+                  className={styles.clearFiltersBtn}
+                  onClick={() => {
+                    setPriceFilter("all");
+                    setDurationFilter([]);
+                    setCategoryFilter([]);
+                    setNewestFirst(false);
+                  }}
+                >
+                  Clear filters
+                </button>
+              </div>
+            </aside>
+          )}
 
           <div className={styles.mainContent}>
             <header className={styles.header}>
@@ -269,14 +272,16 @@ const CourseSection2 = () => {
                   <h2 className={styles.heading}>IT &amp; Software Courses</h2>
                   <p className={styles.subheading}>Explore our curated IT and software programs — from short certifications to full diplomas.</p>
                 </div>
-                <button
-                  className={styles.filterToggle}
-                  onClick={() => setSidebarOpen((s) => !s)}
-                  aria-expanded={sidebarOpen}
-                  aria-controls="course-filters"
-                >
-                  Filters
-                </button>
+                {!isHomeVariant && (
+                  <button
+                    className={styles.filterToggle}
+                    onClick={() => setSidebarOpen((s) => !s)}
+                    aria-expanded={sidebarOpen}
+                    aria-controls="course-filters"
+                  >
+                    Filters
+                  </button>
+                )}
               </div>
 
               <div className={styles.searchContainer}>
@@ -329,7 +334,7 @@ const CourseSection2 = () => {
               ))}
             </div>
 
-            <div className={styles.cardsRow}>
+            <div className={isHomeVariant ? `${styles.cardsRow} ${styles.cardsRowHome}` : styles.cardsRow}>
               {filteredCourses.map((course) => (
                 <article key={course.id} className={styles.card}>
                   <Link href={`/courses/${course.slug}`} className={styles.cardLink}>
@@ -376,20 +381,22 @@ const CourseSection2 = () => {
               )}
             </div>
 
-            <div className={styles.whyRow}>
-              <div className={styles.whyItem}>
-                <span className={styles.whyIcon}>▶</span>
-                <p>Learn in‑demand skills with over 250,000 video courses.</p>
+            {!isHomeVariant && (
+              <div className={styles.whyRow}>
+                <div className={styles.whyItem}>
+                  <span className={styles.whyIcon}>▶</span>
+                  <p>Learn in‑demand skills with over 250,000 video courses.</p>
+                </div>
+                <div className={styles.whyItem}>
+                  <span className={styles.whyIcon}>★</span>
+                  <p>Choose courses taught by real‑world experts.</p>
+                </div>
+                <div className={styles.whyItem}>
+                  <span className={styles.whyIcon}>∞</span>
+                  <p>Learn at your own pace with lifetime access.</p>
+                </div>
               </div>
-              <div className={styles.whyItem}>
-                <span className={styles.whyIcon}>★</span>
-                <p>Choose courses taught by real‑world experts.</p>
-              </div>
-              <div className={styles.whyItem}>
-                <span className={styles.whyIcon}>∞</span>
-                <p>Learn at your own pace with lifetime access.</p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
