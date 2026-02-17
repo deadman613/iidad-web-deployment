@@ -95,7 +95,9 @@ const Footer = () => {
         <span className="footer-legal-sep">|</span>{' '}
         <a className="footer-legal-link" href="/privacy-policy">Privacy Policy</a>{' '}
         <span className="footer-legal-sep">|</span>{' '}
-        <a className="footer-legal-link" href="/terms-and-conditions">Terms &amp; Conditions</a>
+        <a className="footer-legal-link" href="/terms-and-conditions">Terms &amp; Conditions</a>{' '}
+        <span className="footer-legal-sep">|</span>{' '}
+        <a className="footer-legal-link" href="/sitemap.html">Sitemap</a>
       </div>
     </>
   );

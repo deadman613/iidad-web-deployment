@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBaseUrl } from "@/lib/base-url";
+import BlogCard from "@/components/BlogCard";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +20,14 @@ const normalizeBlogHtml = (html) => {
   return String(html).replace(/&nbsp;/g, " ").replace(/\u00A0/g, " ");
 };
 
-// Fetch related blogs (stub: returns empty for now)
+// Fetch related blogs (by shared tags) with a safe fallback to latest posts.
 const fetchRelated = async (slug) => {
-  // You can implement logic to fetch related posts if needed
-  return { data: [] };
+  const baseUrl = await getBaseUrl();
+  const qs = new URLSearchParams({ relatedTo: slug, limit: "4" });
+  const res = await fetch(`${baseUrl}/api/blog?${qs.toString()}`, { cache: "no-store" });
+  if (!res.ok) return { data: [] };
+  const json = await res.json();
+  return { data: json?.data || [] };
 };
 
 export async function generateMetadata(props) {
@@ -145,41 +150,43 @@ export default async function BlogDetails(props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <article aria-labelledby="blog-title">
-        <header>
-          <p className="eyebrow">{new Date(blog.createdAt).toLocaleDateString()}</p>
-          <h1 id="blog-title">{blog.title}</h1>
-          {blog.tags?.length ? <p className="tags">{blog.tags.join(" / ")}</p> : null}
-        </header>
+      <div className="blog-detail__layout">
+        <article className="blog-detail__main" aria-labelledby="blog-title">
+          <div className={`cover${isPlaceholder ? " cover--placeholder" : ""}`}>
+            <Image
+              src={imageSrc}
+              alt={blog.title}
+              fill
+              sizes="(max-width: 900px) 100vw, 840px"
+              priority
+              style={{ objectFit: "cover" }}
+              unoptimized={isExternalCover}
+            />
+            {isPlaceholder ? <span className="cover__hint">Upload a cover image from the admin panel to replace this default artwork.</span> : null}
+          </div>
 
-        <div className={`cover${isPlaceholder ? " cover--placeholder" : ""}`}>
-          <Image
-            src={imageSrc}
-            alt={blog.title}
-            fill
-            sizes="(max-width: 900px) 100vw, 840px"
-            priority
-            style={{ objectFit: "cover" }}
-            unoptimized={isExternalCover}
-          />
-          {isPlaceholder ? <span className="cover__hint">Upload a cover image from the admin panel to replace this default artwork.</span> : null}
-        </div>
+          <header>
+            <p className="eyebrow">{new Date(blog.createdAt).toLocaleDateString()}</p>
+            <h1 id="blog-title">{blog.title}</h1>
+            {blog.tags?.length ? <p className="tags">{blog.tags.join(" / ")}</p> : null}
+          </header>
 
-        <div className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          <div className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </article>
 
         {related?.data?.length ? (
-          <aside className="related">
-            <h3>Related Posts</h3>
-            <ul>
-              {related.data.map((item) => (
-                <li key={item.id}>
-                  <Link href={`/blog/${item.slug}`}>{item.title}</Link>
-                </li>
-              ))}
-            </ul>
+          <aside className="blog-detail__sidebar" aria-label="Recommended blogs">
+            <div className="related">
+              <h3>Recommended blogs</h3>
+              <div className="blog-grid blog-grid--sidebar">
+                {related.data.map((item) => (
+                  <BlogCard key={item.id} blog={item} />
+                ))}
+              </div>
+            </div>
           </aside>
         ) : null}
-      </article>
+      </div>
     </main>
   );
 }
