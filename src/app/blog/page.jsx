@@ -130,8 +130,9 @@ export default async function BlogPage({ searchParams }) {
                 key={pageNumber}
                 href={`/blog?${paramsClone.toString()}`}
                 aria-current={isActive ? "page" : undefined}
+                className={isActive ? "is-active" : undefined}
               >
-                <a className={isActive ? undefined : undefined}>{pageNumber}</a>
+                {pageNumber}
               </Link>
             );
           })}
