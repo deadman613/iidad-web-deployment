@@ -1,13 +1,13 @@
 .heroBg {
-  aspect-ratio: 16/7;
   width: 100%;
-  padding-top: 120px;
+  min-height: clamp(460px, 52vw, 620px);
+  padding-top: 92px;
   padding-right: 40px;
   padding-left: 40px;
-  padding-bottom: 32px;
+  padding-bottom: 20px;
   /* padding-top: 10vw; */
   /* padding-bottom: 1vw; */
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   /* background: radial-gradient(circle at 0% 50%, #2e3d2d 0%, #111 60%); */
   display: flex;
   flex-direction: column;
@@ -202,8 +202,11 @@
   .homeLogo {margin-right: 0; margin-bottom: 24px;}
   .ctaBox {min-width: 240px;}
   .heroBg {
-      padding-right: 20px;
+  min-height: 560px;
+  padding-top: 72px;
+  padding-right: 20px;
   padding-left: 20px;
+  padding-bottom: 18px;
   }
   .homeLogo {
     display: none !important;
@@ -220,8 +223,11 @@
 
 @media (max-width: 600px) {
   .heroBg {
-      padding-right: 10px;
+  min-height: 660px;
+  padding-top: 64px;
+  padding-right: 10px;
   padding-left: 10px;
+  padding-bottom: 16px;
   }
   .heroTitle {
     font-size: 2.2rem;

@@ -86,17 +86,6 @@ export default function HomeSection1({ animate }) {
           </div>
         </div>
       </div>
-      <div className={styles.heroMarqueeWrap} aria-hidden="true">
-        <p className={styles.heroMarquee} data-text={marqueeLine}>
-          {marqueeItems.map((item, idx) => (
-            <span key={item}>
-              <span className={styles.heroMarqueeItem}>{item}</span>
-              {idx !== marqueeItems.length - 1 ? " - " : " - "}
-            </span>
-          ))}
-          {marqueeLine}
-        </p>
-      </div>
     </section>
   );
 }

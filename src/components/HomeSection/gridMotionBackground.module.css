@@ -75,18 +75,18 @@
   }
 
   .rowItem {
-    min-height: 130px;
+    min-height: 112px;
   }
 }
 
 @media (max-width: 600px) {
   .container {
-    transform: translate(-50%, -50%) rotate(-6deg) scale(1.2);
-    width: 190%;
-    opacity: 0.2;
+    transform: translate(-50%, -50%) rotate(-6deg) scale(1.05);
+    width: 155%;
+    opacity: 0.3;
   }
 
   .rowItem {
-    min-height: 116px;
+    min-height: 108px;
   }
 }
