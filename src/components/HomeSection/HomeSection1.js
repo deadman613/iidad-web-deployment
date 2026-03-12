@@ -3,6 +3,38 @@ import { useEffect, useRef } from 'react';
 import styles from './home.module.css';
 import { FaArrowRight } from 'react-icons/fa';
 import gsap from 'gsap';
+import GridMotionBackground from './GridMotionBackground';
+
+const heroGridItems = [
+  '/bannerImages/1.webp',
+  '/bannerImages/2.webp',
+  '/bannerImages/3.webp',
+  '/bannerImages/4.webp',
+  '/bannerImages/5.webp',
+  '/bannerImages/6.webp',
+  '/bannerImages/7.webp',
+  '/bannerImages/8.webp',
+  '/bannerImages/9.webp',
+  '/bannerImages/10.webp',
+  '/bannerImages/11.webp',
+  '/bannerImages/12.webp',
+  '/bannerImages/13.webp',
+  '/bannerImages/14.webp',
+  '/bannerImages/15.webp',
+  '/bannerImages/16.webp',
+  '/bannerImages/17.webp',
+  '/bannerImages/18.webp',
+  '/bannerImages/19.webp',
+  '/bannerImages/20.webp',
+  '/bannerImages/21.webp',
+  '/bannerImages/22.webp',
+  '/bannerImages/23.webp',
+  '/bannerImages/24.webp',
+  '/bannerImages/25.webp',
+  '/bannerImages/26.webp',
+  '/bannerImages/27.webp',
+  '/bannerImages/28.webp',
+];
 
 export default function HomeSection1({ animate }) {
   const marqueeItems = [
@@ -28,19 +60,11 @@ export default function HomeSection1({ animate }) {
 
   return (
     <section className={styles.heroBg}>
+      <div className={styles.heroGridLayer}>
+        <GridMotionBackground items={heroGridItems} gradientColor="rgba(0, 0, 0, 0.62)" />
+      </div>
       <div className={styles.Logo}>
         <img src="/g10.png" alt="IIDAD Logo" />
-      </div>
-      <div className={`${styles.heroMarqueeWrap} ${styles.heroMarqueeTop}`} aria-hidden="true">
-        <p className={styles.heroMarquee} data-text={marqueeLine}>
-          {marqueeItems.map((item, idx) => (
-            <span key={`top-${item}`}>
-              <span className={styles.heroMarqueeItem}>{item}</span>
-              {idx !== marqueeItems.length - 1 ? " - " : " - "}
-            </span>
-          ))}
-          {marqueeLine}
-        </p>
       </div>
       <div className={styles.heroRow} ref={heroRowRef}>
         <div className={styles.heroContent}>

@@ -1,0 +1,92 @@
+.gridMotionRoot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.intro {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg) scale(1.02);
+  width: 130%;
+  display: grid;
+  gap: 16px;
+  opacity: 0.28;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(140px, 1fr));
+  gap: 16px;
+  will-change: transform;
+}
+
+.rowItem {
+  min-height: 170px;
+}
+
+.rowItemInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  background: rgba(14, 16, 20, 0.65);
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.itemContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f3f3f3;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 900px) {
+  .container {
+    transform: translate(-50%, -50%) rotate(-7deg) scale(1.08);
+    width: 160%;
+    opacity: 0.24;
+  }
+
+  .row {
+    grid-template-columns: repeat(7, minmax(110px, 1fr));
+    gap: 12px;
+  }
+
+  .rowItem {
+    min-height: 130px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    transform: translate(-50%, -50%) rotate(-6deg) scale(1.2);
+    width: 190%;
+    opacity: 0.2;
+  }
+
+  .rowItem {
+    min-height: 116px;
+  }
+}

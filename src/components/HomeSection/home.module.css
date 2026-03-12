@@ -15,7 +15,28 @@
   justify-content: center;
   color: #fff;
   position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0e1014 0%, #141c1f 100%);
   /* background-color: #57d773; */
+}
+
+.heroGridLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(45, 108, 255, 0.2) 0%, transparent 35%),
+    radial-gradient(circle at 88% 84%, rgba(87, 215, 115, 0.2) 0%, transparent 32%),
+    linear-gradient(180deg, rgba(8, 10, 14, 0.26) 0%, rgba(8, 10, 14, 0.72) 100%);
+  pointer-events: none;
 }
 .Logo{
   position: absolute;
@@ -23,7 +44,7 @@
   left: 40px;
   display: flex;
   align-items: center;
-  z-index: 10;
+  z-index: 3;
 }
 
 .Logo img {
@@ -36,6 +57,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -61,6 +84,8 @@
   width: 100%;
   overflow: hidden;
   margin-top: 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .heroMarqueeTop {
