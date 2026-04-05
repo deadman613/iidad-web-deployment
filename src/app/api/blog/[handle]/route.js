@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { generateUniqueSlug } from "@/lib/slugify";
+import { generateUniqueSlug } from "@/lib/generateUniqueSlug";
 import { normalizeTags } from "@/lib/tags";
 import { ensureAdminApi } from "@/lib/auth";
 import { recordAudit } from "@/lib/audit";
