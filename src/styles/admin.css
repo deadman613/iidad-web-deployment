@@ -6,7 +6,7 @@
 
 .admin-nav {
   padding: 2.5rem 2rem;
-  background: #0f172a;
+  background: none;
   color: #e2e8f0;
   display: flex;
   flex-direction: column;
@@ -42,11 +42,11 @@
 
 .admin-main {
   padding: 3rem;
-  background: #f8f9fb;
+  background: none;
 }
 
 .admin-panel {
-  background: #ffffff;
+  background: none;
   padding: 2.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -104,7 +104,7 @@ textarea {
   border: 1px solid #e3e6ed;
   padding: 0.85rem 1rem;
   font-size: 1rem;
-  background: #ffffff;
+  background: none;
   color: #1f2430;
 }
 
@@ -122,7 +122,7 @@ small {
 .schemas-section {
   margin: 2rem 0;
   padding: 1.5rem;
-  background: #f8f9fa;
+  background: none;
   border: 1px solid #e3e6ed;
   border-radius: var(--radius-md);
 }
@@ -145,7 +145,7 @@ small {
 }
 
 .schema-item {
-  background: #fff;
+  background: none;
   border: 1px solid #e3e6ed;
   border-radius: 0.75rem;
   padding: 1rem;
@@ -182,24 +182,24 @@ small {
 }
 
 .btn--secondary {
-  background: #fff;
+  background: none;
   color: #2563eb;
   border: 1px solid #2563eb;
 }
 
 .btn--secondary:hover:not(:disabled) {
-  background: #2563eb;
+  background: none;
   color: #fff;
 }
 
 .btn--danger {
-  background: #fff;
+  background: none;
   color: #dc2626;
   border: 1px solid #dc2626;
 }
 
 .btn--danger:hover:not(:disabled) {
-  background: #dc2626;
+  background: none;
   color: #fff;
 }
 
@@ -213,7 +213,7 @@ small {
   border: 1px solid #e3e6ed;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: #fff;
+  background: none;
   color: #1f2430;
 }
 
@@ -222,12 +222,12 @@ small {
   gap: 0.25rem;
   padding: 0.4rem;
   border-bottom: 1px solid var(--color-border);
-  background: #f4f6fb;
+  background: none;
 }
 
 .editor__toolbar button {
   border: none;
-  background: transparent;
+  background: none;
   font-weight: 600;
   padding: 0.4rem 0.75rem;
   border-radius: 0.5rem;
@@ -235,7 +235,7 @@ small {
 }
 
 .editor__toolbar button.active {
-  background: var(--color-accent);
+  background: none;
   color: #fff;
 }
 
@@ -248,7 +248,7 @@ small {
   color: #1f2430;
   outline: none;
   border: none;
-  background: #fff;
+  background: none;
   cursor: text;
   text-align: left;
   direction: ltr;
@@ -306,14 +306,14 @@ small {
 
 /* ReactQuill Editor Styles */
 .blog-editor-quill {
-  background: #fff;
+  background: none;
   color: #1f2430;
 }
 
 .blog-editor-quill .ql-toolbar {
   border: none;
   border-bottom: 1px solid #e3e6ed;
-  background: #f4f6fb;
+  background: none;
   padding: 0.75rem;
 }
 
@@ -349,7 +349,7 @@ small {
 
 .blog-editor-quill .ql-toolbar button:hover,
 .blog-editor-quill .ql-toolbar button.ql-active {
-  background-color: rgba(37, 99, 235, 0.1);
+  background-color: none;
 }
 
 .blog-editor-quill .ql-toolbar button.ql-active {
@@ -380,7 +380,7 @@ small {
   border-radius: 4px;
   padding: 4px 8px;
   margin: 0 2px;
-  background: #fff;
+  background: none;
   color: #1f2430;
 }
 

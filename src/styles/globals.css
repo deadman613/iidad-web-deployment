@@ -20,7 +20,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-geist-sans, "Inter"), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--color-bg);
+  background: none;
   color: var(--color-text);
 }
 
@@ -29,7 +29,7 @@ body {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-accent);
+  background: none;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 999px;
@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--color-bg);
+  background: none;
 }
 
 a {
@@ -66,7 +66,7 @@ a:hover {
   padding: 0 1.5rem;
   border-radius: 999px;
   border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: none;
   color: var(--color-text);
   font-weight: 600;
   cursor: pointer;
@@ -85,22 +85,22 @@ a:hover {
 }
 
 .btn--primary {
-  background: var(--color-accent);
+  background: none;
   color: #fff;
   border-color: var(--color-accent);
 }
 
 .btn--primary:hover {
-  background: var(--color-accent-strong);
+  background: none;
   border-color: var(--color-accent-strong);
 }
 
 .btn--ghost {
-  background: transparent;
+  background: none;
 }
 
 .btn--danger {
-  background: var(--color-danger);
+  background: none;
   border-color: var(--color-danger);
   color: #fff;
 }
@@ -130,7 +130,7 @@ a:hover {
 }
 
 .hero__inner {
-  background: var(--color-surface);
+  background: none;
   width: min(900px, 100%);
   padding: 3.5rem;
   border-radius: var(--radius-lg);

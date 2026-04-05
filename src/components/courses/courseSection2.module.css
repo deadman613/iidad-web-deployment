@@ -21,10 +21,11 @@
 .sidebar {
   width: 280px;
   flex: 0 0 280px;
-  padding: 12px; /* reduced padding for compactness */
+  padding: 12px;
+  /* reduced padding for compactness */
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-  border: 1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   position: sticky;
   top: 20px;
   display: grid;
@@ -70,7 +71,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px; /* tighter */
+  gap: 10px;
+  /* tighter */
   width: 100%;
 }
 
@@ -80,9 +82,11 @@
   gap: 8px;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: #9fff8b; /* green */
-  color: #000000; /* black text on green */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #9fff8b;
+  /* green */
+  color: #000000;
+  /* black text on green */
   font-weight: 600;
   cursor: pointer;
   transition: background 160ms ease, transform 120ms ease;
@@ -131,23 +135,27 @@
 
 /* FILTERS */
 .filterGroup {
-  margin-bottom: 10px; /* reduce vertical spacing between groups */
+  margin-bottom: 10px;
+  /* reduce vertical spacing between groups */
   display: grid;
   grid-template-columns: 1fr;
-  gap: 6px; /* internal spacing smaller */
+  gap: 6px;
+  /* internal spacing smaller */
   align-items: center;
 }
 
 .filterGroup h4 {
   margin: 0;
-  font-size: 13px; /* slightly smaller */
+  font-size: 13px;
+  /* slightly smaller */
   color: #d1d5db;
   font-weight: 600;
 }
 
 .filterSearch {
   width: 100%;
-  padding: 8px 10px; /* reduced padding */
+  padding: 8px 10px;
+  /* reduced padding */
   border-radius: 8px;
   border: 1px solid #1f2937;
   background: #0b1220;
@@ -171,7 +179,8 @@
 .switch {
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* smaller gap */
+  gap: 8px;
+  /* smaller gap */
   cursor: pointer;
   margin-bottom: 6px;
 }
@@ -181,7 +190,8 @@
 }
 
 .slider {
-  width: 36px; /* smaller switch */
+  width: 36px;
+  /* smaller switch */
   height: 20px;
   background: #374151;
   border-radius: 20px;
@@ -202,27 +212,29 @@
   transition: transform 0.16s ease;
 }
 
-.switch input[type="checkbox"]:checked + .slider {
+.switch input[type="checkbox"]:checked+.slider {
   background: #9fff8b;
 }
 
-.switch input[type="checkbox"]:checked + .slider::after {
+.switch input[type="checkbox"]:checked+.slider::after {
   transform: translateX(16px);
 }
 
 .switchLabel {
   color: #cbd5e1;
-  font-size: 13px; /* slightly smaller label */
+  font-size: 13px;
+  /* slightly smaller label */
 }
 
 /* Keyboard focus for hidden checkbox switches */
-.switch input[type="checkbox"]:focus + .slider {
+.switch input[type="checkbox"]:focus+.slider {
   box-shadow: 0 0 0 4px rgba(159, 255, 139, 0.12);
 }
 
 .filterSelect {
   width: 100%;
-  padding: 8px 8px; /* tighter */
+  padding: 8px 8px;
+  /* tighter */
   border-radius: 8px;
   border: 1px solid #1f2937;
   background: #0b1220;
@@ -232,7 +244,8 @@
 
 .clearFiltersBtn {
   width: 100%;
-  padding: 8px 10px; /* reduced */
+  padding: 8px 10px;
+  /* reduced */
   border-radius: 8px;
   border: 1px solid #374151;
   background: transparent;
@@ -350,7 +363,8 @@
 .cardsRow {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px; /* slightly reduced gap to fit more cards */
+  gap: 20px;
+  /* slightly reduced gap to fit more cards */
   margin-bottom: 40px;
 }
 
@@ -569,9 +583,11 @@
   .content {
     flex-direction: column;
   }
-.filterToggle {
-  display: inline-flex
-}
+
+  .filterToggle {
+    display: inline-flex
+  }
+
   /* Sidebar hidden by default on smaller screens; toggle will add `.open` */
   .sidebar {
     width: 100%;
@@ -591,13 +607,14 @@
   }
 
   .sidebar.open {
-    max-height: 1200px; /* large enough to show filters */
+    max-height: 1200px;
+    /* large enough to show filters */
     padding: 12px 0;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-    border: 1px solid rgba(255,255,255,0.03);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+    border: 1px solid rgba(255, 255, 255, 0.03);
   }
 
   /* Filter toggle button in header - visible on small screens */
@@ -608,8 +625,9 @@
     padding: 8px 12px;
     margin-right: 12px;
     border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.08);
-    background: #9fff8b; /* green */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #9fff8b;
+    /* green */
     color: #000000;
     font-weight: 600;
     cursor: pointer;
@@ -629,6 +647,7 @@
 /* Note: stacked (two-column) sidebar grid is applied only at <=640px below */
 
 @media (max-width: 640px) {
+
   /* On small mobile keep two columns for compact filters */
   .sidebar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -639,12 +658,12 @@
   .sidebar .filterSearch,
   .sidebar .filterSelect,
   .sidebar .clearFiltersBtn,
-  .sidebar .filterGroup > h4,
+  .sidebar .filterGroup>h4,
   .sidebar .clearButton {
     grid-column: 1 / -1;
   }
 
- 
+
   .sidebar .switch {
     gap: 10px;
   }
@@ -715,7 +734,7 @@
 
   .filterGroup {
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
   }
 
   .filterGroup:last-child {
@@ -727,9 +746,11 @@
   .wrapper {
     padding: 32px 0;
   }
-.tabRow{
+
+  .tabRow {
     gap: 10px;
-}
+  }
+
   .inner {
     padding: 0 16px;
   }

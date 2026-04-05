@@ -10,9 +10,8 @@ export default function HomeSection2() {
     <section ref={sectionRef} className={styles.sectionWrapper}>
       <div className={styles.leftCol}>
         <h2 className={styles.bigTitle}>Innovation Through Education</h2>
-        <p className={styles.descText}>
-          From foundational design principles to advanced development techniques, IIDAD offers comprehensive programs in UI/UX design, web development, mobile app development, graphic design, and product design. We nurture talent and transform aspiring designers into industry leaders.
-        </p>
+        <p className={styles.heroDesc}>
+            IIDAD Has Been Created About <span style={{color:"#57d773"}}>25</span> Thousand+ Developer in last <span style={{color:"#57d773"}}>12</span> Years between the Age of <span style={{color:"#57d773"}}>10</span> years to <span style={{color:"#57d773"}}>55</span> Years with Exellent Placement Rate With Average <span style={{color:"#57d773"}}>12</span> LPA Salary.</p>
         <div className={styles.ctaRow}>
           <span className={styles.ctaMain}>Why 25,000+ Learners Chose Us</span>
         </div>

@@ -1,0 +1,209 @@
+/* ─── OVERVIEW SECTION ──────────────────────────────────────────── */
+.section {
+  width: 100%;
+  background: #0a0a0a;
+}
+
+/* Each year = one 16:9 rectangle */
+.frame {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.frame:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Panels */
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4% 5%;
+}
+
+.left {
+  position: relative;
+  gap: 24px;
+}
+
+.right {
+  gap: 0;
+}
+
+/* Alternating — even rows flip left/right */
+.orderLeft  { order: -1; }
+.orderRight { order: 1; }
+
+/* Large background number */
+.bigNum {
+  font-size: clamp(80px, 10vw, 160px);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+  letter-spacing: -4px;
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.yearLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+.title {
+  font-size: clamp(22px, 2.6vw, 38px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.tagline {
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: #9fff8b;
+  font-weight: 600;
+  margin: 0;
+}
+
+.desc {
+  font-size: clamp(12px, 1vw, 14px);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 480px;
+}
+
+/* Outcome row */
+.outcomeRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.outcomeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.outcomeLabel {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.outcomeVal {
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.salaryText { color: #9fff8b; }
+
+.dividerV {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Separator between panels */
+.sep {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+}
+
+/* Skills panel */
+.skillsLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0 0 16px;
+}
+
+.skillsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.15s ease;
+}
+
+.skillItem:first-child { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+.skillIdx {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+  min-width: 22px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.skillName {
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .frame {
+    aspect-ratio: unset;
+    flex-direction: column;
+  }
+  .sep { width: 100%; height: 1px; }
+  .orderLeft, .orderRight { order: unset; }
+  .panel { padding: 32px 32px; }
+  .bigNum { position: static; font-size: 60px; opacity: 0.06; }
+  .skillsList { gap: 0; }
+  .skillItem { padding: 10px 0; }
+}
+
+@media (max-width: 640px) {
+  .panel { padding: 24px 20px; }
+  .outcomeRow { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .dividerV { display: none; }
+}

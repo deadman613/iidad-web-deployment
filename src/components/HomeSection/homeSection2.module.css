@@ -1,12 +1,14 @@
 .sectionWrapper {
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
+  grid-template-columns: 0.7fr 1fr;
   grid-gap: 20px;
   width: 100%;
   color: #fff;
   padding: 40px;
 }
-
+.heroDesc{
+  font-size: 18px;
+}
 .leftCol {
   display: flex;
   flex-direction: column;

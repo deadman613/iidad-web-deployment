@@ -4,7 +4,9 @@ export const metadata = {
   },
 };
 import HomeSection1 from "@/components/HomeSection/HomeSection1";
+import HomeSectionDegreePrograms from "@/components/HomeSection/HomeSectionDegreePrograms";
 import HomeSection2 from "@/components/HomeSection/HomeSection2";
+import TestimonialsV2 from "@/components/HomeSection/TestimonialsV2";
 import HomeSection3 from "@/components/HomeSection/HomeSection3";
 import HomeSection4 from "@/components/HomeSection/HomeSection4";
 import Homesection5 from "@/components/HomeSection/HomeSection5";
@@ -156,7 +158,7 @@ export default function Home() {
       ))}
       <DemoBookingModal />
       <HomeSection1 />
-      <AudioMarquee />
+      <HomeSectionDegreePrograms />
       <HomeSection2 />
       <HomeSection3 />
       <CourseSection2 variant="home" />

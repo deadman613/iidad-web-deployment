@@ -1,0 +1,176 @@
+/* ─── SECTION WRAPPER ────────────────────────────────────────────── */
+.section {
+  width: 100%;
+  background: #0a0a0a;
+  padding: 80px 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────────── */
+.header {
+  margin-bottom: 56px;
+}
+
+.kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0 0 16px;
+}
+
+.heading {
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -2px;
+  line-height: 1.06;
+  margin: 0;
+}
+
+.accent {
+  color: #9fff8b;
+}
+
+.subtitle {
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 16px 0 0;
+}
+
+/* ─── 2-COLUMN CARD GRID ─────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ─── CARD ───────────────────────────────────────────────────────── */
+.card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: rgba(159, 255, 139, 0.25);
+  transform: translateY(-4px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardCategory {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.cardBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #9fff8b;
+  background: rgba(159, 255, 139, 0.08);
+  border: 1px solid rgba(159, 255, 139, 0.2);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.cardDuration {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.cardSubtitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9fff8b;
+  margin: 0 0 4px;
+}
+
+.cardTitle {
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cardDesc {
+  font-size: clamp(12px, 0.95vw, 14px);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.cardHighlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cardHighlight {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.cardCta {
+  display: block;
+  margin-top: auto;
+  padding: 13px 24px;
+  background: #9fff8b;
+  color: #000000;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.15s ease;
+}
+
+.cardCta:hover {
+  opacity: 0.85;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

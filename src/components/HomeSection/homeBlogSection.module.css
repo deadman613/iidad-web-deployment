@@ -38,7 +38,7 @@
 
 .viewAll {
   align-self: center;
-  background: #9fff8b;
+  background: none;
   color: #0f172a;
   font-weight: 700;
   padding: 12px 18px;
@@ -51,7 +51,7 @@
 
 .viewAll:hover {
   transform: translateY(-2px);
-  background: #8dec78;
+  background: none;
   box-shadow: 0 14px 32px rgba(159, 255, 139, 0.36);
 }
 
