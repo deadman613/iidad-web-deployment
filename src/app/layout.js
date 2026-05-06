@@ -113,7 +113,7 @@ export default function RootLayout({ children }) {
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WHWVVJSN');`}</Script>
+})(window,document,'script','dataLayer','GTM-TPJDM95C');`}</Script>
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EG0KPE5YEP"
@@ -130,7 +130,7 @@ gtag('config', 'AW-17855767551');
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WHWVVJSN"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TPJDM95C"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
