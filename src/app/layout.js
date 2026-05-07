@@ -20,7 +20,7 @@ export const metadata = {
   title: {
     default: "Best Institute for Web Development | Create Sites with Confidence"
   },
-  canonical:"https://www.iidad.com/",
+  canonical: "https://www.iidad.com/",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -33,25 +33,25 @@ export const metadata = {
     "IIDAD",
     "Indian Institute of Design and Development",
     "website development course",
-  "web development institute near me",
-  "complete web development course",
-  "mern stack course with placement",
-  "best institute for web development",
-  "advanced web development course",
-  "web development courses",
-  "mern course",
-  "software development courses",
-  "full stack development course",
-  "best web development courses",
-  "online web development courses",
-  "front end development course",
-  "web development classes",
-  "mern stack course",
-  "web development courses near me",
-  "web design and development course",
-  "web development full course",
-  "stack development course",
-  "full stack development course near me"
+    "web development institute near me",
+    "complete web development course",
+    "mern stack course with placement",
+    "best institute for web development",
+    "advanced web development course",
+    "web development courses",
+    "mern course",
+    "software development courses",
+    "full stack development course",
+    "best web development courses",
+    "online web development courses",
+    "front end development course",
+    "web development classes",
+    "mern stack course",
+    "web development courses near me",
+    "web design and development course",
+    "web development full course",
+    "stack development course",
+    "full stack development course near me"
   ],
   authors: [{ name: "IIDAD" }],
   creator: "Indian Institute of Design and Development",
@@ -96,7 +96,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: "Zero10-en+o1",
+    google: "vH6KNeXsutpF-7H3D_MjaV7-2541kGVQRPxIfn4n9zI",
   },
 };
 
@@ -115,17 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TPJDM95C');`}</Script>
 
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-EG0KPE5YEP"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">{`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-EG0KPE5YEP');
-gtag('config', 'AW-17855767551');
-        `}</Script>
+ 
 
         {/* Google Tag Manager (noscript) */}
         <noscript>
